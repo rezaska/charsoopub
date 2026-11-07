@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import BookCard from "../../components/BookCard.astro";
+import { fa } from "../../lib/fa";
+
+const books = (await getCollection("books")).sort((a, b) => a.data.order - b.data.order);
+const FORMS = ["نمایشنامه", "مجموعه داستان", "رمان", "نظریه و پژوهش"] as const;
+const grouped = FORMS.map((f) => ({ form: f, items: books.filter((b) => b.data.form === f) }))
+  .filter((g) => g.items.length > 0);
+---
+
+<Base title="کتاب‌ها — انتشارات پیام چارسو" description="کتاب‌های ادبی و هنری انتشارات پیام چارسو">
+  <div class="wrap page">
+    <header class="intro">
+      <h1>کتاب‌ها</h1>
+      <p>
+        انتشارات پیام چارسو از سال ۱۳۹۸ فعالیت خود را آغاز کرده و تاکنون
+        {fa(books.length)} عنوان در حوزه‌ی نمایشنامه، داستان و پژوهش منتشر کرده است.
+      </p>
+    </header>
+
+    {grouped.map((g) => (
+      <section class="group">
+        <h2>{g.form} <span class="count num">{fa(g.items.length)}</span></h2>
+        <div class="grid">
+          {g.items.map((b) => <BookCard slug={b.id} {...b.data} />)}
+        </div>
+      </section>
+    ))}
+  </div>
+</Base>
+
+<style>
+  .page { padding-block: clamp(2rem, 5vw, 3.4rem); }
+  .intro { max-width: var(--measure); margin-bottom: clamp(1.8rem, 4vw, 2.8rem); }
+  .intro h1 { font-size: var(--s-3); font-weight: 900; margin-bottom: 0.7rem; }
+  .intro p { color: var(--ink-soft); }
+  .group { margin-bottom: clamp(2rem, 5vw, 3.2rem); }
+  .group h2 {
+    font-size: var(--s-1); margin-bottom: 1.1rem;
+    padding-bottom: 0.5rem; border-bottom: 2px solid var(--ink);
+    display: flex; align-items: baseline; gap: 0.6rem;
+  }
+  .count { font-size: var(--s--1); color: var(--ink-faint); font-weight: 400; }
+  .grid {
+    display: grid; gap: clamp(0.9rem, 2.2vw, 1.6rem);
+    grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+  }
+</style>

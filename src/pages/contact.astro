@@ -1,0 +1,46 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="تماس با ما — انتشارات پیام چارسو">
+  <div class="wrap page">
+    <h1>تماس با ما</h1>
+    <div class="cols">
+      <section>
+        <h2>نشانی</h2>
+        <p>تهران، ونک، خدامی، خیابان آفتاب، ساختمان آفتاب<br />به‌نام فصلنامه‌ی پیام چارسو</p>
+        <h2>تلفن</h2>
+        <p class="num ltr">۰۲۱۲۲۷۸۰۸۱۰</p>
+        <p class="num ltr">۰۹۱۲۲۴۰۶۹۵۹ — رزرو آگهی</p>
+        <h2>ایمیل</h2>
+        <p><a class="ltr" href="mailto:charsoomagazine@gmail.com">charsoomagazine@gmail.com</a></p>
+      </section>
+      <section>
+        <h2>تهیه‌ی کتاب‌ها و فصلنامه</h2>
+        <p>
+          برای تهیه‌ی کتاب‌های انتشارات پیام چارسو یا شماره‌های فصلنامه می‌توانید
+          مستقیماً با شماره، ایمیل یا اینستاگرام پیام چارسو تماس بگیرید.
+        </p>
+        <p>همچنین از این فروشگاه‌ها نیز می‌توانید کتاب‌ها را تهیه فرمایید:</p>
+        <ul>
+          <li>کتاب‌فروشی پیشگاه</li>
+          <li><a class="ltr" href="https://www.iranketab.ir/" rel="noopener">ایران‌کتاب</a></li>
+          <li>پخش گسترش</li>
+          <li>نشر چشمه</li>
+        </ul>
+        <h2>اینستاگرام</h2>
+        <p><a class="ltr" href="https://www.instagram.com/charsoopub/" rel="noopener">instagram.com/charsoopub</a></p>
+      </section>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page { padding-block: clamp(2rem, 5vw, 3.4rem); }
+  h1 { font-size: var(--s-3); font-weight: 900; margin-bottom: 1.6rem; }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: clamp(1.6rem, 4vw, 3rem); }
+  h2 { font-size: var(--s--1); font-weight: 700; color: var(--accent); margin: 1.4rem 0 0.4rem; }
+  section > h2:first-child { margin-top: 0; }
+  p, li { color: var(--ink-soft); }
+  ul { margin: 0.3rem 0 0; padding-inline-start: 1.1rem; }
+</style>

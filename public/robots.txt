@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /admin/
+
+Sitemap: https://charsoo-mag.ir/sitemap-index.xml

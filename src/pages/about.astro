@@ -1,0 +1,52 @@
+---
+import Base from "../layouts/Base.astro";
+import { getCollection } from "astro:content";
+import { fa } from "../lib/fa";
+const books = await getCollection("books");
+const issues = await getCollection("issues");
+---
+
+<Base title="درباره‌ی ما — انتشارات پیام چارسو">
+  <div class="wrap page">
+    <h1>درباره‌ی ما</h1>
+    <div class="prose">
+      <p>
+        فصلنامه‌ی تخصصی تئاتر و سینمای پیام چارسو در زمستان سال ۱۳۹۵ موفق به اخذ پروانه‌ی
+        انتشار به شماره‌ی ۷۸۸۷۵ با گستره‌ی سراسری به دو زبان فارسی و انگلیسی از وزارت
+        فرهنگ و ارشاد اسلامی گردید. این فصلنامه می‌کوشد با ترجمه و نگارش متون و مقالات
+        به‌روز در زمینه‌ی هنرهای نمایشی، در جهت تزریق دانش تخصصی تئاتر و سینما به
+        مخاطبان خود گام بردارد.
+      </p>
+      <p>
+        فصلنامه شماره‌ی نخست خود را به نمایشنامه‌ی «هملت»، شاهکار بی‌بدیل ویلیام شکسپیر،
+        اختصاص داد. پس از هفت شماره و بررسی آثار هملت، مکبث، رومئو و ژولیت، اتللو،
+        شاه لیر و ریچارد سوم، به سراغ آثار نمایش‌نامه‌نویس بزرگ دیگری رفتیم: آنتون چخوف.
+        بخش «چارسوی داستان» از شماره‌ی هفتم به این فصلنامه اضافه شده است.
+      </p>
+      <p>
+        انتشارات پیام چارسو نیز از سال ۱۳۹۸ فعالیت خود را آغاز کرده و تاکنون
+        {fa(books.length)} عنوان در حوزه‌ی نمایشنامه، داستان و پژوهش منتشر کرده است.
+      </p>
+    </div>
+
+    <dl class="facts">
+      <div><dt>شماره‌های منتشرشده</dt><dd class="num">{fa(issues.length)}</dd></div>
+      <div><dt>عناوین کتاب</dt><dd class="num">{fa(books.length)}</dd></div>
+      <div><dt>پروانه‌ی انتشار</dt><dd class="num">۷۸۸۷۵</dd></div>
+      <div><dt>آغاز انتشارات</dt><dd class="num">۱۳۹۸</dd></div>
+    </dl>
+  </div>
+</Base>
+
+<style>
+  .page { padding-block: clamp(2rem, 5vw, 3.4rem); }
+  h1 { font-size: var(--s-3); font-weight: 900; margin-bottom: 1.2rem; }
+  .prose { max-width: var(--measure); display: flex; flex-direction: column; gap: 1.1rem; color: var(--ink-soft); }
+  .facts {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem; margin: clamp(2rem, 5vw, 3rem) 0 0;
+  }
+  .facts div { border-top: 2px solid var(--ink); padding-top: 0.7rem; }
+  .facts dt { font-size: var(--s--1); color: var(--ink-soft); margin: 0; }
+  .facts dd { margin: 0; font-size: var(--s-2); font-weight: 900; }
+</style>

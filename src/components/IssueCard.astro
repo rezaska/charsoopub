@@ -1,0 +1,38 @@
+---
+import { fa, seasonLabel } from "../lib/fa";
+
+interface Props {
+  number: number;
+  play: string;
+  cover?: string;
+  accent: string;
+}
+const { number, play, cover, accent } = Astro.props;
+---
+
+<a class="issue" href={`/magazine/${number}/`} style={`--a:${accent}`}>
+  {cover && <img src={cover} alt={`جلد ویژه‌نامه‌ی ${play}`} width="520" height="680" loading="lazy" />}
+  <span class="band"></span>
+  <span class="meta">
+    <span class="n num">{fa(number)}</span>
+    <span class="t">{play}</span>
+    <span class="s">{seasonLabel(number)}</span>
+  </span>
+</a>
+
+<style>
+  .issue { display: flex; flex-direction: column; gap: 0.55rem; }
+  .issue img {
+    width: 100%;
+    aspect-ratio: 13 / 17;
+    object-fit: cover;
+    object-position: top;
+    background: var(--raise);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.1), 0 10px 24px rgb(0 0 0 / 0.12);
+  }
+  .band { height: 3px; background: var(--a); border-radius: 2px; }
+  .meta { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
+  .n { font-weight: 900; color: var(--a); font-size: var(--s-1); }
+  .t { font-weight: 700; font-size: var(--s-0); }
+  .s { font-size: var(--s--1); color: var(--ink-faint); margin-inline-start: auto; }
+</style>

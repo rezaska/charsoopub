@@ -1,0 +1,49 @@
+---
+import { toman } from "../lib/fa";
+
+interface Props {
+  slug: string;
+  title: string;
+  author?: string;
+  translator?: string;
+  cover?: string;
+  price: number | null;
+  inStock?: boolean;
+}
+const { slug, title, author, translator, cover, price, inStock = true } = Astro.props;
+const by = [author, translator && `ترجمه‌ی ${translator}`].filter(Boolean).join(" · ");
+---
+
+<article class="book">
+  <a href={`/books/${slug}/`}>
+    {cover
+      ? <img src={cover} alt={`جلد ${title}`} width="420" height="600" loading="lazy" />
+      : <div class="placeholder" aria-hidden="true"><span>بدون تصویر جلد</span></div>}
+    <h3>{title}</h3>
+  </a>
+  {by && <p class="by">{by}</p>}
+  <p class="price num">{inStock ? toman(price) : "ناموجود"}</p>
+</article>
+
+<style>
+  .book { display: flex; flex-direction: column; gap: 0.45rem; }
+  .book a { display: flex; flex-direction: column; gap: 0.6rem; }
+  .book img,
+  .placeholder {
+    width: 100%;
+    aspect-ratio: 7 / 10;
+    object-fit: cover;
+    object-position: top;
+    background: var(--raise);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.08), 0 10px 24px rgb(0 0 0 / 0.1);
+  }
+  .placeholder {
+    display: grid;
+    place-items: center;
+    color: var(--ink-faint);
+    font-size: var(--s--1);
+  }
+  .book h3 { font-size: var(--s-0); line-height: 1.5; }
+  .by { font-size: var(--s--1); color: var(--ink-soft); line-height: 1.6; }
+  .price { font-size: var(--s--1); color: var(--ink-faint); }
+</style>

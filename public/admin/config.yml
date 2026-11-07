@@ -1,0 +1,98 @@
+backend:
+  name: github
+  repo: rezaska/charsoopub
+  branch: main
+  # Sveltia signs in through GitHub. If the client cannot reach github.com,
+  # swap this block for the fallback described in docs/cms.md.
+
+media_folder: public/covers
+public_folder: /covers
+
+# Persian admin UI, matching the site.
+locale: fa
+publish_mode: simple
+
+collections:
+  # ───────────────────────── کتاب‌ها ─────────────────────────
+  - name: books
+    label: کتاب‌ها
+    label_singular: کتاب
+    folder: src/content/books
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}} — {{author}}"
+    sortable_fields: [order, title, year]
+    fields:
+      - { name: title, label: عنوان, widget: string }
+      - { name: cover, label: تصویر جلد, widget: image, required: false,
+          hint: "جلد کتاب. فایل با کیفیت بالا بارگذاری شود." }
+      - { name: author, label: نویسنده, widget: string, required: false }
+      - { name: translator, label: مترجم, widget: string, required: false }
+      - { name: form, label: قالب, widget: select,
+          options: [نمایشنامه, مجموعه داستان, رمان, نظریه و پژوهش] }
+      - { name: origin, label: تألیف یا ترجمه, widget: select,
+          options: [تألیف, ترجمه], default: تألیف }
+      - { name: price, label: قیمت (تومان), widget: number, required: false,
+          value_type: int, min: 0,
+          hint: "خالی بگذارید تا روی سایت «تماس بگیرید» نمایش داده شود." }
+      - { name: inStock, label: موجود است, widget: boolean, default: true }
+      - { name: isbn, label: شابک, widget: string, required: false }
+      - { name: pages, label: تعداد صفحات, widget: number, required: false, value_type: int }
+      - { name: year, label: سال انتشار (شمسی), widget: number, required: false,
+          value_type: int, min: 1380, max: 1450 }
+      - name: buyLinks
+        label: لینک‌های خرید
+        widget: list
+        required: false
+        label_singular: لینک
+        summary: "{{fields.name}}"
+        fields:
+          - { name: name, label: نام فروشگاه, widget: string }
+          - { name: url, label: نشانی, widget: string }
+      - { name: order, label: ترتیب نمایش, widget: number, default: 0, value_type: int }
+      - { name: needsReview, label: نیازمند بازبینی, widget: boolean, default: false,
+          hint: "اطلاعاتی که از روی تصویر جلد خوانده شده و تأیید نشده است." }
+      - { name: body, label: توضیحات, widget: markdown, required: false }
+
+  # ──────────────────── شماره‌های فصلنامه ────────────────────
+  - name: issues
+    label: شماره‌های فصلنامه
+    label_singular: شماره
+    folder: src/content/issues
+    create: true
+    slug: "{{number}}-{{play}}"
+    identifier_field: play
+    summary: "شماره‌ی {{number}} — {{play}}"
+    sortable_fields: [number]
+    fields:
+      - { name: number, label: شماره, widget: number, value_type: int, min: 1 }
+      - { name: play, label: ویژه‌نامه‌ی, widget: string,
+          hint: "نام نمایشنامه، مثلاً: مرغ دریایی" }
+      - { name: playwright, label: نویسنده‌ی نمایشنامه, widget: string, required: false }
+      - { name: cover, label: تصویر جلد, widget: image, required: false }
+      - name: accent
+        label: رنگ شاخص
+        widget: color
+        default: "#C83A4D"
+        allowInput: true
+        hint: "رنگ نوار روی جلد چاپی. تمام صفحه‌ی این شماره با همین رنگ نمایش داده می‌شود."
+      - { name: season, label: فصل, widget: select, required: false,
+          options: [بهار, تابستان, پاییز, زمستان] }
+      - { name: year, label: سال (شمسی), widget: number, required: false,
+          value_type: int, min: 1390, max: 1450 }
+      - { name: price, label: قیمت (تومان), widget: number, required: false, value_type: int }
+      - { name: coverNeedsOriginal, label: جلد با کیفیت پایین, widget: boolean, default: false }
+      - name: toc
+        label: فهرست مطالب
+        widget: list
+        required: false
+        label_singular: مطلب
+        summary: "{{fields.kind}} — {{fields.title}}"
+        fields:
+          - { name: kind, label: نوع مطلب, widget: string,
+              hint: "مثلاً: مقاله، مصاحبه، نمایشنامه، سرمقاله" }
+          - { name: title, label: عنوان, widget: string }
+          - { name: by, label: نویسنده / مترجم, widget: string, required: false }
+          - { name: page, label: صفحه, widget: number, required: false, value_type: int }
+      - { name: body, label: معرفی شماره, widget: markdown, required: false }

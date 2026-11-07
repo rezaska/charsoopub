@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import IssueCard from "../../components/IssueCard.astro";
+import { fa } from "../../lib/fa";
+
+const issues = (await getCollection("issues")).sort((a, b) => b.data.number - a.data.number);
+---
+
+<Base title="فصلنامه‌ی پیام چارسو" description="آرشیو شماره‌های فصلنامه‌ی تخصصی سینما و تئاتر پیام چارسو">
+  <div class="wrap page">
+    <header class="intro">
+      <h1>فصلنامه‌ی پیام چارسو</h1>
+      <p>
+        فصلنامه‌ی تخصصی تئاتر و سینمای پیام چارسو در زمستان ۱۳۹۵ موفق به اخذ پروانه‌ی
+        انتشار به شماره‌ی ۷۸۸۷۵ با گستره‌ی سراسری به دو زبان فارسی و انگلیسی از
+        وزارت فرهنگ و ارشاد اسلامی گردید. تاکنون {fa(issues.length)} شماره منتشر شده است.
+      </p>
+    </header>
+    <div class="grid">
+      {issues.map((i) => <IssueCard {...i.data} />)}
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page { padding-block: clamp(2rem, 5vw, 3.4rem); }
+  .intro { max-width: var(--measure); margin-bottom: clamp(1.6rem, 4vw, 2.6rem); }
+  .intro h1 { font-size: var(--s-3); font-weight: 900; margin-bottom: 0.7rem; }
+  .intro p { color: var(--ink-soft); }
+  .grid {
+    display: grid; gap: clamp(1rem, 2.4vw, 1.8rem);
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+</style>

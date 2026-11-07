@@ -12,3 +12,6 @@ dist/
 # os
 .DS_Store
 Thumbs.db
+
+# astro build cache
+.astro/

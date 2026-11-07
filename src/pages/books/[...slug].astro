@@ -1,0 +1,116 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import { toman, fa } from "../../lib/fa";
+
+export async function getStaticPaths() {
+  const books = await getCollection("books");
+  return books.map((book) => ({ params: { slug: book.id }, props: { book } }));
+}
+
+const { book } = Astro.props;
+const d = book.data;
+const { Content } = await render(book);
+---
+
+<Base title={d.title} description={`${d.title} — انتشارات پیام چارسو`}>
+  <div class="wrap page">
+    <nav class="crumbs" aria-label="مسیر">
+      <a href="/books/">کتاب‌ها</a> <span aria-hidden="true">›</span> <span>{d.title}</span>
+    </nav>
+
+    <article class="book">
+      <div class="cover">
+        {d.cover
+          ? <img src={d.cover} alt={`جلد ${d.title}`} width="420" height="600" />
+          : <div class="placeholder">بدون تصویر جلد</div>}
+      </div>
+
+      <div class="info">
+        <p class="form">{d.form} · {d.origin}</p>
+        <h1>{d.title}</h1>
+        {d.author && <p class="by">نوشته‌ی {d.author}</p>}
+        {d.translator && <p class="by">ترجمه‌ی {d.translator}</p>}
+
+        <p class="price num">{d.inStock ? toman(d.price) : "ناموجود"}</p>
+
+        {book.body?.trim() && <div class="desc"><Content /></div>}
+
+        <dl class="spec">
+          {d.isbn && <div><dt>شابک</dt><dd class="num ltr">{d.isbn}</dd></div>}
+          {d.pages && <div><dt>تعداد صفحات</dt><dd class="num">{fa(d.pages)}</dd></div>}
+          {d.year && <div><dt>سال انتشار</dt><dd class="num">{fa(d.year)}</dd></div>}
+          <div><dt>ناشر</dt><dd>انتشارات پیام چارسو</dd></div>
+        </dl>
+
+        {d.buyLinks.length > 0 ? (
+          <section class="buy">
+            <h2>تهیه‌ی کتاب</h2>
+            <ul>
+              {d.buyLinks.map((l) => (
+                <li><a href={l.url} rel="noopener">{l.name}</a></li>
+              ))}
+            </ul>
+          </section>
+        ) : (
+          <section class="buy">
+            <h2>تهیه‌ی کتاب</h2>
+            <p>
+              برای تهیه‌ی کتاب‌ها می‌توانید مستقیماً با شماره‌ی
+              <span class="num ltr"> ۰۲۱۲۲۷۸۰۸۱۰ </span>
+              یا ایمیل <a class="ltr" href="mailto:charsoomagazine@gmail.com">charsoomagazine@gmail.com</a>
+              تماس بگیرید، یا از کتاب‌فروشی پیشگاه، وب‌سایت ایران‌کتاب، پخش گسترش و نشر چشمه
+              اقدام فرمایید.
+            </p>
+          </section>
+        )}
+
+        {d.needsReview && (
+          <p class="review">
+            این اطلاعات از روی تصویر جلد خوانده شده و نیاز به تأیید ناشر دارد.
+          </p>
+        )}
+      </div>
+    </article>
+  </div>
+</Base>
+
+<style>
+  .page { padding-block: clamp(1.4rem, 4vw, 2.6rem); }
+  .crumbs { font-size: var(--s--1); color: var(--ink-faint); margin-bottom: 1.4rem; }
+  .book {
+    display: grid;
+    grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+    gap: clamp(1.4rem, 4vw, 3.2rem);
+    align-items: start;
+  }
+  @media (max-width: 760px) { .book { grid-template-columns: 1fr; } }
+  .cover img,
+  .placeholder {
+    width: 100%; aspect-ratio: 7 / 10; object-fit: cover; object-position: top;
+    background: var(--raise);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.12), 0 20px 44px rgb(0 0 0 / 0.14);
+  }
+  .placeholder { display: grid; place-items: center; color: var(--ink-faint); font-size: var(--s--1); }
+  .info { max-width: var(--measure); display: flex; flex-direction: column; gap: 0.5rem; }
+  .form { font-size: var(--s--1); color: var(--accent); font-weight: 700; }
+  .info h1 { font-size: var(--s-2); font-weight: 900; }
+  .by { color: var(--ink-soft); font-size: var(--s-0); }
+  .price { font-size: var(--s-1); font-weight: 700; margin-top: 0.4rem; }
+  .desc { color: var(--ink-soft); margin-block: 0.6rem; }
+  .spec { display: flex; flex-direction: column; gap: 0.1rem; margin: 1rem 0 0; }
+  .spec div {
+    display: flex; justify-content: space-between; gap: 1rem;
+    padding: 0.42rem 0; border-bottom: 1px dotted var(--rule); font-size: var(--s--1);
+  }
+  .spec dt { color: var(--ink-soft); margin: 0; }
+  .spec dd { margin: 0; font-weight: 500; }
+  .buy { margin-top: 1.4rem; }
+  .buy h2 { font-size: var(--s--1); font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
+  .buy p, .buy li { font-size: var(--s--1); color: var(--ink-soft); }
+  .buy ul { margin: 0; padding-inline-start: 1.1rem; }
+  .review {
+    margin-top: 1.2rem; font-size: var(--s--1); color: var(--accent);
+    border-inline-start: 2px solid var(--accent); padding-inline-start: 0.6rem;
+  }
+</style>

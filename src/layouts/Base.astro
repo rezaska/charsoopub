@@ -1,0 +1,148 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Issue pages pass their accent; everything else uses the house colour. */
+  accent?: string;
+  onAccent?: string;
+}
+
+const {
+  title,
+  description = "انتشارات پیام چارسو — ناشر کتاب‌های ادبی و هنری و فصلنامه‌ی تخصصی سینما و تئاتر",
+  accent,
+  onAccent,
+} = Astro.props;
+
+const nav = [
+  { href: "/books/", label: "کتاب‌ها" },
+  { href: "/magazine/", label: "فصلنامه" },
+  { href: "/news/", label: "اخبار" },
+  { href: "/about/", label: "درباره‌ی ما" },
+  { href: "/contact/", label: "تماس" },
+];
+
+const path = Astro.url.pathname;
+const style = accent
+  ? `--accent:${accent};--on-accent:${onAccent ?? "#fff"}`
+  : undefined;
+---
+
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(path, Astro.site)} />
+  </head>
+
+  <body style={style}>
+    <a class="skip" href="#main">پرش به محتوای اصلی</a>
+
+    <header class="site-head">
+      <div class="wrap head-inner">
+        <a href="/" class="brand" aria-label="انتشارات پیام چارسو — خانه">
+          <img src="/wordmark.png" alt="" width="120" height="47" />
+        </a>
+        <nav aria-label="فهرست اصلی">
+          <ul>
+            {nav.map((i) => (
+              <li>
+                <a href={i.href} aria-current={path.startsWith(i.href) ? "page" : undefined}>
+                  {i.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <a class="en ltr" href="/en/">EN</a>
+      </div>
+    </header>
+
+    <main id="main"><slot /></main>
+
+    <footer class="site-foot">
+      <div class="wrap foot-inner">
+        <div>
+          <strong>انتشارات پیام چارسو</strong>
+          <p>ناشر کتاب‌های ادبی و هنری</p>
+          <p>فصلنامه‌ی تخصصی سینما و تئاتر — پروانه‌ی انتشار ۷۸۸۷۵</p>
+        </div>
+        <div>
+          <p>تهران، ونک، خدامی، خیابان آفتاب، ساختمان آفتاب</p>
+          <p class="num ltr">۰۲۱۲۲۷۸۰۸۱۰</p>
+          <p><a class="ltr" href="mailto:charsoomagazine@gmail.com">charsoomagazine@gmail.com</a></p>
+          <p><a class="ltr" href="https://www.instagram.com/charsoopub/" rel="noopener">instagram.com/charsoopub</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <style>
+      .site-head {
+        background: var(--paper);
+        border-bottom: 1px solid var(--rule);
+        position: sticky;
+        top: 0;
+        z-index: 20;
+      }
+      .head-inner {
+        display: flex;
+        align-items: center;
+        gap: clamp(1rem, 3vw, 2rem);
+        padding-block: 0.9rem;
+        flex-wrap: wrap;
+      }
+      .brand img {
+        height: 34px;
+        width: auto;
+      }
+      /* The wordmark artwork is white-on-black; invert it onto light paper. */
+      :root:not([data-theme="dark"]) .brand img { filter: invert(1); }
+      @media (prefers-color-scheme: light) {
+        :root:not([data-theme="dark"]) .brand img { filter: invert(1); }
+      }
+      nav ul {
+        display: flex;
+        gap: clamp(0.8rem, 2.2vw, 1.6rem);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        flex-wrap: wrap;
+      }
+      nav a {
+        font-size: var(--s-0);
+        font-weight: 500;
+        color: var(--ink-soft);
+      }
+      nav a[aria-current="page"] {
+        color: var(--ink);
+        box-shadow: inset 0 -2px 0 var(--accent);
+      }
+      .en {
+        margin-inline-start: auto;
+        font-size: var(--s--1);
+        letter-spacing: 0.08em;
+        color: var(--ink-faint);
+      }
+
+      .site-foot {
+        border-top: 1px solid var(--rule);
+        background: var(--paper);
+        margin-top: clamp(3rem, 7vw, 5rem);
+        padding-block: clamp(2rem, 5vw, 3.4rem);
+        color: var(--ink-soft);
+        font-size: var(--s--1);
+      }
+      .foot-inner {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: clamp(1.2rem, 3vw, 2.4rem);
+      }
+      .foot-inner strong { color: var(--ink); }
+      .foot-inner p { margin: 0; }
+    </style>
+  </body>
+</html>

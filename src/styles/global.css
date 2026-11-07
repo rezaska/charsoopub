@@ -1,0 +1,123 @@
+/* Vazirmatn, self-hosted.
+   Google Fonts is unreliable from inside Iran, so the font ships with the site. */
+@import "@fontsource-variable/vazirmatn";
+
+:root {
+  /* Neutrals: cool paper, not cream. The covers print on white stock. */
+  --paper: #ffffff;
+  --ground: #f4f4f2;
+  --raise: #ebebe7;
+  --ink: #17171b;
+  --ink-soft: #5c5c64;
+  --ink-faint: #8b8b92;
+  --rule: #e2e2dc;
+
+  /* Overridden per issue from the `accent` field. House default is issue 8. */
+  --accent: #c83a4d;
+  --on-accent: #ffffff;
+
+  --fa: "Vazirmatn Variable", "Vazirmatn", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  --measure: 62ch;
+  --wrap: 1180px;
+  --gutter: clamp(1.1rem, 4vw, 2.4rem);
+
+  --s--1: clamp(0.78rem, 0.76rem + 0.1vw, 0.85rem);
+  --s-0: clamp(0.95rem, 0.93rem + 0.12vw, 1.02rem);
+  --s-1: clamp(1.1rem, 1.04rem + 0.26vw, 1.3rem);
+  --s-2: clamp(1.4rem, 1.26rem + 0.6vw, 1.9rem);
+  --s-3: clamp(1.9rem, 1.55rem + 1.5vw, 2.9rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #16161a;
+    --ground: #111113;
+    --raise: #212126;
+    --ink: #ededeb;
+    --ink-soft: #a0a0a7;
+    --ink-faint: #74747c;
+    --rule: #2c2c32;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #16161a;
+  --ground: #111113;
+  --raise: #212126;
+  --ink: #ededeb;
+  --ink-soft: #a0a0a7;
+  --ink-faint: #74747c;
+  --rule: #2c2c32;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--fa);
+  font-size: var(--s-0);
+  /* Persian needs more leading than Latin — descenders and diacritics
+     collide below about 1.9. */
+  line-height: 1.95;
+  font-weight: 400;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+h1, h2, h3, h4 { margin: 0; line-height: 1.35; font-weight: 700; text-wrap: balance; }
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 0.25em; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Latin runs inside Persian sentences must not reorder the line. */
+.ltr { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+
+.wrap {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.label {
+  font-size: var(--s--1);
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  font-weight: 500;
+}
+
+/* Prices and issue numbers line up in columns. */
+.num { font-variant-numeric: tabular-nums; }
+
+.skip {
+  position: absolute;
+  inset-inline-start: -9999px;
+}
+.skip:focus {
+  inset-inline-start: var(--gutter);
+  top: 0.6rem;
+  z-index: 50;
+  background: var(--accent);
+  color: var(--on-accent);
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
