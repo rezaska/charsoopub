@@ -1,0 +1,619 @@
+<title>Charsoo Visual Direction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=IBM+Plex+Mono:wght@400;500&family=Vazirmatn:wght@300;400;500;700;900&display=swap">
+
+<style>
+:root{
+  --ground:#F2F2F0;
+  --surface:#FFFFFF;
+  --raise:#E7E7E3;
+  --ink:#16161A;
+  --ink-soft:#5B5B63;
+  --ink-faint:#8C8C93;
+  --rule:#D9D9D3;
+  --rule-soft:#E6E6E1;
+  --deck:#C83A4D;
+  --shadow:0 1px 2px rgba(20,20,24,.06),0 8px 28px rgba(20,20,24,.08);
+  --shadow-lift:0 2px 6px rgba(20,20,24,.10),0 18px 48px rgba(20,20,24,.16);
+
+  --fa:"Vazirmatn",system-ui,sans-serif;
+  --en:"Bodoni Moda","Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+
+  --wrap:1180px;
+  --step--1:clamp(.78rem,.76rem + .1vw,.84rem);
+  --step-0:clamp(.95rem,.92rem + .14vw,1.02rem);
+  --step-1:clamp(1.15rem,1.08rem + .3vw,1.34rem);
+  --step-2:clamp(1.5rem,1.34rem + .7vw,2rem);
+  --step-3:clamp(2.1rem,1.7rem + 1.7vw,3.4rem);
+  --step-4:clamp(2.9rem,2rem + 4vw,5.6rem);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#111113;
+    --surface:#1A1A1D;
+    --raise:#232327;
+    --ink:#ECECEA;
+    --ink-soft:#9E9EA5;
+    --ink-faint:#71717A;
+    --rule:#2E2E34;
+    --rule-soft:#26262B;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 8px 28px rgba(0,0,0,.45);
+    --shadow-lift:0 2px 6px rgba(0,0,0,.55),0 18px 48px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#111113;
+  --surface:#1A1A1D;
+  --raise:#232327;
+  --ink:#ECECEA;
+  --ink-soft:#9E9EA5;
+  --ink-faint:#71717A;
+  --rule:#2E2E34;
+  --rule-soft:#26262B;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 8px 28px rgba(0,0,0,.45);
+  --shadow-lift:0 2px 6px rgba(0,0,0,.55),0 18px 48px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--en);font-size:var(--step-0);line-height:1.6;
+  font-synthesis-weight:none;
+}
+img{display:block;max-width:100%}
+h1,h2,h3,h4{margin:0;text-wrap:balance;font-weight:400;line-height:1.1}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--deck);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(1.1rem,4vw,2.6rem)}
+.stack{display:flex;flex-direction:column}
+
+/* ---------- eyebrow / labels ---------- */
+.label{
+  font-family:var(--mono);font-size:var(--step--1);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-faint);font-weight:500;
+}
+
+/* ---------- masthead ---------- */
+.masthead{background:#0E0E10;color:#F4F4F2;padding-block:clamp(3rem,7vw,5.5rem) 0;position:relative}
+.masthead .wrap{display:flex;flex-direction:column;gap:clamp(2rem,4vw,3rem)}
+.mh-top{display:flex;flex-wrap:wrap;align-items:flex-end;gap:clamp(1.5rem,4vw,3.5rem)}
+.mh-mark{flex:0 0 auto}
+.mh-mark img{height:clamp(62px,8vw,104px);width:auto}
+.mh-text{flex:1 1 320px;min-width:0}
+.mh-text .label{color:rgba(244,244,242,.5)}
+.mh-title{font-family:var(--en);font-size:var(--step-3);letter-spacing:-.015em;margin-top:.5rem}
+.mh-title em{font-style:italic;color:#C83A4D}
+.mh-sub{color:rgba(244,244,242,.62);max-width:56ch;margin-top:.9rem;font-size:var(--step-0);line-height:1.65}
+
+/* the thesis: eight spot colours as one strip */
+.spectrum{display:grid;grid-template-columns:repeat(8,1fr);height:clamp(54px,7vw,88px);width:100%}
+.spectrum div{position:relative}
+.spectrum span{
+  position:absolute;inset-inline-start:.5rem;bottom:.45rem;
+  font-family:var(--fa);font-size:clamp(.8rem,1.4vw,1.05rem);font-weight:700;
+  color:#0E0E10;mix-blend-mode:normal;opacity:.75;
+}
+
+/* ---------- sections ---------- */
+section{padding-block:clamp(3.2rem,7vw,6rem)}
+.sec-head{display:flex;flex-direction:column;gap:.85rem;max-width:64ch;margin-bottom:clamp(2rem,4vw,3rem)}
+.sec-head h2{font-size:var(--step-2);letter-spacing:-.01em}
+.sec-head p{color:var(--ink-soft);line-height:1.7}
+.rule{height:1px;background:var(--rule);border:0;margin:0}
+
+/* ---------- swatch grid ---------- */
+.swatches{display:grid;gap:clamp(.8rem,1.6vw,1.2rem);grid-template-columns:repeat(auto-fit,minmax(128px,1fr))}
+.sw{display:flex;flex-direction:column;gap:.6rem}
+.sw-chip{aspect-ratio:3/2;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.07)}
+.sw-fa{font-family:var(--fa);font-weight:500;font-size:var(--step-0);line-height:1.3}
+.sw-hex{font-family:var(--mono);font-size:var(--step--1);color:var(--ink-faint)}
+
+/* ---------- mockup frame ---------- */
+.frame{
+  background:var(--surface);border-radius:10px;overflow:hidden;
+  box-shadow:var(--shadow-lift);border:1px solid var(--rule-soft);
+}
+.frame-bar{
+  display:flex;align-items:center;gap:.5rem;padding:.65rem .9rem;
+  background:var(--raise);border-bottom:1px solid var(--rule-soft);
+}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--rule);flex:0 0 auto}
+.frame-url{
+  font-family:var(--mono);font-size:var(--step--1);color:var(--ink-faint);
+  margin-inline-start:.6rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+
+/* everything inside .site is the mock website: always light, it depicts white paper */
+.site{
+  direction:rtl;font-family:var(--fa);background:#FFFFFF;color:#17171B;
+  --paper:#FFFFFF;--site-ink:#17171B;--site-soft:#63636B;--site-rule:#E4E4DE;
+}
+.site *{box-sizing:border-box}
+.site a{text-decoration:none;color:inherit}
+
+/* site nav */
+.s-nav{
+  display:flex;align-items:center;gap:clamp(.9rem,2vw,1.7rem);flex-wrap:wrap;
+  padding:1rem clamp(1rem,3vw,2rem);border-bottom:1px solid var(--site-rule);
+}
+.s-nav .brand{height:30px;width:auto;filter:invert(1)}
+.s-nav ul{display:flex;gap:clamp(.8rem,1.8vw,1.5rem);list-style:none;margin:0;padding:0;flex-wrap:wrap}
+.s-nav li{font-size:.86rem;font-weight:500;color:var(--site-soft)}
+.s-nav li:first-child{color:var(--site-ink)}
+.s-nav .spacer{margin-inline-start:auto}
+.s-nav .en{font-family:var(--en);font-size:.8rem;letter-spacing:.08em;color:var(--site-soft)}
+
+/* ---------- homepage mock ---------- */
+.hp-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:stretch}
+@media (max-width:760px){.hp-hero{grid-template-columns:1fr}}
+.hp-art{background:#0E0E10;display:grid;place-items:center;padding:clamp(1.4rem,3vw,2.6rem)}
+.hp-art img{width:min(74%,250px);height:auto;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.hp-copy{padding:clamp(1.5rem,3.4vw,3rem);display:flex;flex-direction:column;justify-content:center;gap:1.1rem}
+.hp-kicker{display:flex;align-items:center;gap:.6rem;font-size:.8rem;font-weight:700;color:var(--hp-accent,#C83A4D)}
+.hp-kicker .bar{height:3px;width:34px;background:var(--hp-accent,#C83A4D);border-radius:2px}
+.hp-title{font-size:clamp(1.5rem,3.4vw,2.3rem);font-weight:900;line-height:1.25;letter-spacing:-.01em}
+.hp-meta{font-size:.9rem;color:var(--site-soft)}
+.hp-dek{font-size:.92rem;line-height:1.95;color:var(--site-soft);max-width:44ch}
+.hp-cta{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.3rem}
+.btn{
+  font-family:var(--fa);font-size:.86rem;font-weight:700;padding:.6rem 1.15rem;border-radius:3px;
+  background:var(--hp-accent,#C83A4D);color:#fff;border:0;
+}
+.btn.ghost{background:transparent;color:var(--site-ink);box-shadow:inset 0 0 0 1px var(--site-rule)}
+
+.s-section{padding:clamp(1.6rem,3.4vw,2.8rem) clamp(1rem,3vw,2rem);border-top:1px solid var(--site-rule)}
+.s-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:1.3rem;flex-wrap:wrap}
+.s-head h3{font-size:1.08rem;font-weight:700}
+.s-head .more{font-size:.82rem;color:var(--site-soft)}
+
+.books{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(.7rem,1.8vw,1.3rem)}
+@media (max-width:760px){.books{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.book{display:flex;flex-direction:column;gap:.55rem}
+.book img{width:100%;aspect-ratio:7/10;object-fit:cover;object-position:top;box-shadow:0 1px 2px rgba(0,0,0,.08),0 10px 22px rgba(0,0,0,.10)}
+.book .t{font-size:.86rem;font-weight:700;line-height:1.45}
+.book .a{font-size:.78rem;color:var(--site-soft)}
+.book .p{font-family:var(--fa);font-size:.78rem;color:var(--site-soft);font-variant-numeric:tabular-nums}
+
+.issue-rail{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:.55rem}
+@media (max-width:760px){.issue-rail{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.issue-rail img{width:100%;aspect-ratio:13/17;object-fit:cover;object-position:top}
+.issue-rail figcaption{font-size:.72rem;color:var(--site-soft);margin-top:.4rem;text-align:center}
+
+/* ---------- issue page mock (interactive) ---------- */
+.ip{--a:#73973B}
+.ip-band{background:var(--a);padding:clamp(1.3rem,3vw,2.2rem) clamp(1rem,3vw,2rem);color:#fff}
+.ip-band .num{
+  font-size:clamp(2.4rem,6vw,4rem);font-weight:900;line-height:1;
+  display:inline-block;padding:.08em .34em;background:rgba(255,255,255,.16);border-radius:3px;
+}
+.ip-band-row{display:flex;align-items:center;gap:clamp(1rem,2.5vw,1.8rem);flex-wrap:wrap}
+.ip-band h3{font-size:clamp(1.3rem,3vw,2rem);font-weight:900;line-height:1.2}
+.ip-band .season{font-size:.88rem;opacity:.85;margin-top:.3rem}
+.ip-band img.mark{height:clamp(34px,5vw,52px);width:auto;margin-inline-start:auto}
+@media (max-width:620px){.ip-band img.mark{margin-inline-start:0}}
+
+.ip-body{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:clamp(1.2rem,3vw,2.4rem);padding:clamp(1.4rem,3vw,2.4rem) clamp(1rem,3vw,2rem)}
+@media (max-width:700px){.ip-body{grid-template-columns:1fr}}
+.ip-cover img{width:100%;box-shadow:0 2px 6px rgba(0,0,0,.12),0 18px 40px rgba(0,0,0,.18)}
+.ip-spec{margin-top:.9rem;display:flex;flex-direction:column;gap:.4rem;font-size:.8rem;color:var(--site-soft)}
+.ip-spec div{display:flex;justify-content:space-between;gap:1rem;border-bottom:1px dotted var(--site-rule);padding-bottom:.35rem}
+.ip-spec b{font-weight:500;color:var(--site-ink);font-variant-numeric:tabular-nums}
+
+.toc-h{font-size:.78rem;font-weight:700;letter-spacing:.06em;color:var(--a);margin-bottom:.8rem}
+.toc{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.toc li{display:flex;gap:.8rem;align-items:baseline;padding:.6rem 0;border-bottom:1px solid var(--site-rule)}
+.toc li:last-child{border-bottom:0}
+.toc .k{
+  flex:0 0 auto;font-size:.68rem;font-weight:700;color:#fff;background:var(--a);
+  padding:.18em .5em;border-radius:2px;min-width:4.2em;text-align:center;
+}
+.toc .n{font-size:.9rem;font-weight:500;line-height:1.5}
+.toc .by{font-size:.8rem;color:var(--site-soft);display:block;font-weight:400;margin-top:.1rem}
+
+/* picker */
+.picker{display:flex;flex-direction:column;gap:.9rem;margin-bottom:1.4rem}
+.picker-row{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:.5rem}
+@media (max-width:620px){.picker-row{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.pick{
+  padding:0;border:0;background:none;cursor:pointer;display:flex;flex-direction:column;gap:.4rem;
+  border-radius:3px;
+}
+.pick img{width:100%;aspect-ratio:13/17;object-fit:cover;object-position:top;border-radius:2px;
+  box-shadow:0 1px 2px rgba(0,0,0,.12);transition:transform .18s ease,box-shadow .18s ease;filter:saturate(.35) opacity(.55)}
+.pick .dotc{height:3px;border-radius:2px;background:var(--c);opacity:.35;transition:opacity .18s ease}
+.pick[aria-pressed="true"] img{filter:none;transform:translateY(-3px);box-shadow:0 4px 10px rgba(0,0,0,.18),0 12px 26px rgba(0,0,0,.14)}
+.pick[aria-pressed="true"] .dotc{opacity:1}
+.pick:hover img{filter:saturate(.8) opacity(.9)}
+@media (prefers-reduced-motion:reduce){.pick img,.pick .dotc{transition:none}.pick[aria-pressed="true"] img{transform:none}}
+
+/* ---------- type specimen ---------- */
+.spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:clamp(1.2rem,3vw,2rem)}
+.spec-card{background:var(--surface);border:1px solid var(--rule-soft);border-radius:8px;padding:clamp(1.1rem,2.4vw,1.7rem);display:flex;flex-direction:column;gap:.85rem;box-shadow:var(--shadow)}
+.spec-card .sample{font-family:var(--fa);direction:rtl;line-height:1.55;color:var(--ink)}
+.spec-card .meta{font-family:var(--mono);font-size:var(--step--1);color:var(--ink-faint);display:flex;flex-direction:column;gap:.2rem}
+.spec-card p{font-size:var(--step--1);color:var(--ink-soft);line-height:1.7}
+
+/* notes list */
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:clamp(1rem,2.4vw,1.8rem)}
+.note{display:flex;flex-direction:column;gap:.5rem;padding-top:1rem;border-top:2px solid var(--ink)}
+.note h4{font-family:var(--en);font-size:var(--step-1);letter-spacing:-.01em}
+.note p{font-size:var(--step--1);color:var(--ink-soft);line-height:1.75}
+.note .fa{font-family:var(--fa);direction:rtl;color:var(--ink);font-size:var(--step-0)}
+
+/* gaps table */
+.gaps{width:100%;border-collapse:collapse;font-size:var(--step--1)}
+.gaps th,.gaps td{text-align:start;padding:.7rem .8rem;border-bottom:1px solid var(--rule-soft)}
+.gaps th{font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:500;font-size:.72rem}
+.gaps td.fa{font-family:var(--fa);direction:rtl}
+.gaps td.px{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink-soft)}
+.flag{display:inline-block;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;padding:.16em .5em;border-radius:2px;background:#C83A4D;color:#fff}
+.ok{display:inline-block;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;padding:.16em .5em;border-radius:2px;background:var(--raise);color:var(--ink-soft)}
+.tablewrap{overflow-x:auto}
+
+footer{padding-block:clamp(2.4rem,5vw,4rem);border-top:1px solid var(--rule);color:var(--ink-faint);font-size:var(--step--1)}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer .mono{font-family:var(--mono)}
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="mh-top">
+      <div class="mh-mark"><img src="wordmark.png" alt="چارسو wordmark"></div>
+      <div class="mh-text">
+        <div class="label">Visual direction · November 2026</div>
+        <h1 class="mh-title">The system is <em>already in print</em></h1>
+        <p class="mh-sub">
+          Eight issues of فصلنامه پیام چارسو share one construction: full-bleed artwork, a Persian
+          numeral in a boxed corner, and a spot-colour band carrying the calligraphic wordmark. The
+          band colour is the only thing that changes. That is the design system — recovered from the
+          print files, not invented here.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="spectrum" id="spectrum"></div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">01 — The palette, sampled</div>
+      <h2>Eight spot colours, taken off the covers</h2>
+      <p>
+        Each value below was sampled from the printed colour band, not chosen. Issue ۳ is the one
+        outlier — its cover has no band at all, so its accent is drawn from Juliet's dress and should
+        be confirmed against the original artwork.
+      </p>
+    </div>
+    <div class="swatches" id="swatches"></div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">02 — Homepage</div>
+      <h2>The press leads, the quarterly follows</h2>
+      <p>
+        انتشارات پیام چارسو is the parent brand, so the catalogue sits above the magazine. The current
+        issue takes the hero and brings its own accent with it — here, ۸ مرغ دریایی in crimson.
+        Everything below is real content pulled from the archive.
+      </p>
+    </div>
+
+    <div class="frame">
+      <div class="frame-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="frame-url">charsoo-mag.ir</span>
+      </div>
+      <div class="site">
+        <nav class="s-nav">
+          <img class="brand" src="wordmark.png" alt="چارسو">
+          <ul>
+            <li>خانه</li><li>کتاب‌ها</li><li>فصلنامه</li><li>نویسندگان</li>
+            <li>اخبار</li><li>درباره‌ی ما</li><li>تماس</li>
+          </ul>
+          <span class="spacer"></span>
+          <span class="en">EN</span>
+        </nav>
+
+        <div class="hp-hero" style="--hp-accent:#C83A4D">
+          <div class="hp-art"><img src="issues/issue-08-seagull.jpg" alt="جلد شماره‌ی هشتم، ویژه‌نامه‌ی مرغ دریایی"></div>
+          <div class="hp-copy">
+            <div class="hp-kicker"><span class="bar"></span><span>شماره‌ی هشتم · فصل هشتم</span></div>
+            <h2 class="hp-title">ویژه‌نامه‌ی مرغ دریایی</h2>
+            <div class="hp-meta">فصلنامه‌ی تخصصی سینما و تئاتر پیام چارسو</div>
+            <p class="hp-dek">
+              پس از شش شماره در آثار شکسپیر و ویژه‌نامه‌ی باغ آلبالو، هشتمین شماره به
+              مرغ دریایی آنتون چخوف اختصاص یافته است.
+            </p>
+            <div class="hp-cta">
+              <button class="btn" type="button">مشاهده‌ی فهرست مطالب</button>
+              <button class="btn ghost" type="button">تهیه‌ی نسخه‌ی چاپی</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="s-section">
+          <div class="s-head"><h3>تازه‌های انتشارات</h3><span class="more">همه‌ی کتاب‌ها ←</span></div>
+          <div class="books" id="hp-books"></div>
+        </div>
+
+        <div class="s-section">
+          <div class="s-head"><h3>آرشیو فصلنامه</h3><span class="more">هشت شماره ←</span></div>
+          <div class="issue-rail" id="hp-rail"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">03 — Issue page · interactive</div>
+      <h2>One template, eight identities</h2>
+      <p>
+        Pick a cover. The band, the numeral chip, the section heading and the contents markers all
+        re-theme from that issue's single accent value — one field in the CMS, filled by eye from the
+        printed copy. This is what makes an eight-issue archive feel designed rather than listed.
+      </p>
+    </div>
+
+    <div class="picker">
+      <div class="label">Select an issue</div>
+      <div class="picker-row" id="picker"></div>
+    </div>
+
+    <div class="frame">
+      <div class="frame-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="frame-url" id="ip-url">charsoo-mag.ir/magazine/issues/7</span>
+      </div>
+      <div class="site ip" id="ip">
+        <nav class="s-nav">
+          <img class="brand" src="wordmark.png" alt="چارسو">
+          <ul>
+            <li>فصلنامه</li><li>کتاب‌ها</li><li>نویسندگان</li><li>اخبار</li><li>تماس</li>
+          </ul>
+        </nav>
+
+        <div class="ip-band">
+          <div class="ip-band-row">
+            <span class="num" id="ip-num">۷</span>
+            <div>
+              <h3 id="ip-play">ویژه‌نامه‌ی باغ آلبالو</h3>
+              <div class="season" id="ip-season">فصل هفتم · فصلنامه‌ی پیام چارسو</div>
+            </div>
+            <img class="mark" src="wordmark.png" alt="">
+          </div>
+        </div>
+
+        <div class="ip-body">
+          <div class="ip-cover">
+            <img id="ip-cover" src="issues/issue-07-cherry-orchard.jpg" alt="جلد شماره‌ی هفتم">
+            <div class="ip-spec">
+              <div><span>شماره</span><b id="ip-s-num">۷</b></div>
+              <div><span>نمایشنامه</span><b id="ip-s-play">باغ آلبالو</b></div>
+              <div><span>نویسنده</span><b id="ip-s-wright">آنتون چخوف</b></div>
+              <div><span>زبان</span><b>فارسی / انگلیسی</b></div>
+            </div>
+          </div>
+          <div>
+            <div class="toc-h">فهرست مطالب</div>
+            <ul class="toc" id="ip-toc"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">04 — Typography &amp; RTL</div>
+      <h2>Set in Persian first</h2>
+      <p>
+        The old site ran Tahoma defaults, mixed ۱۲۳ with 123 inside single sentences, and shipped a
+        Gregorian calendar widget labelled in Farsi. All three are typographic tells that the site
+        isn't maintained.
+      </p>
+    </div>
+    <div class="spec-grid">
+      <div class="spec-card">
+        <div class="sample" style="font-size:2rem;font-weight:900;line-height:1.3">ویژه‌نامه‌ی مرغ دریایی</div>
+        <div class="meta"><span>Vazirmatn 900 · headings</span><span>variable, self-hosted</span></div>
+        <p>Display weight for issue and book titles. Vazirmatn is the strongest open-source Persian family — properly built, variable, and it carries Latin glyphs so bilingual lines stay on one face.</p>
+      </div>
+      <div class="spec-card">
+        <div class="sample" style="font-size:.95rem;line-height:1.95;font-weight:300">
+          فصلنامه‌ی تخصصی تئاتر و سینمای پیام چارسو در زمستان ۱۳۹۵ موفق به اخذ پروانه‌ی انتشار به شماره‌ی ۷۸۸۷۵ با گستره‌ی سراسری به دو زبان فارسی و انگلیسی گردید.
+        </div>
+        <div class="meta"><span>Vazirmatn 300 · running text</span><span>line-height 1.95</span></div>
+        <p>Persian needs more leading than Latin — descenders and diacritics collide at 1.6. Set body copy at 1.9–2.0 and keep measure near 60 characters.</p>
+      </div>
+      <div class="spec-card">
+        <div class="sample" style="font-size:1.6rem;font-weight:500;font-variant-numeric:tabular-nums">۱ ۲ ۳ ۴ ۵ ۶ ۷ ۸ ۹ ۰</div>
+        <div class="meta"><span>Persian numerals · tabular</span><span>۳۸٬۰۰۰ تومان · ۱۳۹۵</span></div>
+        <p>Persian numerals everywhere, with the Arabic thousands separator ٬ for prices. Dates in the Shamsi calendar. One system, no mixing — this is the detail that reads as care.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">05 — Principles</div>
+      <h2>Four rules this direction holds to</h2>
+    </div>
+    <div class="notes">
+      <div class="note">
+        <h4>The wordmark is untouched</h4>
+        <p>The hand-drawn calligraphic چارسو is the best asset in the archive — 4500×4500, brush-drawn, unmistakable. It carries every cover and sits as a colophon on every book. Keep it; don't redraw it.</p>
+      </div>
+      <div class="note">
+        <h4>Colour comes from the issue</h4>
+        <p>No house palette competing with the covers. The page borrows the accent of whatever it's showing, and otherwise stays black, white and paper. One spot colour at a time.</p>
+      </div>
+      <div class="note">
+        <h4>Covers are the interface</h4>
+        <p class="fa">هشت جلد، هشت رنگ</p>
+        <p>The artwork is strong enough to navigate by. Archive, hero and picker are all cover-led — no thumbnails cropped to uniform squares, which would destroy the band.</p>
+      </div>
+      <div class="note">
+        <h4>Built RTL, not flipped</h4>
+        <p>Logical properties throughout, <span style="font-family:var(--mono);font-size:.9em">dir="rtl"</span> on the document. Latin runs are isolated so English names inside Persian sentences don't reorder the line.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">06 — Blocking</div>
+      <h2>Four covers can't be used at this size</h2>
+      <p>
+        Everything above is built from files recovered off the live server. Four of the eight are
+        below usable web resolution — we need the originals from whoever set the covers before this
+        direction can ship.
+      </p>
+    </div>
+    <div class="tablewrap">
+      <table class="gaps">
+        <thead><tr><th>Issue</th><th>ویژه‌نامه</th><th>Recovered</th><th>Status</th></tr></thead>
+        <tbody id="gaps"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Charsoo — visual direction, draft 01</span>
+    <span class="mono">8 issues · 17 book covers · 112 MB recovered</span>
+  </div>
+</footer>
+
+<script>
+const ISSUES = [
+  {n:"۱", slug:"issue-01-hamlet",         play:"هملت",            fa:"فصل یکم",   wright:"ویلیام شکسپیر", a:"#01FF80", px:"945×1155",  ok:true,
+   toc:[["سرمقاله","هملت در جهان، هملت در ایران",""],["نمایشنامه","نمایشنامه‌ای از محمد چرمشیر","محمد چرمشیر"],["عکاسی","تئاتر به گواه عکس","شهروز خطیبی"],["مقاله","تئاتر فلسطین",""],["مقاله","رامتین شهبازی، رضا آشفته، هلن اولیایی‌نیا",""]]},
+  {n:"۲", slug:"issue-02-macbeth",        play:"مکبث",            fa:"فصل دوم",   wright:"ویلیام شکسپیر", a:"#BB252A", px:"945×1097",  ok:true,
+   toc:[["مصاحبه","گفت‌وگوی اختصاصی با یوجینیو باربا و جولیا وارلی","سردبیر"],["معرفی","جشنواره‌ی تئاتر ماگدالنا",""],["نمایشنامه","نمایشنامه‌ای منتشرنشده","افروز فروزند"],["مقاله","اجراهای برتر مکبث",""]]},
+  {n:"۳", slug:"issue-03-romeo-juliet",   play:"رومئو و ژولیت",   fa:"فصل سوم",   wright:"ویلیام شکسپیر", a:"#DE0C0B", px:"227×311",   ok:false,
+   toc:[["مصاحبه","گفت‌وگو با پیتر بروک",""],["سرمقاله","نسیم مرعشی","نسیم مرعشی"],["نمایشنامه","نمایشنامه‌ای از محمدامیر یاراحمدی","محمدامیر یاراحمدی"],["مقاله","رضا آشفته، جان سرورتنان",""]]},
+  {n:"۴", slug:"issue-04-othello",        play:"اتللو",            fa:"فصل چهارم", wright:"ویلیام شکسپیر", a:"#F19F33", px:"227×312",   ok:false,
+   toc:[["سرمقاله","ناهید طباطبایی","ناهید طباطبایی"],["مقاله","دیوید کریستال، کرنان ریان","ترجمه"],["مقاله","سرنا اسکرنی، متئو شفرد","ترجمه"],["مقاله","رضا آشفته، هلن اولیایی‌نیا",""]]},
+  {n:"۵", slug:"issue-05-king-lear",      play:"شاه لیر",          fa:"فصل پنجم",  wright:"ویلیام شکسپیر", a:"#6F758A", px:"500×663",   ok:false,
+   toc:[["نمایشنامه","متنی که تاکنون به چاپ نرسیده است","تهمینه محمدی"],["مقاله","طراحی لباس در اجرای شاه لیر",""],["مقاله","خوانش‌های معاصر از شاه لیر",""]]},
+  {n:"۶", slug:"issue-06-richard-iii",    play:"ریچارد سوم",       fa:"فصل ششم",   wright:"ویلیام شکسپیر", a:"#F38F5B", px:"1242×1610", ok:true,
+   toc:[["نمایشنامه","نمایشنامه‌ای از جواد عاطفه","جواد عاطفه"],["مصاحبه","گفت‌وگوی اختصاصی با ساموئل نونز",""],["مقاله","هنر نمایشی کلنل وزیری",""]]},
+  {n:"۷", slug:"issue-07-cherry-orchard", play:"باغ آلبالو",       fa:"فصل هفتم",  wright:"آنتون چخوف",    a:"#73973B", px:"1949×2599", ok:true,
+   toc:[["نمایشنامه","نمایشنامه‌ای از علی شمس","علی شمس"],["مصاحبه","گفت‌وگو با رافائل اوروایدر",""],["بخش تازه","چارسوی داستان",""],["مقاله","مقالات آزاد در حوزه‌ی تئاتر",""]]},
+  {n:"۸", slug:"issue-08-seagull",        play:"مرغ دریایی",       fa:"فصل هشتم",  wright:"آنتون چخوف",    a:"#C83A4D", px:"157×209",   ok:false,
+   toc:[["ویژه‌نامه","مرغ دریایی آنتون چخوف",""],["بخش","چارسوی داستان",""],["مقاله","مقالات حوزه‌ی تئاتر و سینما",""]]},
+];
+
+const BOOKS = [
+  {f:"faraz-toofan",              t:"فراز طوفان",        a:"فلوریان زلر · ترجمه‌ی حسن جنت‌مکان", p:"۲۸٬۰۰۰ تومان"},
+  {f:"telefon-hamrah-mard-morde", t:"تلفن همراه مرد مرده", a:"سارا رول · ترجمه‌ی سمیه صادقی",     p:"۳۲٬۰۰۰ تومان"},
+  {f:"dah-farman-eqtebas",        t:"ده فرمان اقتباس",    a:"سامی صالحی ثابت",                  p:"۴۳٬۰۰۰ تومان"},
+  {f:"zaman-e-razdari",           t:"زمان رازداری",       a:"ناصر کوشان",                       p:"۳۰٬۰۰۰ تومان"},
+  {f:"zani-be-nam-e-rakel",       t:"زنی به‌نام راکل",     a:"نورا گلیکمن · ترجمه‌ی یاشین آزادبیگی", p:"۳۰٬۰۰۰ تومان"},
+  {f:"avazi-dar-setayesh-e-gavha",t:"آوازی در ستایش گاوها", a:"ترجمه‌ی سوما زمانی",              p:"۷۰٬۰۰۰ تومان"},
+  {f:"otagh-e-roya",              t:"اتاق رویا",          a:"افروز فروزند",                     p:"۲۸٬۰۰۰ تومان"},
+  {f:"gloria",                    t:"گلوریا",             a:"ترجمه‌ی آرزو نصوحی",                p:"—"},
+];
+
+/* ---- spectrum strip ---- */
+document.getElementById("spectrum").innerHTML = ISSUES.map(i =>
+  `<div style="background:${i.a}"><span>${i.n}</span></div>`).join("");
+
+/* ---- swatches ---- */
+document.getElementById("swatches").innerHTML = ISSUES.map(i => `
+  <div class="sw">
+    <div class="sw-chip" style="background:${i.a}"></div>
+    <div class="sw-fa">${i.n} · ${i.play}</div>
+    <div class="sw-hex">${i.a}</div>
+  </div>`).join("");
+
+/* ---- homepage books + rail ---- */
+document.getElementById("hp-books").innerHTML = BOOKS.slice(0,4).map(b => `
+  <article class="book">
+    <img src="books/${b.f}.jpg" alt="جلد ${b.t}">
+    <div class="t">${b.t}</div>
+    <div class="a">${b.a}</div>
+    <div class="p">${b.p}</div>
+  </article>`).join("");
+
+document.getElementById("hp-rail").innerHTML = ISSUES.map(i => `
+  <figure style="margin:0">
+    <img src="issues/${i.slug}.jpg" alt="جلد ${i.play}">
+    <figcaption>${i.n}</figcaption>
+  </figure>`).join("");
+
+/* ---- picker + issue page ---- */
+const picker = document.getElementById("picker");
+picker.innerHTML = ISSUES.map((i,idx) => `
+  <button class="pick" type="button" style="--c:${i.a}" data-i="${idx}"
+          aria-pressed="${idx===6}" aria-label="شماره‌ی ${i.n} — ${i.play}">
+    <img src="issues/${i.slug}.jpg" alt="">
+    <span class="dotc"></span>
+  </button>`).join("");
+
+const ip = document.getElementById("ip");
+const el = id => document.getElementById(id);
+
+function render(idx){
+  const i = ISSUES[idx];
+  ip.style.setProperty("--a", i.a);
+  el("ip-num").textContent   = i.n;
+  el("ip-play").textContent  = "ویژه‌نامه‌ی " + i.play;
+  el("ip-season").textContent= i.fa + " · فصلنامه‌ی پیام چارسو";
+  el("ip-cover").src         = "issues/" + i.slug + ".jpg";
+  el("ip-cover").alt         = "جلد " + i.play;
+  el("ip-s-num").textContent = i.n;
+  el("ip-s-play").textContent= i.play;
+  el("ip-s-wright").textContent = i.wright;
+  el("ip-url").textContent   = "charsoo-mag.ir/magazine/issues/" + (idx+1);
+  el("ip-toc").innerHTML = i.toc.map(([k,n,by]) => `
+    <li><span class="k">${k}</span>
+      <span class="n">${n}${by ? `<span class="by">${by}</span>` : ""}</span>
+    </li>`).join("");
+  picker.querySelectorAll(".pick").forEach(b =>
+    b.setAttribute("aria-pressed", String(+b.dataset.i === idx)));
+}
+
+picker.addEventListener("click", e => {
+  const b = e.target.closest(".pick");
+  if (b) render(+b.dataset.i);
+});
+render(6);
+
+/* ---- gaps table ---- */
+document.getElementById("gaps").innerHTML = ISSUES.map(i => `
+  <tr>
+    <td class="fa">${i.n}</td>
+    <td class="fa">${i.play}</td>
+    <td class="px">${i.px}</td>
+    <td>${i.ok ? '<span class="ok">usable</span>' : '<span class="flag">need original</span>'}</td>
+  </tr>`).join("");
+</script>

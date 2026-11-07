@@ -1,0 +1,404 @@
+<title>Charsoo Rebuild Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=IBM+Plex+Mono:wght@400;500&family=Vazirmatn:wght@300;400;500;700;900&display=swap">
+
+<style>
+:root{
+  --ground:#F3F3F1;
+  --surface:#FFFFFF;
+  --raise:#E9E9E5;
+  --ink:#17171B;
+  --ink-soft:#5C5C64;
+  --ink-faint:#8B8B92;
+  --rule:#DCDCD6;
+  --rule-soft:#E8E8E3;
+  --accent:#C83A4D;
+  --accent-soft:#F7E8EA;
+  --good:#5F7A3A;
+  --shadow:0 1px 2px rgba(20,20,24,.05),0 6px 22px rgba(20,20,24,.07);
+
+  --fa:"Vazirmatn",system-ui,sans-serif;
+  --en:"Bodoni Moda","Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+
+  --measure:74ch;
+  --s--1:clamp(.78rem,.76rem + .1vw,.85rem);
+  --s-0:clamp(.95rem,.93rem + .12vw,1.02rem);
+  --s-1:clamp(1.1rem,1.04rem + .26vw,1.28rem);
+  --s-2:clamp(1.42rem,1.28rem + .62vw,1.9rem);
+  --s-3:clamp(1.9rem,1.56rem + 1.5vw,2.9rem);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#121214;--surface:#1B1B1E;--raise:#242428;
+    --ink:#EDEDEB;--ink-soft:#A0A0A7;--ink-faint:#74747C;
+    --rule:#2F2F35;--rule-soft:#27272C;
+    --accent:#E8697A;--accent-soft:#30191D;--good:#9BBE6B;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 6px 22px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#121214;--surface:#1B1B1E;--raise:#242428;
+  --ink:#EDEDEB;--ink-soft:#A0A0A7;--ink-faint:#74747C;
+  --rule:#2F2F35;--rule-soft:#27272C;
+  --accent:#E8697A;--accent-soft:#30191D;--good:#9BBE6B;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 6px 22px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--en);font-size:var(--s-0);line-height:1.65}
+img{display:block;max-width:100%}
+h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.15;text-wrap:balance}
+p{margin:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:880px;margin-inline:auto;padding-inline:clamp(1.1rem,4vw,2.2rem)}
+.label{font-family:var(--mono);font-size:var(--s--1);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:500}
+.fa{font-family:var(--fa);direction:rtl;text-align:right}
+.mono{font-family:var(--mono);font-size:.92em}
+
+/* header */
+header.top{background:#0E0E10;color:#F4F4F2;padding-block:clamp(2.4rem,6vw,4rem)}
+header.top .wrap{display:flex;flex-direction:column;gap:1.5rem}
+header.top img{height:clamp(50px,7vw,76px);width:auto}
+header.top .label{color:rgba(244,244,242,.45)}
+.title-fa{font-family:var(--fa);direction:rtl;font-size:var(--s-3);font-weight:900;line-height:1.3}
+.title-en{font-family:var(--en);font-size:var(--s-1);color:rgba(244,244,242,.6);font-style:italic;margin-top:.35rem}
+.strip{display:grid;grid-template-columns:repeat(8,1fr);height:7px}
+
+section{padding-block:clamp(2.4rem,5vw,3.6rem)}
+section + section{border-top:1px solid var(--rule)}
+.sec-head{margin-bottom:clamp(1.4rem,3vw,2.2rem);display:flex;flex-direction:column;gap:.5rem}
+.sec-head h2{font-size:var(--s-2);letter-spacing:-.01em}
+.sec-head h2 .fa{font-family:var(--fa);font-weight:700;display:block;font-size:.92em;direction:rtl}
+.sec-head .en-sub{color:var(--ink-soft);max-width:var(--measure);line-height:1.7;font-size:var(--s-0)}
+
+/* findings */
+.findings{display:grid;gap:1px;background:var(--rule-soft);border:1px solid var(--rule-soft);border-radius:8px;overflow:hidden}
+.finding{background:var(--surface);padding:clamp(1rem,2.2vw,1.4rem);display:grid;grid-template-columns:auto minmax(0,1fr);gap:1rem;align-items:start}
+.finding .mark{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;padding:.25em .55em;border-radius:2px;white-space:nowrap;font-weight:500}
+.mark.bad{background:var(--accent);color:#fff}
+.mark.good{background:var(--raise);color:var(--good)}
+.finding .body .fa{font-size:var(--s-0);font-weight:500;line-height:1.75;margin-bottom:.3rem}
+.finding .body .en{font-size:var(--s--1);color:var(--ink-soft);line-height:1.65}
+
+/* sitemap */
+.map{background:var(--surface);border:1px solid var(--rule-soft);border-radius:8px;padding:clamp(1.1rem,2.6vw,1.8rem);box-shadow:var(--shadow)}
+.map ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.1rem}
+.map li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem;align-items:baseline;padding:.52rem .2rem;border-bottom:1px dotted var(--rule-soft)}
+.map li:last-child{border-bottom:0}
+.map .nm{font-family:var(--fa);direction:rtl;font-weight:700;font-size:var(--s-0)}
+.map .nm small{font-weight:400;color:var(--ink-soft);font-size:.85em;margin-inline-start:.5rem}
+.map .pth{font-family:var(--mono);font-size:var(--s--1);color:var(--ink-faint);direction:ltr}
+.map li.sub .nm{padding-inline-start:1.4rem;font-weight:400;font-size:var(--s--1)}
+.map .tag{font-family:var(--mono);font-size:.64rem;letter-spacing:.07em;background:var(--accent-soft);color:var(--accent);padding:.2em .5em;border-radius:2px;margin-inline-start:.4rem}
+
+/* questions — the point of the document */
+.qlist{display:flex;flex-direction:column;gap:clamp(1rem,2.4vw,1.5rem);counter-reset:q}
+.q{
+  background:var(--surface);border:1px solid var(--rule-soft);border-radius:8px;
+  padding:clamp(1.1rem,2.6vw,1.6rem);box-shadow:var(--shadow);
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(.9rem,2vw,1.3rem);align-items:start;
+}
+.q::before{
+  counter-increment:q;content:counter(q);
+  font-family:var(--en);font-size:1.5rem;line-height:1;color:var(--accent);
+  border-top:2px solid var(--accent);padding-top:.4rem;min-width:1.4em;
+}
+.q .q-fa{font-family:var(--fa);direction:rtl;text-align:right;font-weight:700;font-size:var(--s-1);line-height:1.7}
+.q .q-en{font-family:var(--en);color:var(--ink-soft);font-size:var(--s-0);margin-top:.5rem;line-height:1.6}
+.q .why{
+  margin-top:.9rem;padding-top:.75rem;border-top:1px solid var(--rule-soft);
+  font-size:var(--s--1);color:var(--ink-soft);line-height:1.7;
+}
+.q .why b{color:var(--ink);font-weight:500}
+.q .why .fa{font-family:var(--fa);font-weight:500}
+
+/* assets we need */
+.needs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(.9rem,2.2vw,1.4rem)}
+.need{border-top:2px solid var(--ink);padding-top:.85rem;display:flex;flex-direction:column;gap:.45rem}
+.need .h{font-family:var(--fa);direction:rtl;font-weight:700;font-size:var(--s-0)}
+.need .d{font-size:var(--s--1);color:var(--ink-soft);line-height:1.65}
+
+/* covers status */
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:var(--s--1)}
+th,td{text-align:start;padding:.62rem .7rem;border-bottom:1px solid var(--rule-soft);white-space:nowrap}
+th{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:500}
+td.fa{font-family:var(--fa);direction:rtl;white-space:normal}
+td.px{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink-soft)}
+.pill{display:inline-block;font-family:var(--mono);font-size:.66rem;letter-spacing:.05em;padding:.2em .55em;border-radius:2px}
+.pill.need{background:var(--accent);color:#fff}
+.pill.have{background:var(--raise);color:var(--ink-soft)}
+
+/* next */
+.next{display:flex;flex-direction:column;gap:.9rem}
+.step{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.9rem;align-items:baseline;padding-bottom:.9rem;border-bottom:1px solid var(--rule-soft)}
+.step:last-child{border-bottom:0;padding-bottom:0}
+.step .when{font-family:var(--mono);font-size:var(--s--1);color:var(--accent);white-space:nowrap}
+.step .what .fa{font-family:var(--fa);direction:rtl;font-weight:500;line-height:1.7}
+.step .what .en{font-size:var(--s--1);color:var(--ink-soft);margin-top:.2rem}
+
+footer{padding-block:clamp(2rem,4vw,3rem);border-top:1px solid var(--rule);color:var(--ink-faint);font-size:var(--s--1)}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer .mono{font-family:var(--mono)}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <img src="wordmark.png" alt="چارسو">
+    <div>
+      <div class="label">Project brief · آبان ۱۴۰۵ / November 2026</div>
+      <h1 class="title-fa">بازطراحی وب‌سایت انتشارات پیام چارسو</h1>
+      <div class="title-en">What we found, what we propose, and six things we need from you</div>
+    </div>
+  </div>
+</header>
+<div class="strip" id="strip"></div>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">01</div>
+      <h2><span class="fa">وضعیت فعلی سایت</span>Where the site stands today</h2>
+      <p class="en-sub">
+        We pulled a complete copy of the existing site and everything in its media library before
+        touching anything. Here is what that turned up.
+      </p>
+    </div>
+    <div class="findings">
+      <div class="finding">
+        <span class="mark bad">گواهی SSL</span>
+        <div class="body">
+          <p class="fa">سایت از کار نیفتاده است؛ فقط گواهی امنیتی آن معتبر نیست.</p>
+          <p class="en">The server is running fine. In September a self-signed certificate was installed, so every browser now shows a full-page security warning before the site loads. A free Let's Encrypt certificate fixes this in about ten minutes, and it should be done this week regardless of the rebuild.</p>
+        </div>
+      </div>
+      <div class="finding">
+        <span class="mark bad">محتوا</span>
+        <div class="body">
+          <p class="fa">آخرین مطلب سایت مربوط به اسفند ۱۳۹۹ است.</p>
+          <p class="en">Eight pages and four posts in total, last updated March 2021. The Activity page is empty, and book prices are frozen at 2020 figures. Meanwhile the Instagram account has 6,277 followers and posts regularly — the audience is there, the website just stopped.</p>
+        </div>
+      </div>
+      <div class="finding">
+        <span class="mark bad">شماره‌ی ۸</span>
+        <div class="body">
+          <p class="fa">ویژه‌نامه‌ی مرغ دریایی چاپ شده، اما هرگز در سایت اعلام نشد.</p>
+          <p class="en">The cover file for issue 8 is dated October 2021. The homepage still announces it as forthcoming — five years later.</p>
+        </div>
+      </div>
+      <div class="finding">
+        <span class="mark good">آرشیو</span>
+        <div class="body">
+          <p class="fa">هر هشت جلد فصلنامه و ۱۷ جلد کتاب بازیابی شد.</p>
+          <p class="en">112 MB of original artwork recovered, including the hand-drawn چارسو wordmark at 4500×4500. 29 files on the server are empty and unrecoverable, but nothing essential was lost.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">02</div>
+      <h2><span class="fa">ساختار پیشنهادی</span>The structure we propose</h2>
+      <p class="en-sub">
+        انتشارات پیام چارسو is the parent brand and the quarterly is one line within it, so the
+        catalogue leads and the magazine sits beside it. The old site did the opposite, with the
+        press squeezed onto a single page.
+      </p>
+    </div>
+    <div class="map">
+      <ul>
+        <li><span class="nm">خانه</span><span class="pth">/</span></li>
+        <li><span class="nm">کتاب‌ها <small>catalogue</small><span class="tag">PRIMARY</span></span><span class="pth">/books</span></li>
+        <li class="sub"><span class="nm">صفحه‌ی هر کتاب</span><span class="pth">/books/:slug</span></li>
+        <li><span class="nm">فصلنامه <small>the quarterly</small></span><span class="pth">/magazine</span></li>
+        <li class="sub"><span class="nm">آرشیو هشت شماره</span><span class="pth">/magazine/issues</span></li>
+        <li class="sub"><span class="nm">صفحه‌ی هر شماره — جلد، فهرست مطالب، نویسندگان</span><span class="pth">/magazine/issues/:n</span></li>
+        <li class="sub"><span class="nm">اشتراک</span><span class="pth">/magazine/subscribe</span></li>
+        <li><span class="nm">نویسندگان و مترجمان<span class="tag">NEW</span></span><span class="pth">/people</span></li>
+        <li><span class="nm">اخبار و رویدادها</span><span class="pth">/news</span></li>
+        <li><span class="nm">درباره‌ی ما</span><span class="pth">/about</span></li>
+        <li><span class="nm">تماس با ما</span><span class="pth">/contact</span></li>
+        <li><span class="nm">English</span><span class="pth">/en</span></li>
+      </ul>
+    </div>
+    <p class="en-sub" style="margin-top:1.2rem">
+      <b>The contributor index is the new idea.</b> The back catalogue contains exclusive interviews
+      with Peter Brook and with Eugenio Barba and Julia Varley, plus writing from محمد چرمشیر،
+      ناهید طباطبایی، نسیم مرعشی and David Crystal in translation. Today those names sit as
+      unlabelled text inside the old page builder. Indexed properly, they are a reason for theatre
+      scholars anywhere to find this press.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">03 — پرسش‌ها / questions</div>
+      <h2><span class="fa">شش پرسش که پیش از شروع طراحی نیاز داریم</span>Six answers we need before building</h2>
+      <p class="en-sub">
+        These are the only genuine blockers. Everything else we can decide and show you.
+      </p>
+    </div>
+
+    <div class="qlist">
+      <div class="q">
+        <div>
+          <p class="q-fa">آیا انتشار فصلنامه ادامه دارد؟ آخرین شماره‌ی منتشرشده کدام است؟</p>
+          <p class="q-en">Is the quarterly still publishing, and which issue is current?</p>
+          <p class="why"><b>Why it matters —</b> issue 8 <span class="fa">(ویژه‌نامه‌ی مرغ دریایی)</span> was printed in autumn 2021. If there are issues 9 or 10 we have no record of them, and the archive would be wrong on the day it launches.</p>
+        </div>
+      </div>
+
+      <div class="q">
+        <div>
+          <p class="q-fa">فروش آنلاین می‌خواهید، یا مانند گذشته از راه تماس و کتاب‌فروشی‌ها؟</p>
+          <p class="q-en">Do you want to sell online, or keep the current model?</p>
+          <p class="why"><b>Why it matters —</b> today the site says "call or email us" and links out to <span class="fa">ایران‌کتاب، کتاب‌فروشی پیشگاه، پخش گسترش</span> and <span class="fa">نشر چشمه</span>. Keeping that is perfectly respectable and much simpler. Adding an Iranian payment gateway is possible but meaningfully more work and more upkeep.</p>
+        </div>
+      </div>
+
+      <div class="q">
+        <div>
+          <p class="q-fa">متن و فایل شماره‌های پیشین به‌صورت دیجیتال موجود است؟ (PDF یا این‌دیزاین)</p>
+          <p class="q-en">Do you have the back issues digitally — PDFs or InDesign files?</p>
+          <p class="why"><b>Why it matters —</b> this decides whether each issue page carries a real table of contents and named contributors, or just a cover image and a paragraph. It is the single biggest difference in how substantial the finished site feels.</p>
+        </div>
+      </div>
+
+      <div class="q">
+        <div>
+          <p class="q-fa">فایل‌های اصلی جلد شماره‌های ۳، ۴، ۵ و ۸ در دسترس است؟</p>
+          <p class="q-en">Can we get the original cover files for issues 3, 4, 5 and 8?</p>
+          <p class="why"><b>Why it matters —</b> the copies on the server are too small to display. Issue 8 survives only at 157×209 pixels. See the table below.</p>
+        </div>
+      </div>
+
+      <div class="q">
+        <div>
+          <p class="q-fa">میزبانی سایت در ایران باشد یا خارج از ایران؟ دسترسی به دامنه و هاست فعلی با چه کسی است؟</p>
+          <p class="q-en">Should hosting stay inside Iran, and who controls the domain today?</p>
+          <p class="why"><b>Why it matters —</b> a <span class="mono">.ir</span> domain on an Iranian server rules out several common hosting platforms. We need to know who holds the domain and hosting logins before anything can move.</p>
+        </div>
+      </div>
+
+      <div class="q">
+        <div>
+          <p class="q-fa">آیا از دفتر شما می‌توان به‌راحتی به github.com دسترسی داشت؟</p>
+          <p class="q-en">Can you reach github.com comfortably from your office?</p>
+          <p class="why"><b>Why it matters —</b> you have told us you want to add books and issues yourselves, a few times a year. Our preferred setup gives you a simple editing panel with image upload and no software to maintain — but it signs in through GitHub. <b>Please open github.com and tell us whether it loads normally.</b> If it does not, we will use a different approach; either way the editing experience is the same.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">04</div>
+      <h2><span class="fa">وضعیت جلدها</span>Cover files recovered</h2>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>شماره</th><th>ویژه‌نامه</th><th>Recovered size</th><th>Status</th></tr></thead>
+        <tbody id="covers"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">05</div>
+      <h2><span class="fa">آنچه از شما نیاز داریم</span>What to send us</h2>
+    </div>
+    <div class="needs">
+      <div class="need">
+        <div class="h">فایل‌های جلد</div>
+        <div class="d">Original cover artwork for issues 3, 4, 5 and 8 — and for نمایشنامه‌ی شیطان هانا and مجموعه داستان‌های نیویورکر, which have no cover on the server at all.</div>
+      </div>
+      <div class="need">
+        <div class="h">فهرست مطالب شماره‌ها</div>
+        <div class="d">Tables of contents for all eight issues, in any form — a PDF, a Word file, or photographs of the printed contents pages.</div>
+      </div>
+      <div class="need">
+        <div class="h">قیمت‌های به‌روز</div>
+        <div class="d">Current prices for every title in print, and which ones are out of stock.</div>
+      </div>
+      <div class="need">
+        <div class="h">دسترسی‌ها</div>
+        <div class="d">Domain registrar and hosting logins, so the certificate can be fixed and the new site can go live when it's ready.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">06</div>
+      <h2><span class="fa">مراحل بعدی</span>What happens next</h2>
+    </div>
+    <div class="next">
+      <div class="step">
+        <span class="when">این هفته</span>
+        <div class="what">
+          <p class="fa">رفع مشکل گواهی امنیتی سایت فعلی</p>
+          <p class="en">Install a valid certificate so the live site stops warning visitors away while we build.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="when">پس از پاسخ‌ها</span>
+        <div class="what">
+          <p class="fa">تأیید ساختار و جهت بصری</p>
+          <p class="en">We confirm the sitemap above and walk you through the visual direction, which is built from your own covers.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="when">سپس</span>
+        <div class="what">
+          <p class="fa">ساخت سایت و پنل مدیریت محتوا</p>
+          <p class="en">Build, with an editing panel so you can add a book or an issue yourself — cover image, a few fields, save.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="fa">انتشارات پیام چارسو · فصلنامه‌ی تخصصی سینما و تئاتر</span>
+    <span class="mono">brief 01 · 2026-11-07</span>
+  </div>
+</footer>
+
+<script>
+const ISSUES=[
+ {n:"۱",play:"هملت",px:"945×1155",ok:true},
+ {n:"۲",play:"مکبث",px:"945×1097",ok:true},
+ {n:"۳",play:"رومئو و ژولیت",px:"227×311",ok:false},
+ {n:"۴",play:"اتللو",px:"227×312",ok:false},
+ {n:"۵",play:"شاه لیر",px:"500×663",ok:false},
+ {n:"۶",play:"ریچارد سوم",px:"1242×1610",ok:true},
+ {n:"۷",play:"باغ آلبالو",px:"1949×2599",ok:true},
+ {n:"۸",play:"مرغ دریایی",px:"157×209",ok:false},
+];
+const ACCENTS=["#01FF80","#BB252A","#DE0C0B","#F19F33","#6F758A","#F38F5B","#73973B","#C83A4D"];
+document.getElementById("strip").innerHTML=ACCENTS.map(c=>`<div style="background:${c}"></div>`).join("");
+document.getElementById("covers").innerHTML=ISSUES.map(i=>`
+  <tr>
+    <td class="fa">${i.n}</td>
+    <td class="fa">${i.play}</td>
+    <td class="px">${i.px}</td>
+    <td>${i.ok?'<span class="pill have">موجود</span>':'<span class="pill need">فایل اصلی لازم است</span>'}</td>
+  </tr>`).join("");
+</script>

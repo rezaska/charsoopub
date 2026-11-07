@@ -1,0 +1,14 @@
+# derived scratch — regenerate with the sips/magick steps in archive/ARCHIVE.md
+archive/preview/
+
+# node / astro (incoming)
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+
+# os
+.DS_Store
+Thumbs.db
