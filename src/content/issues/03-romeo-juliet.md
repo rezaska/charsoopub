@@ -3,7 +3,7 @@ number: 3
 play: "رومئو و ژولیت"
 playwright: "ویلیام شکسپیر"
 cover: "/covers/issues/issue-03-romeo-juliet.jpg"
-accent: "#DE0C0B"
+accent: "#4F5336"
 price: null
 coverNeedsOriginal: true
 toc:
