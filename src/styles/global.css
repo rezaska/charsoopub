@@ -16,6 +16,13 @@
   --accent: #c83a4d;
   --on-accent: #ffffff;
 
+  /* The wordmark artwork is white-on-transparent, so it is inverted to sit
+     on light paper and left alone on dark. Driven by a token because the
+     un-stamped "system" state has no data-theme attribute to select on. */
+  --wordmark-invert: 1;
+  --icon-sun: none;
+  --icon-moon: block;
+
   --fa: "Vazirmatn Variable", "Vazirmatn", system-ui, sans-serif;
   --mono: ui-monospace, "SF Mono", Menlo, monospace;
 
@@ -39,6 +46,9 @@
     --ink-soft: #a0a0a7;
     --ink-faint: #74747c;
     --rule: #2c2c32;
+    --wordmark-invert: 0;
+    --icon-sun: block;
+    --icon-moon: none;
   }
 }
 :root[data-theme="dark"] {
@@ -49,6 +59,9 @@
   --ink-soft: #a0a0a7;
   --ink-faint: #74747c;
   --rule: #2c2c32;
+  --wordmark-invert: 0;
+  --icon-sun: block;
+  --icon-moon: none;
 }
 
 *,
