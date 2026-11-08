@@ -73,12 +73,11 @@ const a = latest.data.accent;
   }
   @media (max-width: 820px) { .hero-grid { grid-template-columns: 1fr; } }
   .art {
-    background: var(--hero-bg);
     display: grid;
     place-items: center;
-    padding: clamp(1.4rem, 3vw, 2.6rem);
+    padding: clamp(0.6rem, 2vw, 1.4rem);
   }
-  .art img { width: min(72%, 300px); box-shadow: var(--hero-shadow); }
+  .art img { width: min(78%, 310px); box-shadow: var(--cover-ring), var(--hero-shadow); }
   .copy {
     padding-block: clamp(0.6rem, 2vw, 1.6rem);
     display: flex;

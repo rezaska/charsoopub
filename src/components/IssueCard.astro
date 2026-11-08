@@ -29,7 +29,7 @@ const { number, play, cover, accent } = Astro.props;
     object-fit: cover;
     object-position: top;
     background: var(--raise);
-    box-shadow: 0 1px 2px rgb(0 0 0 / 0.1), 0 10px 24px rgb(0 0 0 / 0.12);
+    box-shadow: var(--cover-ring), 0 1px 2px rgb(0 0 0 / 0.1), 0 10px 24px rgb(0 0 0 / 0.12);
   }
   .band { height: 3px; background: var(--a); border-radius: 2px; }
   .meta { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }

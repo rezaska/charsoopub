@@ -91,7 +91,7 @@ const { Content } = await render(book);
   .placeholder {
     width: 100%; aspect-ratio: 7 / 10; object-fit: cover; object-position: top;
     background: var(--raise);
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.12), 0 20px 44px rgb(0 0 0 / 0.14);
+    box-shadow: var(--cover-ring), 0 2px 8px rgb(0 0 0 / 0.12), 0 20px 44px rgb(0 0 0 / 0.14);
   }
   .placeholder { display: grid; place-items: center; color: var(--ink-faint); font-size: var(--s--1); }
   .info { max-width: var(--measure); display: flex; flex-direction: column; gap: 0.5rem; }
