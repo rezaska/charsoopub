@@ -3,6 +3,22 @@
 The client adds books and issues themselves, roughly three or four times a year.
 This is the setup, and the fallback if GitHub turns out to be unreachable from Tehran.
 
+## Showing it to the client first
+
+`local_backend: true` is set, so the whole CMS runs against the local folder with
+no account and nothing deployed:
+
+```
+npm install && npm run dev
+open http://localhost:4321/admin/
+```
+
+Click **کار با مخزن محلی** and pick the repo root. Chrome or Edge only — it uses
+the File System Access API. Good way to demo before any hosting decision.
+
+The admin UI language follows the browser. Sveltia ships a complete Persian
+translation (409 strings), so a Persian browser gets a fully Persian RTL panel.
+
 ## Primary: Sveltia CMS (no server)
 
 `/admin/` is a **static page**. There is no PHP, no database, no login system of
@@ -18,6 +34,10 @@ client opens  charsoo-mag.ir/admin/
 
 Fields are defined once in `public/admin/config.yml`. Every label is Persian.
 Adding a field later is one line there plus one line in `src/content.config.ts`.
+
+The CMS bundle is vendored into `public/admin/cms/` by `scripts/copy-cms.mjs`
+on postinstall rather than loaded from a CDN — unpkg and jsDelivr are not
+dependable from Iran, same reason the font is self-hosted.
 
 ### Still to wire up
 

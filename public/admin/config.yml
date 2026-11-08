@@ -1,3 +1,7 @@
+# Only takes effect on localhost. Lets you open the repo folder directly in
+# Chrome or Edge and demo the whole CMS with no account and nothing deployed.
+local_backend: true
+
 backend:
   name: github
   repo: rezaska/charsoopub
@@ -8,8 +12,9 @@ backend:
 media_folder: public/covers
 public_folder: /covers
 
-# Persian admin UI, matching the site.
-locale: fa
+# The admin UI language follows the browser — Sveltia ships a complete
+# Persian translation, so she sees a fully Persian, RTL panel. The field
+# labels below are ours and are Persian regardless.
 publish_mode: simple
 
 collections:

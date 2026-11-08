@@ -15,3 +15,6 @@ Thumbs.db
 
 # astro build cache
 .astro/
+
+# vendored by scripts/copy-cms.mjs on postinstall
+public/admin/cms/

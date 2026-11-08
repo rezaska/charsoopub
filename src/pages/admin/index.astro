@@ -1,0 +1,31 @@
+---
+/**
+ * Content editing panel.
+ *
+ * A static page — no server process, no database, no login system of ours.
+ * Sveltia writes directly to the Git repository.
+ *
+ * Fields live in /public/admin/config.yml; every label there is Persian.
+ * The bundle is vendored into /admin/cms/ rather than loaded from a CDN,
+ * because unpkg and jsDelivr are not dependable from Iran.
+ */
+---
+
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>مدیریت محتوا — انتشارات پیام چارسو</title>
+    <link rel="icon" href="/wordmark.png" />
+  </head>
+  <body>
+    <script is:inline type="module" src="/admin/cms/sveltia-cms.js"></script>
+    <noscript>
+      <p style="font-family: system-ui; padding: 2rem; text-align: center">
+        برای استفاده از پنل مدیریت، جاوااسکریپت باید فعال باشد.
+      </p>
+    </noscript>
+  </body>
+</html>
