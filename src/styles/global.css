@@ -127,11 +127,21 @@ a:hover { text-decoration: underline; text-underline-offset: 0.25em; }
 /* Prices and issue numbers line up in columns. */
 .num { font-variant-numeric: tabular-nums; }
 
+/* Hidden until focused. A large negative offset would sit 9999px to the
+   RIGHT in RTL, which can create a horizontal scrollbar; clipping cannot. */
 .skip {
   position: absolute;
-  inset-inline-start: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 .skip:focus {
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip-path: none;
   inset-inline-start: var(--gutter);
   top: 0.6rem;
   z-index: 50;

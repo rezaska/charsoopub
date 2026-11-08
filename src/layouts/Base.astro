@@ -118,6 +118,27 @@ const style = accent
         padding-block: 0.9rem;
         flex-wrap: wrap;
       }
+      /* Without this the nav's min-content width (five unbreakable labels)
+         is wider than a phone, and the whole page scrolls sideways. */
+      nav { min-width: 0; }
+
+      /* Phone: wordmark and controls share the top line, pages below,
+         both starting from the right. */
+      @media (max-width: 640px) {
+        .head-inner {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          grid-template-areas:
+            "brand controls"
+            "nav   nav";
+          gap: 0.55rem 1rem;
+          align-items: center;
+        }
+        .brand { grid-area: brand; }
+        .controls { grid-area: controls; justify-self: end; margin-inline-start: 0; }
+        nav { grid-area: nav; }
+        nav ul { gap: 0.7rem 1rem; }
+      }
       .brand img {
         height: 34px;
         width: auto;
