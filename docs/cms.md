@@ -43,8 +43,8 @@ dependable from Iran, same reason the font is self-hosted.
 
 1. **OAuth helper.** GitHub's sign-in handshake needs a small redirect endpoint.
    Host it once, anywhere, and point `backend.base_url` at it.
-2. **Build trigger.** A commit to `main` must kick off a build and deploy.
-   See the deployment note below — this is the piece still to settle.
+2. **Build trigger.** `.github/workflows/build.yml` builds on every push to
+   `main`. Where it deploys is still open — see below.
 
 ### The dependency to test first
 
@@ -66,6 +66,25 @@ If GitHub is not reliably reachable:
 
 It is a server, so it is not maintenance-free. But it is a very different risk
 profile from WordPress, and the client's editing experience is the same.
+
+## Turning Pages on
+
+The workflow already builds and uploads the site on every push. Deployment is
+gated so nothing happens until we decide. To switch it on:
+
+1. Repo **Settings → Pages → Source: GitHub Actions**
+2. Repo **Settings → Secrets and variables → Actions → Variables**, add
+   `DEPLOY_TARGET` = `pages`
+3. For the custom domain, set `charsoo-mag.ir` in Settings → Pages and add a
+   `public/CNAME` file containing that hostname
+
+That is the whole switch. Until step 2, the `deploy` job is skipped and the
+`build` job just acts as CI.
+
+Note: Pages publishes from a **private** repo only on GitHub Pro ($4/month).
+On a free account it needs a public repo — which would expose the 112 MB of
+print-resolution cover artwork in `archive/`. Either pay, or split the archive
+into its own private repo first.
 
 ## Deployment — unresolved
 

@@ -1,0 +1,68 @@
+name: Build
+
+# The build job always runs, so every push is checked even while the hosting
+# decision is open. Deployment to GitHub Pages is gated behind a repository
+# variable — see "Turning Pages on" in docs/cms.md.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      # postinstall vendors the Sveltia CMS bundle into public/admin/cms/
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Check the build produced what we expect
+        run: |
+          test -f dist/index.html
+          test -f dist/admin/index.html
+          test -f dist/admin/config.yml
+          test -f dist/admin/cms/sveltia-cms.js
+          test "$(find dist -name 'index.html' | wc -l)" -ge 30
+          echo "pages built: $(find dist -name 'index.html' | wc -l)"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    # Flip this on by setting the repository variable DEPLOY_TARGET to "pages"
+    # (Settings → Secrets and variables → Actions → Variables) and enabling
+    # Pages with source "GitHub Actions". Nothing else changes.
+    if: github.ref == 'refs/heads/main' && vars.DEPLOY_TARGET == 'pages'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
