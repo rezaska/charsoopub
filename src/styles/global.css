@@ -20,6 +20,9 @@
      on light paper and left alone on dark. Driven by a token because the
      un-stamped "system" state has no data-theme attribute to select on. */
   --wordmark-invert: 1;
+  /* The panel the cover sits on, and the shadow tuned to it. */
+  --hero-bg: #e7e7e2;
+  --hero-shadow: 0 10px 30px rgb(20 20 24 / 0.22);
   --icon-sun: none;
   --icon-moon: block;
 
@@ -47,6 +50,8 @@
     --ink-faint: #74747c;
     --rule: #2c2c32;
     --wordmark-invert: 0;
+    --hero-bg: #0e0e10;
+    --hero-shadow: 0 20px 54px rgb(0 0 0 / 0.55);
     --icon-sun: block;
     --icon-moon: none;
   }
@@ -60,6 +65,8 @@
   --ink-faint: #74747c;
   --rule: #2c2c32;
   --wordmark-invert: 0;
+  --hero-bg: #0e0e10;
+  --hero-shadow: 0 20px 54px rgb(0 0 0 / 0.55);
   --icon-sun: block;
   --icon-moon: none;
 }
@@ -72,6 +79,11 @@ html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
+  /* Keeps the footer at the bottom of the viewport when a page is short,
+     without pinning it over the content on long ones. */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background: var(--ground);
   color: var(--ink);
   font-family: var(--fa);
@@ -81,6 +93,8 @@ body {
   line-height: 1.95;
   font-weight: 400;
 }
+
+body > main { flex: 1 0 auto; }
 
 img { display: block; max-width: 100%; height: auto; }
 h1, h2, h3, h4 { margin: 0; line-height: 1.35; font-weight: 700; text-wrap: balance; }
