@@ -9,6 +9,7 @@
  * The bundle is vendored into /admin/cms/ rather than loaded from a CDN,
  * because unpkg and jsDelivr are not dependable from Iran.
  */
+import { url } from "../../lib/url";
 ---
 
 <!doctype html>
@@ -18,10 +19,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
     <title>مدیریت محتوا — انتشارات پیام چارسو</title>
-    <link rel="icon" href="/wordmark.png" />
+    <link rel="icon" href={url("/wordmark.png")} />
   </head>
   <body>
-    <script is:inline type="module" src="/admin/cms/sveltia-cms.js"></script>
+    <script is:inline type="module" src={url("/admin/cms/sveltia-cms.js")}></script>
     <noscript>
       <p style="font-family: system-ui; padding: 2rem; text-align: center">
         برای استفاده از پنل مدیریت، جاوااسکریپت باید فعال باشد.

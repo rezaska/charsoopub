@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import { getCollection } from "astro:content";
+import { url } from "../../lib/url";
 const issues = await getCollection("issues");
 const books = await getCollection("books");
 ---
@@ -24,7 +25,7 @@ const books = await getCollection("books");
       For subscriptions, stockist enquiries or rights, write to
       <a href="mailto:charsoomagazine@gmail.com">charsoomagazine@gmail.com</a>.
     </p>
-    <p><a href="/">بازگشت به سایت فارسی ←</a></p>
+    <p><a href={url("/")}>بازگشت به سایت فارسی ←</a></p>
   </div>
 </Base>
 

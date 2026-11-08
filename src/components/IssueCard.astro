@@ -1,5 +1,6 @@
 ---
 import { fa, seasonLabel } from "../lib/fa";
+import { url } from "../lib/url";
 
 interface Props {
   number: number;
@@ -10,8 +11,8 @@ interface Props {
 const { number, play, cover, accent } = Astro.props;
 ---
 
-<a class="issue" href={`/magazine/${number}/`} style={`--a:${accent}`}>
-  {cover && <img src={cover} alt={`جلد ویژه‌نامه‌ی ${play}`} width="520" height="680" loading="lazy" />}
+<a class="issue" href={url(`/magazine/${number}/`)} style={`--a:${accent}`}>
+  {cover && <img src={url(cover)} alt={`جلد ویژه‌نامه‌ی ${play}`} width="520" height="680" loading="lazy" />}
   <span class="band"></span>
   <span class="meta">
     <span class="n num">{fa(number)}</span>

@@ -4,6 +4,7 @@ import Base from "../layouts/Base.astro";
 import BookCard from "../components/BookCard.astro";
 import IssueCard from "../components/IssueCard.astro";
 import { fa, seasonLabel, onAccent } from "../lib/fa";
+import { url } from "../lib/url";
 
 const books = (await getCollection("books")).sort((a, b) => a.data.order - b.data.order);
 const issues = (await getCollection("issues")).sort((a, b) => b.data.number - a.data.number);
@@ -15,7 +16,7 @@ const a = latest.data.accent;
   <section class="hero" style={`--a:${a};--on-a:${onAccent(a)}`}>
     <div class="art">
       {latest.data.cover && (
-        <img src={latest.data.cover} alt={`جلد ویژه‌نامه‌ی ${latest.data.play}`}
+        <img src={url(latest.data.cover)} alt={`جلد ویژه‌نامه‌ی ${latest.data.play}`}
              width="520" height="680" fetchpriority="high" />
       )}
     </div>
@@ -25,8 +26,8 @@ const a = latest.data.accent;
       <p class="sub">فصلنامه‌ی تخصصی سینما و تئاتر پیام چارسو</p>
       <p class="dek">{latest.body}</p>
       <p class="cta">
-        <a class="btn" href={`/magazine/${latest.data.number}/`}>مشاهده‌ی فهرست مطالب</a>
-        <a class="btn ghost" href="/contact/">تهیه‌ی نسخه‌ی چاپی</a>
+        <a class="btn" href={url(`/magazine/${latest.data.number}/`)}>مشاهده‌ی فهرست مطالب</a>
+        <a class="btn ghost" href={url("/contact/")}>تهیه‌ی نسخه‌ی چاپی</a>
       </p>
     </div>
   </section>
@@ -34,7 +35,7 @@ const a = latest.data.accent;
   <section class="wrap block">
     <header class="block-head">
       <h2>تازه‌های انتشارات</h2>
-      <a href="/books/">همه‌ی کتاب‌ها ←</a>
+      <a href={url("/books/")}>همه‌ی کتاب‌ها ←</a>
     </header>
     <div class="grid books">
       {books.slice(0, 8).map((b) => (
@@ -46,7 +47,7 @@ const a = latest.data.accent;
   <section class="wrap block">
     <header class="block-head">
       <h2>آرشیو فصلنامه</h2>
-      <a href="/magazine/">{fa(issues.length)} شماره ←</a>
+      <a href={url("/magazine/")}>{fa(issues.length)} شماره ←</a>
     </header>
     <div class="grid issues">
       {issues.map((i) => <IssueCard {...i.data} />)}

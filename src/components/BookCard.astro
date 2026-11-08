@@ -1,5 +1,6 @@
 ---
 import { toman } from "../lib/fa";
+import { url } from "../lib/url";
 
 interface Props {
   slug: string;
@@ -15,9 +16,9 @@ const by = [author, translator && `ترجمه‌ی ${translator}`].filter(Boolea
 ---
 
 <article class="book">
-  <a href={`/books/${slug}/`}>
+  <a href={url(`/books/${slug}/`)}>
     {cover
-      ? <img src={cover} alt={`جلد ${title}`} width="420" height="600" loading="lazy" />
+      ? <img src={url(cover)} alt={`جلد ${title}`} width="420" height="600" loading="lazy" />
       : <div class="placeholder" aria-hidden="true"><span>بدون تصویر جلد</span></div>}
     <h3>{title}</h3>
   </a>

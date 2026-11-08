@@ -33,7 +33,12 @@ jobs:
       # postinstall vendors the Sveltia CMS bundle into public/admin/cms/
       - run: npm ci
 
+      # Project Pages serves from /<repo>/, so the same source is built under
+      # that sub-path. Drop both vars once charsoo-mag.ir points here.
       - run: npm run build
+        env:
+          BASE_PATH: ${{ vars.DEPLOY_TARGET == 'pages' && '/charsoopub' || '/' }}
+          SITE_URL: ${{ vars.DEPLOY_TARGET == 'pages' && 'https://rezaska.github.io' || 'https://charsoo-mag.ir' }}
 
       - name: Check the build produced what we expect
         run: |

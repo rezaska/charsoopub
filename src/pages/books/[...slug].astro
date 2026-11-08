@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import { toman, fa } from "../../lib/fa";
+import { url } from "../../lib/url";
 
 export async function getStaticPaths() {
   const books = await getCollection("books");
@@ -16,13 +17,13 @@ const { Content } = await render(book);
 <Base title={d.title} description={`${d.title} — انتشارات پیام چارسو`}>
   <div class="wrap page">
     <nav class="crumbs" aria-label="مسیر">
-      <a href="/books/">کتاب‌ها</a> <span aria-hidden="true">›</span> <span>{d.title}</span>
+      <a href={url("/books/")}>کتاب‌ها</a> <span aria-hidden="true">›</span> <span>{d.title}</span>
     </nav>
 
     <article class="book">
       <div class="cover">
         {d.cover
-          ? <img src={d.cover} alt={`جلد ${d.title}`} width="420" height="600" />
+          ? <img src={url(d.cover)} alt={`جلد ${d.title}`} width="420" height="600" />
           : <div class="placeholder">بدون تصویر جلد</div>}
       </div>
 
