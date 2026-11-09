@@ -3,7 +3,6 @@ title: "رویای بیداری"
 author: "ناصر کوشان"
 form: "نمایشنامه"
 origin: "تألیف"
-cover: "/covers/books/royaye-bidari.jpg"
 price: null
 order: 15
 needsReview: true
