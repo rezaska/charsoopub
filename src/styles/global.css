@@ -22,6 +22,7 @@
   --wordmark-invert: 1;
   /* The panel the cover sits on, and the shadow tuned to it. */
   --hero-shadow: 0 10px 30px rgb(20 20 24 / 0.22);
+  --hero-shadow-hover: 0 16px 44px rgb(20 20 24 / 0.3);
   /* Covers sit straight on the page, so they need their own edge — some
      artwork is near-black and would otherwise bleed into a dark ground. */
   --cover-ring: 0 0 0 1px rgb(20 20 24 / 0.10);
@@ -56,6 +57,7 @@
     --rule: #2c2c32;
     --wordmark-invert: 0;
     --hero-shadow: 0 18px 44px rgb(0 0 0 / 0.5);
+    --hero-shadow-hover: 0 24px 58px rgb(0 0 0 / 0.62);
     --cover-ring: 0 0 0 1px rgb(255 255 255 / 0.14);
     --icon-sun: block;
     --icon-moon: none;
@@ -71,6 +73,7 @@
   --rule: #2c2c32;
   --wordmark-invert: 0;
   --hero-shadow: 0 18px 44px rgb(0 0 0 / 0.5);
+  --hero-shadow-hover: 0 24px 58px rgb(0 0 0 / 0.62);
   --cover-ring: 0 0 0 1px rgb(255 255 255 / 0.14);
   --icon-sun: block;
   --icon-moon: none;
