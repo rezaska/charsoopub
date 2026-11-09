@@ -11,6 +11,10 @@
   --ink-soft: #5c5c64;
   --ink-faint: #8b8b92;
   --rule: #e2e2dc;
+  /* Outline buttons: --rule is tuned for hairlines between sections and is
+     far too faint to read as a control's edge, especially in dark where it
+     sits darker than the bright label it encloses. */
+  --rule-control: #a8a8a0;
 
   /* Overridden per issue from the `accent` field. House default is issue 8. */
   --accent: #c83a4d;
@@ -55,6 +59,7 @@
     --ink-soft: #a0a0a7;
     --ink-faint: #74747c;
     --rule: #2c2c32;
+    --rule-control: #5b5b66;
     --wordmark-invert: 0;
     --hero-shadow: 0 18px 44px rgb(0 0 0 / 0.5);
     --hero-shadow-hover: 0 24px 58px rgb(0 0 0 / 0.62);
@@ -71,6 +76,7 @@
   --ink-soft: #a0a0a7;
   --ink-faint: #74747c;
   --rule: #2c2c32;
+  --rule-control: #5b5b66;
   --wordmark-invert: 0;
   --hero-shadow: 0 18px 44px rgb(0 0 0 / 0.5);
   --hero-shadow-hover: 0 24px 58px rgb(0 0 0 / 0.62);
