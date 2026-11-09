@@ -1,0 +1,47 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import { shamsi } from "../../lib/fa";
+import { url } from "../../lib/url";
+
+export async function getStaticPaths() {
+  const items = await getCollection("news");
+  return items.map((item) => ({ params: { slug: item.id }, props: { item } }));
+}
+
+const { item } = Astro.props;
+const d = item.data;
+const { Content } = await render(item);
+---
+
+<Base title={`${d.title} — انتشارات پیام چارسو`} description={d.summary}>
+  <article class="wrap page">
+    <nav class="crumbs" aria-label="مسیر">
+      <a href={url("/news/")}>اخبار</a> <span aria-hidden="true">›</span> <span>خبر</span>
+    </nav>
+
+    <header>
+      <time datetime={d.date.toISOString().slice(0, 10)}>{shamsi(d.date)}</time>
+      <h1>{d.title}</h1>
+      {d.summary && <p class="summary">{d.summary}</p>}
+    </header>
+
+    {d.image && <img class="lead" src={url(d.image)} alt="" width="900" height="600" />}
+
+    {item.body?.trim() && <div class="body"><Content /></div>}
+  </article>
+</Base>
+
+<style>
+  .page { padding-block: clamp(1.4rem, 4vw, 2.6rem); max-width: 760px; }
+  .crumbs { font-size: var(--s--1); color: var(--ink-faint); margin-bottom: 1.4rem; }
+  time { font-size: var(--s--1); color: var(--ink-faint); }
+  h1 { font-size: var(--s-2); font-weight: 900; margin-block: 0.4rem 0.7rem; }
+  .summary { color: var(--ink-soft); max-width: var(--measure); }
+  .lead {
+    width: 100%; margin-block: clamp(1.2rem, 3vw, 1.8rem);
+    box-shadow: var(--cover-ring);
+  }
+  .body { color: var(--ink-soft); max-width: var(--measure); }
+  .body :global(p) { margin-bottom: 1rem; }
+</style>

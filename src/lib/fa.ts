@@ -23,3 +23,11 @@ export const onAccent = (hex: string): string => {
   const L = 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
   return L > 0.42 ? "#17171b" : "#ffffff";
 };
+
+/** A Gregorian date rendered in the Shamsi calendar: ۱۴ تیر ۱۳۹۸ */
+export const shamsi = (d: Date): string =>
+  new Intl.DateTimeFormat("fa-IR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(d);

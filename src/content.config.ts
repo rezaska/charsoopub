@@ -72,4 +72,17 @@ const issues = defineCollection({
   }),
 });
 
-export const collections = { books, issues };
+const news = defineCollection({
+  loader: glob({ base: "./src/content/news", pattern: "**/*.md" }),
+  schema: z.object({
+    title: z.string(),
+    /** Stored as a real date; rendered in the Shamsi calendar. */
+    date: z.coerce.date(),
+    summary: z.string().optional(),
+    image: z.string().optional(),
+    /** Pins this item to the top of /news. */
+    pinned: z.boolean().default(false),
+  }),
+});
+
+export const collections = { books, issues, news };

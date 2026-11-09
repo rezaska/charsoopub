@@ -1,0 +1,71 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import { shamsi } from "../../lib/fa";
+import { url } from "../../lib/url";
+
+const items = (await getCollection("news")).sort((a, b) => {
+  if (a.data.pinned !== b.data.pinned) return a.data.pinned ? -1 : 1;
+  return b.data.date.getTime() - a.data.date.getTime();
+});
+---
+
+<Base title="اخبار و رویدادها — انتشارات پیام چارسو">
+  <div class="wrap page">
+    <header class="intro">
+      <h1>اخبار و رویدادها</h1>
+      <p>تازه‌ترین خبرهای انتشارات و فصلنامه‌ی پیام چارسو.</p>
+    </header>
+
+    <ul class="items">
+      {items.map((n) => (
+        <li class:list={["item", { "no-image": !n.data.image }]}>
+          <a href={url(`/news/${n.id}/`)}>
+            {n.data.image && (
+              <img src={url(n.data.image)} alt="" width="220" height="150" loading="lazy" />
+            )}
+            <div class="text">
+              <time datetime={n.data.date.toISOString().slice(0, 10)}>
+                {shamsi(n.data.date)}
+              </time>
+              <h2>{n.data.title}</h2>
+              {n.data.summary && <p>{n.data.summary}</p>}
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .page { padding-block: clamp(2rem, 5vw, 3.4rem); }
+  .intro { max-width: var(--measure); margin-bottom: clamp(1.6rem, 4vw, 2.4rem); }
+  .intro h1 { font-size: var(--s-3); font-weight: 900; margin-bottom: 0.6rem; }
+  .intro p { color: var(--ink-soft); }
+  .items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .item { border-top: 1px solid var(--rule); }
+  .item:last-child { border-bottom: 1px solid var(--rule); }
+  .item a {
+    display: grid;
+    grid-template-columns: minmax(0, 150px) minmax(0, 1fr);
+    gap: clamp(0.9rem, 2.5vw, 1.6rem);
+    align-items: start;
+    padding-block: clamp(1rem, 2.5vw, 1.5rem);
+  }
+  .item a:hover { text-decoration: none; }
+  .item a:hover h2 { color: var(--accent); }
+  @media (max-width: 560px) { .item a { grid-template-columns: 1fr; } }
+  /* News images are a mix of event photos and portrait covers, so contain
+     rather than crop — a cropped cover loses its title. */
+  .item img {
+    width: 100%; aspect-ratio: 4 / 3; object-fit: contain; object-position: top;
+  }
+  /* With no thumbnail the text takes the whole row instead of the
+     narrow image column. */
+  .item.no-image a { grid-template-columns: 1fr; }
+  .text { display: flex; flex-direction: column; gap: 0.35rem; }
+  time { font-size: var(--s--1); color: var(--ink-faint); }
+  .item h2 { font-size: var(--s-1); line-height: 1.5; transition: color 0.15s ease; }
+  .text p { color: var(--ink-soft); font-size: var(--s--1); max-width: var(--measure); }
+</style>

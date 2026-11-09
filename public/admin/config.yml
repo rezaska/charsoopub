@@ -60,6 +60,27 @@ collections:
           hint: "اطلاعاتی که از روی تصویر جلد خوانده شده و تأیید نشده است." }
       - { name: body, label: توضیحات, widget: markdown, required: false }
 
+  # ───────────────────────── اخبار ─────────────────────────
+  - name: news
+    label: اخبار و رویدادها
+    label_singular: خبر
+    folder: src/content/news
+    create: true
+    slug: "{{year}}-{{month}}-{{slug}}"
+    identifier_field: title
+    summary: "{{title}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: عنوان, widget: string }
+      - { name: date, label: تاریخ, widget: datetime,
+          date_format: "YYYY-MM-DD", time_format: false, picker_utc: true,
+          hint: "تاریخ میلادی وارد کنید؛ روی سایت به شمسی نمایش داده می‌شود." }
+      - { name: summary, label: خلاصه, widget: text, required: false,
+          hint: "یکی دو جمله که در فهرست اخبار و صفحه‌ی نخست دیده می‌شود." }
+      - { name: image, label: تصویر, widget: image, required: false }
+      - { name: pinned, label: سنجاق به بالای فهرست, widget: boolean, default: false }
+      - { name: body, label: متن خبر, widget: markdown, required: false }
+
   # ──────────────────── شماره‌های فصلنامه ────────────────────
   - name: issues
     label: شماره‌های فصلنامه

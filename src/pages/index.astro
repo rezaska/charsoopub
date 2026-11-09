@@ -3,10 +3,13 @@ import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import BookCard from "../components/BookCard.astro";
 import IssueCard from "../components/IssueCard.astro";
-import { fa, seasonLabel, onAccent } from "../lib/fa";
+import { fa, seasonLabel, onAccent, shamsi } from "../lib/fa";
 import { url } from "../lib/url";
 
 const books = (await getCollection("books")).sort((a, b) => a.data.order - b.data.order);
+const news = (await getCollection("news"))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
 const issues = (await getCollection("issues")).sort((a, b) => b.data.number - a.data.number);
 const latest = issues[0];
 const a = latest.data.accent;
@@ -33,6 +36,25 @@ const a = latest.data.accent;
     </div>
     </div>
   </section>
+
+  {news.length > 0 && (
+    <section class="wrap block news-strip">
+      <header class="block-head">
+        <h2>اخبار</h2>
+        <a href={url("/news/")}>همه‌ی اخبار ←</a>
+      </header>
+      <ul>
+        {news.map((n) => (
+          <li>
+            <a href={url(`/news/${n.id}/`)}>
+              <time datetime={n.data.date.toISOString().slice(0, 10)}>{shamsi(n.data.date)}</time>
+              <span class="t">{n.data.title}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
 
   <section class="wrap block">
     <header class="block-head">
@@ -110,6 +132,24 @@ const a = latest.data.accent;
   }
   .block-head h2 { font-size: var(--s-2); }
   .block-head a { font-size: var(--s--1); color: var(--ink-soft); }
+  .news-strip ul {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: 0;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  .news-strip li { border-top: 2px solid var(--rule); }
+  .news-strip li a {
+    display: flex; flex-direction: column; gap: 0.3rem;
+    padding: 0.8rem 0; padding-inline-end: 1.2rem;
+  }
+  .news-strip a:hover { text-decoration: none; }
+  .news-strip a:hover .t { color: var(--accent); }
+  .news-strip time { font-size: var(--s--1); color: var(--ink-faint); }
+  .news-strip .t {
+    font-size: var(--s-0); font-weight: 500; line-height: 1.6;
+    transition: color 0.15s ease;
+  }
+
   .grid { display: grid; gap: clamp(0.9rem, 2.2vw, 1.6rem); }
   .books { grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); }
   .issues { grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); }
