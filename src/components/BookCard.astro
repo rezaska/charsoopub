@@ -23,9 +23,13 @@ const by = [author, translator && `ترجمه‌ی ${translator}`].filter(Boolea
     <h3 class="card-title">{title}</h3>
   </a>
   {by && <p class="by">{by}</p>}
-  <p class:list={["price", "num", { soon: status === "به‌زودی" }]}>
-    {status === "موجود" ? toman(price) : status}
-  </p>
+  {/* Only shown when it tells the reader something. With no price set, every
+      card would otherwise repeat "تماس بگیرید" — true, but not information. */}
+  {status !== "موجود" ? (
+    <p class:list={["price", "num", { soon: status === "به‌زودی" }]}>{status}</p>
+  ) : price != null ? (
+    <p class="price num">{toman(price)}</p>
+  ) : null}
 </article>
 
 <style>
