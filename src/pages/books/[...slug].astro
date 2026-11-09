@@ -28,7 +28,9 @@ const { Content } = await render(book);
       </div>
 
       <div class="info">
-        <p class="form">{d.form} · {d.origin}</p>
+        <p class="form">
+          {d.series && <>{d.series} · </>}{d.form} · {d.origin}
+        </p>
         <h1>{d.title}</h1>
         {d.author && <p class="by">نوشته‌ی {d.author}</p>}
         {d.translator && <p class="by">ترجمه‌ی {d.translator}</p>}
@@ -56,14 +58,14 @@ const { Content } = await render(book);
         ) : (
           <section class="buy">
             <h2>تهیه‌ی کتاب</h2>
-            <p>
-              برای تهیه‌ی کتاب‌ها می‌توانید مستقیماً با شماره‌ی
-              <span class="num ltr"> ۰۲۱۲۲۷۸۰۸۱۰ </span>
-              یا ایمیل <a class="ltr" href="mailto:charsoomagazine@gmail.com">charsoomagazine@gmail.com</a>
-              تماس بگیرید، یا از کتاب‌فروشی پیشگاه،
-              <a class="ltr" href="https://www.iranketab.ir/publisher/2278-%da%86%d8%a7%d8%b1%d8%b3%d9%88" rel="noopener">ایران‌کتاب</a>،
-              پخش گسترش و نشر چشمه اقدام فرمایید.
-            </p>
+            <ul class="ways">
+              <li>واتساپ، بله یا پیامک به <span class="num ltr">۰۹۱۰۲۲۴۵۴۰۸</span></li>
+              <li>تماس با <span class="num ltr">۰۹۱۲۲۴۰۶۹۵۹</span></li>
+              <li>دایرکت <a class="ltr" href="https://www.instagram.com/charsoopub/" rel="noopener">اینستاگرام</a></li>
+              <li>ایمیل <a class="ltr" href="mailto:charsoomagazine@gmail.com">charsoomagazine@gmail.com</a></li>
+              <li>کتاب‌فروشی‌های پخش ققنوس</li>
+              <li><a class="ltr" href="https://www.iranketab.ir/publisher/2278-%da%86%d8%a7%d8%b1%d8%b3%d9%88" rel="noopener">ایران‌کتاب</a> — برای برخی عنوان‌ها</li>
+            </ul>
           </section>
         )}
 
@@ -111,6 +113,7 @@ const { Content } = await render(book);
   .buy h2 { font-size: var(--s--1); font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
   .buy p, .buy li { font-size: var(--s--1); color: var(--ink-soft); }
   .buy ul { margin: 0; padding-inline-start: 1.1rem; }
+  .ways { display: flex; flex-direction: column; gap: 0.25rem; }
   .review {
     margin-top: 1.2rem; font-size: var(--s--1); color: var(--accent);
     border-inline-start: 2px solid var(--accent); padding-inline-start: 0.6rem;

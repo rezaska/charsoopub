@@ -21,6 +21,8 @@ const books = defineCollection({
     author: z.string().optional(),
     translator: z.string().optional(),
     form: z.enum(FORMS),
+    /** Product line, e.g. جیبی‌های چارسو. Most titles have none. */
+    series: z.string().optional(),
     origin: z.enum(ORIGINS).default("تألیف"),
     cover: z.string().optional(),
     /** Price in تومان. Null means "ask us" — never a stale number. */

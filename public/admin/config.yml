@@ -38,6 +38,8 @@ collections:
           options: [نمایشنامه, مجموعه داستان, رمان, نظریه و پژوهش] }
       - { name: origin, label: تألیف یا ترجمه, widget: select,
           options: [تألیف, ترجمه], default: تألیف }
+      - { name: series, label: مجموعه, widget: string, required: false,
+          hint: "اگر بخشی از یک مجموعه است؛ مثلاً: جیبی‌های چارسو" }
       - { name: price, label: قیمت (تومان), widget: number, required: false,
           value_type: int, min: 0,
           hint: "خالی بگذارید تا روی سایت «تماس بگیرید» نمایش داده شود." }
