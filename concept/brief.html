@@ -150,9 +150,9 @@ footer .mono{font-family:var(--mono)}
   <div class="wrap">
     <img src="wordmark.png" alt="چارسو">
     <div>
-      <div class="label">Project brief · آبان ۱۴۰۵ / November 2026</div>
+      <div class="label">Project brief · updated آبان ۱۴۰۵ / November 2026</div>
       <h1 class="title-fa">بازطراحی وب‌سایت انتشارات پیام چارسو</h1>
-      <div class="title-en">What we found, what we propose, and six things we need from you</div>
+      <div class="title-en">What we found, what we built, and what we still need from you</div>
     </div>
   </div>
 </header>
@@ -191,6 +191,13 @@ footer .mono{font-family:var(--mono)}
         </div>
       </div>
       <div class="finding">
+        <span class="mark bad">کاتالوگ</span>
+        <div class="body">
+          <p class="fa">کانال تلگرام نشان می‌دهد سایت دست‌کم یک سال از انتشارات عقب است.</p>
+          <p class="en">Reading the channel turned up an entire series we had no record of (<span class="fa">جیبی‌های چارسو</span>), a translation of the 2025 International Booker winner, a podcast made with Qoqnoos, and three plays by Ahmad Aram named in his obituary. The site's distributor list was also wrong — it still named <span class="fa">پخش گسترش</span> and <span class="fa">نشر چشمه</span> from 2017, where your own pinned post says <span class="fa">ققنوس</span>. That is now corrected.</p>
+        </div>
+      </div>
+      <div class="finding">
         <span class="mark good">آرشیو</span>
         <div class="body">
           <p class="fa">هر هشت جلد فصلنامه و ۱۷ جلد کتاب بازیابی شد.</p>
@@ -218,10 +225,9 @@ footer .mono{font-family:var(--mono)}
         <li><span class="nm">کتاب‌ها <small>catalogue</small><span class="tag">PRIMARY</span></span><span class="pth">/books</span></li>
         <li class="sub"><span class="nm">صفحه‌ی هر کتاب</span><span class="pth">/books/:slug</span></li>
         <li><span class="nm">فصلنامه <small>the quarterly</small></span><span class="pth">/magazine</span></li>
-        <li class="sub"><span class="nm">آرشیو هشت شماره</span><span class="pth">/magazine/issues</span></li>
-        <li class="sub"><span class="nm">صفحه‌ی هر شماره — جلد، فهرست مطالب، نویسندگان</span><span class="pth">/magazine/issues/:n</span></li>
-        <li class="sub"><span class="nm">اشتراک</span><span class="pth">/magazine/subscribe</span></li>
-        <li><span class="nm">نویسندگان و مترجمان<span class="tag">NEW</span></span><span class="pth">/people</span></li>
+        <li class="sub"><span class="nm">آرشیو هشت شماره</span><span class="pth">/magazine</span></li>
+        <li class="sub"><span class="nm">صفحه‌ی هر شماره — جلد، فهرست مطالب، نویسندگان</span><span class="pth">/magazine/:n</span></li>
+        <li><span class="nm">نویسندگان و مترجمان<span class="tag">پرسش ۶</span></span><span class="pth">/people</span></li>
         <li><span class="nm">اخبار و رویدادها</span><span class="pth">/news</span></li>
         <li><span class="nm">درباره‌ی ما</span><span class="pth">/about</span></li>
         <li><span class="nm">تماس با ما</span><span class="pth">/contact</span></li>
@@ -242,63 +248,87 @@ footer .mono{font-family:var(--mono)}
   <div class="wrap">
     <div class="sec-head">
       <div class="label">03 — پرسش‌ها / questions</div>
-      <h2><span class="fa">شش پرسش که پیش از شروع طراحی نیاز داریم</span>Six answers we need before building</h2>
+      <h2><span class="fa">پرسش‌هایی که هنوز پاسخ نگرفته‌اند</span>What we still need from you</h2>
       <p class="en-sub">
-        These are the only genuine blockers. Everything else we can decide and show you.
+        Four of the original six are answered: the quarterly is still publishing, there will be no
+        online sales, hosting is settled, and the CMS route works. Reading the Telegram channel
+        then raised several new ones. These are what remain.
       </p>
     </div>
 
     <div class="qlist">
       <div class="q">
         <div>
-          <p class="q-fa">آیا انتشار فصلنامه ادامه دارد؟ آخرین شماره‌ی منتشرشده کدام است؟</p>
-          <p class="q-en">Is the quarterly still publishing, and which issue is current?</p>
-          <p class="why"><b>Why it matters —</b> issue 8 <span class="fa">(ویژه‌نامه‌ی مرغ دریایی)</span> was printed in autumn 2021. If there are issues 9 or 10 we have no record of them, and the archive would be wrong on the day it launches.</p>
+          <p class="q-fa">آخرین شماره‌ی منتشرشده‌ی فصلنامه کدام است؟</p>
+          <p class="q-en">Which issue of the quarterly is current?</p>
+          <p class="why"><b>Why it matters —</b> we have through issue 8 <span class="fa">(مرغ دریایی،&nbsp;پاییز ۱۴۰۰)</span>. If there is a 9 or a 10 the archive is wrong on the day it launches, and the homepage will feature the wrong cover.</p>
         </div>
       </div>
 
       <div class="q">
         <div>
-          <p class="q-fa">فروش آنلاین می‌خواهید، یا مانند گذشته از راه تماس و کتاب‌فروشی‌ها؟</p>
-          <p class="q-en">Do you want to sell online, or keep the current model?</p>
-          <p class="why"><b>Why it matters —</b> today the site says "call or email us" and links out to <span class="fa">ایران‌کتاب، کتاب‌فروشی پیشگاه، پخش گسترش</span> and <span class="fa">نشر چشمه</span>. Keeping that is perfectly respectable and much simpler. Adding an Iranian payment gateway is possible but meaningfully more work and more upkeep.</p>
+          <p class="q-fa">آیا «برای یک بار هم که شده، زن باش» منتشر شده است؟</p>
+          <p class="q-en">Is the Banu Mushtaq translation out yet?</p>
+          <p class="why"><b>Why it matters —</b> announced on the channel in <span class="fa">آذر ۱۴۰۴</span> and never confirmed since — eleven months of <span class="fa">«به‌زودی»</span>. The original won the <b>International Booker Prize 2025</b>, which makes it the most newsworthy title in the catalogue. It is on the site now marked forthcoming; one word from you moves it. Also: is the cover title <span class="fa">«چراغ دل»</span> or <span class="fa">«برای یک بار هم که شده زن باش»</span>? The channel uses both.</p>
         </div>
       </div>
 
       <div class="q">
         <div>
-          <p class="q-fa">متن و فایل شماره‌های پیشین به‌صورت دیجیتال موجود است؟ (PDF یا این‌دیزاین)</p>
-          <p class="q-en">Do you have the back issues digitally — PDFs or InDesign files?</p>
-          <p class="why"><b>Why it matters —</b> this decides whether each issue page carries a real table of contents and named contributors, or just a cover image and a paragraph. It is the single biggest difference in how substantial the finished site feels.</p>
+          <p class="q-fa">نام سه نمایشنامه‌ی احمد آرام که چارسو منتشر کرده چیست؟</p>
+          <p class="q-en">What are the titles of the three Ahmad Aram plays?</p>
+          <p class="why"><b>Why it matters —</b> the channel's obituary says <span class="fa">«انتشارات چارسو افتخار داشت از او سه نمایشنامه منتشر کند»</span>, but none of the 23 titles on the site are his. He died in <span class="fa">مهر</span>, so people are looking for his work right now and finding nothing on his own publisher's site.</p>
         </div>
       </div>
 
       <div class="q">
         <div>
-          <p class="q-fa">فایل‌های اصلی جلد شماره‌های ۳، ۴، ۵ و ۸ در دسترس است؟</p>
-          <p class="q-en">Can we get the original cover files for issues 3, 4, 5 and 8?</p>
-          <p class="why"><b>Why it matters —</b> the copies on the server are too small to display. Issue 8 survives only at 157×209 pixels. See the table below.</p>
+          <p class="q-fa">رادیو چارسو منتشر شده است؟</p>
+          <p class="q-en">Has Radio Charsoo launched?</p>
+          <p class="why"><b>Why it matters —</b> announced <span class="fa">دی ۱۴۰۴</span> with <span class="fa">انتشارات ققنوس</span> and <span class="fa">استودیوی رادیو پنجره</span>. This is the only question that changes the site's structure rather than its content — a podcast is neither a book nor an issue and would need a section of its own.</p>
         </div>
       </div>
 
       <div class="q">
         <div>
-          <p class="q-fa">میزبانی سایت در ایران باشد یا خارج از ایران؟ دسترسی به دامنه و هاست فعلی با چه کسی است؟</p>
-          <p class="q-en">Should hosting stay inside Iran, and who controls the domain today?</p>
-          <p class="why"><b>Why it matters —</b> a <span class="mono">.ir</span> domain on an Iranian server rules out several common hosting platforms. We need to know who holds the domain and hosting logins before anything can move.</p>
+          <p class="q-fa">از سال ۱۴۰۰ تا ۱۴۰۴ چه کتاب‌هایی منتشر شده است؟</p>
+          <p class="q-en">What was published between 2021 and 2025?</p>
+          <p class="why"><b>Why it matters —</b> the biggest blind spot. The old website stopped in <span class="fa">اسفند ۱۳۹۹</span> and the Telegram channel only goes back to <span class="fa">آبان ۱۴۰۴</span>. Four years in between with no record at all. A simple list of titles is enough to start.</p>
         </div>
       </div>
 
       <div class="q">
         <div>
-          <p class="q-fa">آیا از دفتر شما می‌توان به‌راحتی به github.com دسترسی داشت؟</p>
-          <p class="q-en">Can you reach github.com comfortably from your office?</p>
-          <p class="why"><b>Why it matters —</b> you have told us you want to add books and issues yourselves, a few times a year. Our preferred setup gives you a simple editing panel with image upload and no software to maintain — but it signs in through GitHub. <b>Please open github.com and tell us whether it loads normally.</b> If it does not, we will use a different approach; either way the editing experience is the same.</p>
+          <p class="q-fa">کدام نویسندگان و مترجمان با چارسو همکاری داشته‌اند؟</p>
+          <p class="q-en">Who has written for and translated for Charsoo?</p>
+          <p class="why"><b>Why it matters —</b> from the back issues we can see Peter Brook, Eugenio Barba and Julia Varley interviewed, and writing by <span class="fa">محمد چرمشیر، ناهید طباطبایی، نسیم مرعشی، رضا آشفته، هلن اولیایی‌نیا</span> and others in translation. We would like to list contributors properly rather than leave those names buried inside old page text — <b>a complete, confirmed list from you would be far better than what we can piece together.</b></p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+
+      <div class="q">
+        <div>
+          <p class="q-fa">دسترسی به دامنه — چه کسی تنظیمات DNS را تغییر می‌دهد؟</p>
+          <p class="q-en">Who actually makes DNS changes for the domain?</p>
+          <p class="why"><b>Why it matters —</b> <span class="mono">charsoo-mag.ir</span> is registered through IRNIC and often managed via a reseller panel rather than directly. <b>This is the only thing blocking launch.</b> Everything else can be added after the site is live. Note it may not be whoever set up the original hosting.</p>
+        </div>
+      </div>
+
+      <div class="q">
+        <div>
+          <p class="q-fa">آیا شماره‌ی ۰۲۱۲۲۷۸۰۸۱۰ هنوز فعال است؟</p>
+          <p class="q-en">Is the landline still in service after the move?</p>
+          <p class="why"><b>Why it matters —</b> it was tied to the old <span class="fa">ونک</span> office and landlines rarely survive a move. It currently appears on every page of the site. The two mobile numbers from the channel will have moved with you.</p>
+        </div>
+      </div>
+
+      <div class="q">
+        <div>
+          <p class="q-fa">کدام حساب اینستاگرام فعال است؟</p>
+          <p class="q-en">Which Instagram account is the live one?</p>
+          <p class="why"><b>Why it matters —</b> the old site linked <span class="mono">@payamcharsoo</span> and the new material uses <span class="mono">@charsoopub</span>. Both still exist. If the first is dormant it should be retired or pointed at the other, so nobody lands on a stale profile.</p>
+        </div>
+      </div>
+    </section>
 
 <section>
   <div class="wrap">
@@ -323,24 +353,26 @@ footer .mono{font-family:var(--mono)}
     </div>
     <div class="needs">
       <div class="need">
-        <div class="h">فایل‌های جلد</div>
-        <div class="d">Original cover artwork for issues 3, 4, 5 and 8 — and for نمایشنامه‌ی شیطان هانا and مجموعه داستان‌های نیویورکر, which have no cover on the server at all.</div>
+        <div class="h">جلد شماره‌های ۳، ۴، ۵ و ۸</div>
+        <div class="d">The files on the old server are too small to display — issue 8 survives at only 157&times;209 pixels. We also sampled each issue's band colour from these, so the four low-resolution ones should be re-checked against the originals.</div>
+      </div>
+      <div class="need">
+        <div class="h">جلد چهار کتاب تازه</div>
+        <div class="d">For the four newest titles we cut the covers out of the promotional graphics on the channel, which embed the cover in a layout rather than being one. Usable, but the press-ready files would be better.</div>
       </div>
       <div class="need">
         <div class="h">فهرست مطالب شماره‌ها</div>
-        <div class="d">Tables of contents for all eight issues, in any form — a PDF, a Word file, or photographs of the printed contents pages.</div>
+        <div class="d">Tables of contents for all eight issues — a PDF, a Word file, or photographs of the printed contents pages. This decides whether each issue page carries a real index or just a cover.</div>
       </div>
       <div class="need">
         <div class="h">قیمت‌های به‌روز</div>
-        <div class="d">Current prices for every title in print, and which ones are out of stock.</div>
+        <div class="d">Current prices for everything in print. The figures on the site are from 2020 and two of the newest titles have no price at all. Also which titles are out of stock.</div>
       </div>
       <div class="need">
-        <div class="h">دسترسی‌ها</div>
-        <div class="d">Domain registrar and hosting logins, so the certificate can be fixed and the new site can go live when it's ready.</div>
+        <div class="h">دسترسی‌های دامنه</div>
+        <div class="d">Registrar and DNS logins, so the site can go live on <span class="mono">charsoo-mag.ir</span>.</div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
 <section>
   <div class="wrap">
@@ -350,34 +382,32 @@ footer .mono{font-family:var(--mono)}
     </div>
     <div class="next">
       <div class="step">
-        <span class="when">این هفته</span>
+        <span class="when">انجام شد</span>
         <div class="what">
-          <p class="fa">رفع مشکل گواهی امنیتی سایت فعلی</p>
-          <p class="en">Install a valid certificate so the live site stops warning visitors away while we build.</p>
+          <p class="fa">سایت ساخته شده و آماده است</p>
+          <p class="en">The new site is built and running, with 23 books, all 8 issues, a news section, and an editing panel you can use yourself. It is on a temporary address until the domain moves.</p>
         </div>
       </div>
       <div class="step">
-        <span class="when">پس از پاسخ‌ها</span>
+        <span class="when">در انتظار شما</span>
         <div class="what">
-          <p class="fa">تأیید ساختار و جهت بصری</p>
-          <p class="en">We confirm the sitemap above and walk you through the visual direction, which is built from your own covers.</p>
+          <p class="fa">پاسخ پرسش‌ها و ارسال فایل‌ها</p>
+          <p class="en">The questions above, and the files listed in section 05.</p>
         </div>
       </div>
       <div class="step">
         <span class="when">سپس</span>
         <div class="what">
-          <p class="fa">ساخت سایت و پنل مدیریت محتوا</p>
-          <p class="en">Build, with an editing panel so you can add a book or an issue yourself — cover image, a few fields, save.</p>
+          <p class="fa">انتقال دامنه و انتشار</p>
+          <p class="en">Point charsoo-mag.ir at the new site. HTTPS is then issued automatically, which also resolves the certificate warning on the current site.</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
 <footer>
   <div class="wrap">
     <span class="fa">انتشارات پیام چارسو · فصلنامه‌ی تخصصی سینما و تئاتر</span>
-    <span class="mono">brief 01 · 2026-11-07</span>
+    <span class="mono">brief 02 · 2026-11-09</span>
   </div>
 </footer>
 
@@ -392,7 +422,7 @@ const ISSUES=[
  {n:"۷",play:"باغ آلبالو",px:"1949×2599",ok:true},
  {n:"۸",play:"مرغ دریایی",px:"157×209",ok:false},
 ];
-const ACCENTS=["#01FF80","#BB252A","#DE0C0B","#F19F33","#6F758A","#F38F5B","#73973B","#C83A4D"];
+const ACCENTS=["#01FF80","#BB252A","#4F5336","#F19F33","#6F758A","#F38F5B","#73973B","#C83A4D"];
 document.getElementById("strip").innerHTML=ACCENTS.map(c=>`<div style="background:${c}"></div>`).join("");
 document.getElementById("covers").innerHTML=ISSUES.map(i=>`
   <tr>
