@@ -3,18 +3,37 @@
 The client adds books and issues themselves, roughly three or four times a year.
 This is the setup, and the fallback if GitHub turns out to be unreachable from Tehran.
 
-## Showing it to the client first
+## Testing it
 
-`local_backend: true` is set, so the whole CMS runs against the local folder with
-no account and nothing deployed:
+Two ways, and it is worth doing both in this order.
+
+### 1. Locally — nothing leaves your machine
 
 ```
-npm install && npm run dev
+npm run dev
 open http://localhost:4321/admin/
 ```
 
-Click **کار با مخزن محلی** and pick the repo root. Chrome or Edge only — it uses
-the File System Access API. Good way to demo before any hosting decision.
+Click **Work with Local Repository** and pick the repo root. Chrome or Edge only
+(it needs the File System Access API). No account, no network.
+
+Saving writes straight into `src/content/` as real markdown, so `git status`
+shows exactly what the CMS produced — the clearest way to see whether a field
+maps the way you expect. `git checkout .` throws the test away.
+
+To see a change rendered, leave `npm run dev` running in a second terminal: the
+dev server rebuilds on save, so the page updates in a couple of seconds.
+
+### 2. On the live site — the path the publisher will take
+
+Open `/admin/` on the deployed site, choose **Sign In Using Access Token**,
+follow the link to GitHub (scopes are pre-selected), and paste the token back.
+From then on the browser remembers it.
+
+A save here is a real commit to `main` and triggers a deploy, so test with
+something disposable — a news item called "تست" — then delete it from the panel
+afterwards. Both the creation and the deletion are ordinary commits, so nothing
+is unrecoverable.
 
 The admin UI language follows the browser. Sveltia ships a complete Persian
 translation (409 strings), so a Persian browser gets a fully Persian RTL panel.
