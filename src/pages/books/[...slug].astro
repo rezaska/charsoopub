@@ -17,7 +17,7 @@ const { Content } = await render(book);
 <Base title={d.title} description={`${d.title} — انتشارات پیام چارسو`}>
   <div class="wrap page">
     <nav class="crumbs" aria-label="مسیر">
-      <a href={url("/books/")}>کتاب‌ها</a> <span aria-hidden="true">›</span> <span>{d.title}</span>
+      <a class="quiet-link" href={url("/books/")}>کتاب‌ها</a> <span aria-hidden="true">›</span> <span>{d.title}</span>
     </nav>
 
     <article class="book">

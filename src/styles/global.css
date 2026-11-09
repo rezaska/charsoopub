@@ -103,6 +103,13 @@ body > main { flex: 1 0 auto; }
 
 img { display: block; max-width: 100%; height: auto; }
 
+/* Secondary navigation — section "see all" links, breadcrumbs. Same hover
+   language as the cards and the nav: accent colour, never an underline.
+   The global underline stays for inline prose links such as an address
+   or an email, where it is the right signal. */
+.quiet-link { color: var(--ink-soft); transition: color 0.16s ease; }
+.quiet-link:hover { color: var(--accent); text-decoration: none; }
+
 /* Cards are one object: the whole tile is the link, so its text must not
    pick up the global underline. Hover is carried by colour and a small
    lift instead, identically everywhere. */

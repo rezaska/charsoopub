@@ -42,7 +42,7 @@ const a = latest.data.accent;
     <section class="wrap block news-strip">
       <header class="block-head">
         <h2>اخبار</h2>
-        <a href={url("/news/")}>همه‌ی اخبار ←</a>
+        <a class="quiet-link" href={url("/news/")}>همه‌ی اخبار ←</a>
       </header>
       <ul>
         {news.map((n) => (
@@ -60,7 +60,7 @@ const a = latest.data.accent;
   <section class="wrap block">
     <header class="block-head">
       <h2>تازه‌های انتشارات</h2>
-      <a href={url("/books/")}>همه‌ی کتاب‌ها ←</a>
+      <a class="quiet-link" href={url("/books/")}>همه‌ی کتاب‌ها ←</a>
     </header>
     <div class="grid books">
       {books.slice(0, 8).map((b) => (
@@ -72,7 +72,7 @@ const a = latest.data.accent;
   <section class="wrap block">
     <header class="block-head">
       <h2>آرشیو فصلنامه</h2>
-      <a href={url("/magazine/")}>{fa(issues.length)} شماره ←</a>
+      <a class="quiet-link" href={url("/magazine/")}>{fa(issues.length)} شماره ←</a>
     </header>
     <div class="grid issues">
       {issues.map((i) => <IssueCard {...i.data} />)}
@@ -135,7 +135,7 @@ const a = latest.data.accent;
     padding-bottom: 0.5rem; border-bottom: 2px solid var(--ink);
   }
   .block-head h2 { font-size: var(--s-2); }
-  .block-head a { font-size: var(--s--1); color: var(--ink-soft); }
+  .block-head a { font-size: var(--s--1); }
   .news-strip ul {
     list-style: none; margin: 0; padding: 0;
     display: grid; gap: 0 clamp(1rem, 2.5vw, 2rem);
