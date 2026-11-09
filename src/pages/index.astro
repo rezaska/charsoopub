@@ -18,7 +18,7 @@ const a = latest.data.accent;
 <Base title="انتشارات پیام چارسو">
   <section class="hero" style={`--a:${a};--on-a:${onAccent(a)}`}>
     <div class="wrap hero-grid">
-    <a class="art card-link" href={url(`/magazine/${latest.data.number}/`)}
+    <a class="art" href={url(`/magazine/${latest.data.number}/`)}
        aria-label={`ویژه‌نامه‌ی ${latest.data.play}`}>
       {latest.data.cover && (
         <img src={url(latest.data.cover)} alt={`جلد ویژه‌نامه‌ی ${latest.data.play}`}
@@ -100,12 +100,7 @@ const a = latest.data.accent;
     place-items: center;
     padding: clamp(0.6rem, 2vw, 1.4rem);
   }
-  .art img {
-    width: min(78%, 310px);
-    box-shadow: var(--cover-ring), var(--hero-shadow);
-    transition: box-shadow 0.18s ease;
-  }
-  .art:hover img { box-shadow: var(--cover-ring), var(--hero-shadow-hover); }
+  .art img { width: min(78%, 310px); box-shadow: var(--cover-ring), var(--hero-shadow); }
   .copy {
     padding-block: clamp(0.6rem, 2vw, 1.6rem);
     display: flex;
