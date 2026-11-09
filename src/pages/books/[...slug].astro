@@ -51,7 +51,12 @@ const { Content } = await render(book);
         {d.status === "به‌زودی" ? (
           <section class="buy">
             <h2>انتشار</h2>
-            <p>این کتاب هنوز منتشر نشده است. برای اطلاع از زمان انتشار، کانال و اینستاگرام چارسو را دنبال کنید.</p>
+            <p>
+              این کتاب هنوز منتشر نشده است. برای اطلاع از زمان انتشار،
+              <a class="ltr" href="https://t.me/charsoopub" rel="noopener">کانال تلگرام</a> یا
+              <a class="ltr" href="https://www.instagram.com/charsoopub/" rel="noopener">اینستاگرام</a>
+              چارسو را دنبال کنید.
+            </p>
           </section>
         ) : d.buyLinks.length > 0 ? (
           <section class="buy">
@@ -69,6 +74,7 @@ const { Content } = await render(book);
               <li>واتساپ، بله یا پیامک به <span class="num ltr">۰۹۱۰۲۲۴۵۴۰۸</span></li>
               <li>تماس با <span class="num ltr">۰۹۱۲۲۴۰۶۹۵۹</span></li>
               <li>دایرکت <a class="ltr" href="https://www.instagram.com/charsoopub/" rel="noopener">اینستاگرام</a></li>
+              <li>تلگرام <a class="ltr" href="https://t.me/payamcharsoo" rel="noopener">@payamcharsoo</a></li>
               <li>ایمیل <a class="ltr" href="mailto:charsoomagazine@gmail.com">charsoomagazine@gmail.com</a></li>
               <li>کتاب‌فروشی‌های پخش ققنوس</li>
               <li><a class="ltr" href="https://www.iranketab.ir/publisher/2278-%da%86%d8%a7%d8%b1%d8%b3%d9%88" rel="noopener">ایران‌کتاب</a> — برای برخی عنوان‌ها</li>
