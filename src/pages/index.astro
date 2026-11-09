@@ -3,38 +3,38 @@ import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import BookCard from "../components/BookCard.astro";
 import IssueCard from "../components/IssueCard.astro";
-import { fa, seasonLabel, onAccent, shamsi } from "../lib/fa";
+import { fa, shamsi } from "../lib/fa";
 import { url } from "../lib/url";
+import { pickHero } from "../lib/hero";
 
 const books = (await getCollection("books")).sort((a, b) => a.data.order - b.data.order);
-const news = (await getCollection("news"))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 3);
 const issues = (await getCollection("issues")).sort((a, b) => b.data.number - a.data.number);
-const latest = issues[0];
-const a = latest.data.accent;
+const news = (await getCollection("news")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const hero = pickHero(issues, books, news);
 ---
 
 <Base title="انتشارات پیام چارسو">
-  <section class="hero" style={`--a:${a};--on-a:${onAccent(a)}`}>
+  <section class="hero" style={`--a:${hero.accent};--on-a:${hero.onAccent}`}>
     <div class="wrap hero-grid">
-    <a class="art" href={url(`/magazine/${latest.data.number}/`)}
-       aria-label={`ویژه‌نامه‌ی ${latest.data.play}`}>
-      {latest.data.cover && (
-        <img src={url(latest.data.cover)} alt={`جلد ویژه‌نامه‌ی ${latest.data.play}`}
-             width="520" height="680" fetchpriority="high" />
-      )}
-    </a>
-    <div class="copy">
-      <p class="kicker"><span class="bar"></span>شماره‌ی {fa(latest.data.number)} · {seasonLabel(latest.data.number)}</p>
-      <h1>ویژه‌نامه‌ی {latest.data.play}</h1>
-      <p class="sub">فصلنامه‌ی تخصصی سینما و تئاتر پیام چارسو</p>
-      <p class="dek">{latest.body}</p>
-      <p class="cta">
-        <a class="btn" href={url(`/magazine/${latest.data.number}/`)}>مشاهده‌ی فهرست مطالب</a>
-        <a class="btn ghost" href={url("/contact/")}>تهیه‌ی نسخه‌ی چاپی</a>
-      </p>
-    </div>
+      <a class="art" href={url(hero.href)} aria-label={hero.title}>
+        {hero.image && (
+          <img src={url(hero.image)} alt={`جلد ${hero.title}`}
+               width="520" height="680" fetchpriority="high" />
+        )}
+      </a>
+      <div class="copy">
+        <p class="kicker"><span class="bar"></span>{hero.kicker}</p>
+        <h1>{hero.title}</h1>
+        {hero.sub && <p class="sub">{hero.sub}</p>}
+        {hero.dek && <p class="dek">{hero.dek}</p>}
+        <p class="cta">
+          <a class="btn" href={url(hero.href)}>{hero.cta}</a>
+          {hero.altHref && <a class="btn ghost" href={url(hero.altHref)}>{hero.altCta}</a>}
+        </p>
+      </div>
     </div>
   </section>
 
@@ -45,7 +45,7 @@ const a = latest.data.accent;
         <a class="quiet-link" href={url("/news/")}>همه‌ی اخبار ←</a>
       </header>
       <ul>
-        {news.map((n) => (
+        {news.slice(0, 3).map((n) => (
           <li>
             <a href={url(`/news/${n.id}/`)}>
               <time datetime={n.data.date.toISOString().slice(0, 10)}>{shamsi(n.data.date)}</time>

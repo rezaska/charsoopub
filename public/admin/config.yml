@@ -62,6 +62,8 @@ collections:
       - { name: order, label: ترتیب نمایش, widget: number, default: 0, value_type: int }
       - { name: needsReview, label: نیازمند بازبینی, widget: boolean, default: false,
           hint: "اطلاعاتی که از روی تصویر جلد خوانده شده و تأیید نشده است." }
+      - { name: featured, label: نمایش در صفحه‌ی نخست, widget: boolean, default: false,
+          hint: "فقط یک مورد را در کل سایت انتخاب کنید. اگر هیچ‌کدام انتخاب نشود، تازه‌ترین شماره‌ی فصلنامه نمایش داده می‌شود." }
       - { name: body, label: توضیحات, widget: markdown, required: false }
 
   # ───────────────────────── اخبار ─────────────────────────
@@ -83,6 +85,8 @@ collections:
           hint: "یکی دو جمله که در فهرست اخبار و صفحه‌ی نخست دیده می‌شود." }
       - { name: image, label: تصویر, widget: image, required: false }
       - { name: pinned, label: سنجاق به بالای فهرست, widget: boolean, default: false }
+      - { name: featured, label: نمایش در صفحه‌ی نخست, widget: boolean, default: false,
+          hint: "فقط یک مورد را در کل سایت انتخاب کنید. اگر هیچ‌کدام انتخاب نشود، تازه‌ترین شماره‌ی فصلنامه نمایش داده می‌شود." }
       - { name: body, label: متن خبر, widget: markdown, required: false }
 
   # ──────────────────── شماره‌های فصلنامه ────────────────────
@@ -113,6 +117,8 @@ collections:
           value_type: int, min: 1390, max: 1450 }
       - { name: price, label: قیمت (تومان), widget: number, required: false, value_type: int }
       - { name: coverNeedsOriginal, label: جلد با کیفیت پایین, widget: boolean, default: false }
+      - { name: featured, label: نمایش در صفحه‌ی نخست, widget: boolean, default: false,
+          hint: "فقط یک مورد را در کل سایت انتخاب کنید. اگر هیچ‌کدام انتخاب نشود، تازه‌ترین شماره‌ی فصلنامه نمایش داده می‌شود." }
       - name: toc
         label: فهرست مطالب
         widget: list

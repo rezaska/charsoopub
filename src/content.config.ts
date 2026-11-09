@@ -40,6 +40,8 @@ const books = defineCollection({
     order: z.number().default(0),
     /** Metadata read off a low-resolution cover — client should confirm. */
     needsReview: z.boolean().default(false),
+    /** Lead the homepage with this instead of the newest issue. */
+    featured: z.boolean().default(false),
   }),
 });
 
@@ -63,6 +65,8 @@ const issues = defineCollection({
     price: z.number().nullable().default(null),
     /** True where the recovered cover is below usable web resolution. */
     coverNeedsOriginal: z.boolean().default(false),
+    /** Lead the homepage with this issue specifically. */
+    featured: z.boolean().default(false),
     toc: z
       .array(
         z.object({
@@ -86,6 +90,8 @@ const news = defineCollection({
     image: z.string().optional(),
     /** Pins this item to the top of /news. */
     pinned: z.boolean().default(false),
+    /** Lead the homepage with this item. */
+    featured: z.boolean().default(false),
   }),
 });
 
