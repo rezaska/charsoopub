@@ -4,6 +4,6 @@ author: "آنتوان رو"
 translator: "گلچهر دامغانی"
 form: "نمایشنامه"
 origin: "ترجمه"
-price: 28000
+price: null
 order: 4
 ---

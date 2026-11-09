@@ -4,6 +4,6 @@ author: "شیرین ورچه"
 form: "رمان"
 origin: "تألیف"
 cover: "/covers/books/lotfan-inja-park-nafarmaeid.jpg"
-price: 40000
+price: null
 order: 13
 ---

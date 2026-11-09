@@ -5,6 +5,6 @@ translator: "سمیه صادقی"
 form: "نمایشنامه"
 origin: "ترجمه"
 cover: "/covers/books/telefon-hamrah-mard-morde.jpg"
-price: 32000
+price: null
 order: 3
 ---

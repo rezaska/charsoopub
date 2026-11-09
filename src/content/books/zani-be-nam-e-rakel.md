@@ -5,6 +5,6 @@ translator: "یاشین آزادبیگی"
 form: "نمایشنامه"
 origin: "ترجمه"
 cover: "/covers/books/zani-be-nam-e-rakel.jpg"
-price: 30000
+price: null
 order: 9
 ---
