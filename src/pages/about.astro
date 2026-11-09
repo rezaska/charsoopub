@@ -3,7 +3,6 @@ import Base from "../layouts/Base.astro";
 import { getCollection } from "astro:content";
 import { fa } from "../lib/fa";
 const books = await getCollection("books");
-const issues = await getCollection("issues");
 ---
 
 <Base title="درباره‌ی ما — انتشارات پیام چارسو">
@@ -28,13 +27,6 @@ const issues = await getCollection("issues");
         {fa(books.length)} عنوان در حوزه‌ی نمایشنامه، داستان و پژوهش منتشر کرده است.
       </p>
     </div>
-
-    <dl class="facts">
-      <div><dt>شماره‌های منتشرشده</dt><dd class="num">{fa(issues.length)}</dd></div>
-      <div><dt>عناوین کتاب</dt><dd class="num">{fa(books.length)}</dd></div>
-      <div><dt>پروانه‌ی انتشار</dt><dd class="num">۷۸۸۷۵</dd></div>
-      <div><dt>آغاز انتشارات</dt><dd class="num">۱۳۹۸</dd></div>
-    </dl>
   </div>
 </Base>
 
@@ -42,11 +34,4 @@ const issues = await getCollection("issues");
   .page { padding-block: clamp(2rem, 5vw, 3.4rem); }
   h1 { font-size: var(--s-3); font-weight: 900; margin-bottom: 1.2rem; }
   .prose { display: flex; flex-direction: column; gap: 1.1rem; color: var(--ink-soft); }
-  .facts {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1rem; margin: clamp(2rem, 5vw, 3rem) 0 0;
-  }
-  .facts div { border-top: 2px solid var(--ink); padding-top: 0.7rem; }
-  .facts dt { font-size: var(--s--1); color: var(--ink-soft); margin: 0; }
-  .facts dd { margin: 0; font-size: var(--s-2); font-weight: 900; }
 </style>
