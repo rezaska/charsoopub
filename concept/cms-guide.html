@@ -1,0 +1,265 @@
+<title>راهنمای مدیریت محتوا</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap">
+
+<style>
+:root{
+  --paper:#ffffff;
+  --ground:#f4f4f2;
+  --raise:#ebebe7;
+  --ink:#17171b;
+  --ink-soft:#5c5c64;
+  --ink-faint:#8b8b92;
+  --rule:#e2e2dc;
+  --accent:#c83a4d;
+  --accent-soft:#fbeef0;
+  --tip:#5f7a3a;
+  --tip-soft:#f0f4e9;
+  --shadow:0 1px 2px rgb(20 20 24 / .05), 0 6px 20px rgb(20 20 24 / .07);
+
+  --fa:"Vazirmatn", system-ui, Tahoma, sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,monospace;
+
+  --s--1:clamp(.8rem,.78rem + .1vw,.87rem);
+  --s-0:clamp(.97rem,.95rem + .12vw,1.04rem);
+  --s-1:clamp(1.12rem,1.06rem + .26vw,1.3rem);
+  --s-2:clamp(1.4rem,1.26rem + .6vw,1.85rem);
+  --s-3:clamp(1.85rem,1.5rem + 1.5vw,2.7rem);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#1a1a1e;--ground:#121214;--raise:#242428;
+    --ink:#ededeb;--ink-soft:#a0a0a7;--ink-faint:#74747c;--rule:#2e2e34;
+    --accent:#e8697a;--accent-soft:#2e181c;
+    --tip:#9bbe6b;--tip-soft:#1d2416;
+    --shadow:0 1px 2px rgb(0 0 0 / .5), 0 6px 20px rgb(0 0 0 / .4);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1a1a1e;--ground:#121214;--raise:#242428;
+  --ink:#ededeb;--ink-soft:#a0a0a7;--ink-faint:#74747c;--rule:#2e2e34;
+  --accent:#e8697a;--accent-soft:#2e181c;
+  --tip:#9bbe6b;--tip-soft:#1d2416;
+  --shadow:0 1px 2px rgb(0 0 0 / .5), 0 6px 20px rgb(0 0 0 / .4);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--fa);font-size:var(--s-0);line-height:1.95;font-weight:400;
+  direction:rtl;
+}
+h1,h2,h3{margin:0;line-height:1.45;font-weight:700;text-wrap:balance}
+p{margin:0}
+a{color:var(--accent)}
+img{display:block;max-width:100%}
+.mono{font-family:var(--mono);direction:ltr;unicode-bidi:isolate;display:inline-block;font-size:.92em}
+
+.wrap{max-width:720px;margin-inline:auto;padding-inline:clamp(1.1rem,5vw,2rem)}
+
+/* header */
+header.top{background:var(--paper);border-bottom:1px solid var(--rule);padding-block:clamp(2.2rem,6vw,3.4rem)}
+.eyebrow{font-size:var(--s--1);color:var(--ink-faint);letter-spacing:.04em}
+h1{font-size:var(--s-3);font-weight:900;margin-block:.5rem .7rem}
+.lede{color:var(--ink-soft);max-width:52ch}
+.strip{display:grid;grid-template-columns:repeat(8,1fr);height:5px}
+
+main{padding-block:clamp(2rem,5vw,3.2rem)}
+
+/* step */
+.step{
+  background:var(--paper);border:1px solid var(--rule);border-radius:10px;
+  padding:clamp(1.2rem,3vw,1.9rem);box-shadow:var(--shadow);
+  margin-bottom:clamp(1.1rem,2.6vw,1.7rem);
+}
+.step-head{display:flex;align-items:baseline;gap:.8rem;margin-bottom:.9rem}
+.step-n{
+  flex:0 0 auto;width:1.9em;height:1.9em;border-radius:50%;
+  background:var(--accent);color:#fff;font-weight:700;font-size:var(--s--1);
+  display:grid;place-items:center;line-height:1;
+}
+.step h2{font-size:var(--s-1)}
+.step > p{color:var(--ink-soft)}
+
+/* ordered sub-steps */
+ol.sub{margin:.9rem 0 0;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:.75rem}
+ol.sub li{counter-increment:s;display:grid;grid-template-columns:auto minmax(0,1fr);gap:.7rem;align-items:baseline}
+ol.sub li::before{
+  content:counter(s) "."; color:var(--accent);font-weight:700;font-size:var(--s--1);
+  font-variant-numeric:tabular-nums;
+}
+
+/* field table */
+.fields{margin:1rem 0 0;display:flex;flex-direction:column}
+.fields div{
+  display:grid;grid-template-columns:minmax(0,10em) minmax(0,1fr);gap:.4rem 1rem;
+  padding:.6rem 0;border-bottom:1px solid var(--rule);
+}
+.fields div:last-child{border-bottom:0}
+@media (max-width:520px){.fields div{grid-template-columns:1fr;gap:.1rem}}
+.fields dt{font-weight:500;margin:0}
+.fields dd{margin:0;color:var(--ink-soft);font-size:var(--s--1)}
+.req{color:var(--accent);font-size:.85em;font-weight:400}
+
+/* callouts */
+.note{
+  margin-top:1rem;padding:.85rem 1rem;border-radius:7px;
+  background:var(--accent-soft);
+  border-inline-start:3px solid var(--accent);
+  font-size:var(--s--1);line-height:1.8;
+}
+.tip{
+  margin-top:1rem;padding:.85rem 1rem;border-radius:7px;
+  background:var(--tip-soft);
+  border-inline-start:3px solid var(--tip);
+  font-size:var(--s--1);line-height:1.8;
+}
+.note b,.tip b{font-weight:700}
+
+/* button chips, so UI labels are unmistakable in running text */
+.ui{
+  display:inline-block;background:var(--raise);border:1px solid var(--rule);
+  border-radius:4px;padding:.05em .45em;font-size:.92em;font-weight:500;
+  white-space:nowrap;
+}
+
+/* closing checklist */
+.check{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:clamp(1.2rem,3vw,1.9rem);box-shadow:var(--shadow)}
+.check h2{font-size:var(--s-1);margin-bottom:.8rem}
+.check ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.check li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.6rem;align-items:baseline;font-size:var(--s--1);color:var(--ink-soft)}
+.check li::before{content:"✓";color:var(--tip);font-weight:700}
+
+footer{padding-block:clamp(1.8rem,4vw,2.6rem);color:var(--ink-faint);font-size:var(--s--1);border-top:1px solid var(--rule);margin-top:clamp(2rem,4vw,3rem)}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <p class="eyebrow">انتشارات پیام چارسو</p>
+    <h1>راهنمای افزودن محتوا به سایت</h1>
+    <p class="lede">
+      برای افزودن کتاب، شماره‌ی تازه‌ی فصلنامه یا خبر، نیازی به هیچ برنامه‌ای نیست —
+      فقط مرورگر. این راهنما را باز نگه دارید و قدم‌به‌قدم پیش بروید.
+    </p>
+  </div>
+</header>
+<div class="strip" id="strip"></div>
+
+<main>
+  <div class="wrap">
+
+    <section class="step">
+      <div class="step-head"><span class="step-n">۱</span><h2>ورود به پنل — فقط بار اول</h2></div>
+      <p>
+        نشانی پنل مدیریت را در مرورگر باز کنید. پیشنهاد می‌کنیم آن را نشانک (bookmark) کنید
+        تا هر بار لازم نباشد تایپ شود.
+      </p>
+      <ol class="sub">
+        <li><span>نشانی <span class="mono">charsoo-mag.ir/admin/</span> را باز کنید.</span></li>
+        <li><span>روی <span class="ui">ورود با استفاده از توکن دسترسی</span> بزنید.</span></li>
+        <li><span>لینکی که باز می‌شود شما را به صفحه‌ی GitHub می‌برد؛ دسترسی‌های لازم از پیش انتخاب شده‌اند. فقط کلید ساخت توکن را بزنید.</span></li>
+        <li><span>رشته‌ی طولانی‌ای که GitHub نشان می‌دهد را کپی کنید و در کادر پنل بچسبانید.</span></li>
+      </ol>
+      <div class="note">
+        <b>این کار فقط یک‌بار انجام می‌شود.</b> مرورگر توکن را به یاد می‌سپارد و دفعه‌های بعد
+        مستقیم وارد پنل می‌شوید. اگر با رایانه یا مرورگر دیگری وارد شوید، یک‌بار دیگر لازم است.
+      </div>
+      <div class="note">
+        توکن مثل رمز عبور است — آن را برای کسی نفرستید. اگر جایی لو رفت، از همان صفحه‌ی GitHub
+        می‌شود باطلش کرد و توکن تازه ساخت.
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-head"><span class="step-n">۲</span><h2>افزودن کتاب</h2></div>
+      <p>
+        از ستون کنار، <span class="ui">کتاب‌ها</span> را انتخاب کنید و روی <span class="ui">جدید</span> بزنید.
+        این فیلدها را پر کنید:
+      </p>
+      <dl class="fields">
+        <div><dt>عنوان <span class="req">لازم</span></dt><dd>نام کتاب، همان‌طور که روی جلد آمده.</dd></div>
+        <div><dt>تصویر جلد</dt><dd>فایل جلد را بکشید و رها کنید. هرچه باکیفیت‌تر، بهتر.</dd></div>
+        <div><dt>نویسنده</dt><dd>برای کتاب‌های ترجمه، نویسنده‌ی اصلی.</dd></div>
+        <div><dt>مترجم</dt><dd>فقط اگر ترجمه است.</dd></div>
+        <div><dt>قالب <span class="req">لازم</span></dt><dd>نمایشنامه، مجموعه داستان، رمان، یا نظریه و پژوهش.</dd></div>
+        <div><dt>تألیف یا ترجمه</dt><dd>یکی از دو گزینه.</dd></div>
+        <div><dt>قیمت</dt><dd>فقط عدد، به تومان. خالی بگذارید تا روی سایت «تماس بگیرید» بیاید.</dd></div>
+        <div><dt>موجود است</dt><dd>اگر تمام شده، خاموشش کنید؛ کتاب می‌ماند ولی ناموجود نشان داده می‌شود.</dd></div>
+        <div><dt>شابک، صفحات، سال</dt><dd>اختیاری. سال را شمسی وارد کنید.</dd></div>
+        <div><dt>توضیحات</dt><dd>معرفی کوتاه کتاب.</dd></div>
+      </dl>
+      <p style="margin-top:1rem">در پایان <span class="ui">ذخیره و انتشار</span> را بزنید.</p>
+      <div class="tip">
+        <b>نکته:</b> قیمت‌ها را هر وقت لازم شد می‌توانید از همین‌جا به‌روز کنید — فقط عدد را
+        عوض کنید و دوباره منتشر کنید.
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-head"><span class="step-n">۳</span><h2>افزودن شماره‌ی فصلنامه</h2></div>
+      <p>
+        از ستون کنار، <span class="ui">شماره‌های فصلنامه</span> و بعد <span class="ui">جدید</span>.
+      </p>
+      <dl class="fields">
+        <div><dt>شماره <span class="req">لازم</span></dt><dd>فقط عدد: ۹، ۱۰ و همین‌طور ادامه.</dd></div>
+        <div><dt>ویژه‌نامه‌ی <span class="req">لازم</span></dt><dd>نام نمایشنامه؛ مثلاً «مرغ دریایی».</dd></div>
+        <div><dt>نویسنده‌ی نمایشنامه</dt><dd>مثلاً «آنتون چخوف».</dd></div>
+        <div><dt>تصویر جلد</dt><dd>جلد همان شماره.</dd></div>
+        <div><dt>رنگ شاخص <span class="req">لازم</span></dt><dd>رنگ نوار روی جلد چاپی را انتخاب کنید.</dd></div>
+        <div><dt>فصل و سال</dt><dd>بهار/تابستان/پاییز/زمستان و سال شمسی.</dd></div>
+        <div><dt>فهرست مطالب</dt><dd>با <span class="ui">افزودن</span> هر مطلب را جداگانه وارد کنید: نوع مطلب (مقاله، مصاحبه، نمایشنامه…)، عنوان، نویسنده و شماره‌ی صفحه.</dd></div>
+      </dl>
+      <div class="tip">
+        <b>درباره‌ی «رنگ شاخص»:</b> هر شماره روی جلدش یک نوار رنگی دارد. همان رنگ را که انتخاب
+        کنید، تمام صفحه‌ی آن شماره در سایت با همان رنگ نمایش داده می‌شود — عنوان، شماره، و
+        نشانه‌های فهرست مطالب. اگر مطمئن نیستید، رنگ را از روی نسخه‌ی چاپی نگاه کنید.
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-head"><span class="step-n">۴</span><h2>افزودن خبر</h2></div>
+      <p>
+        از ستون کنار، <span class="ui">اخبار و رویدادها</span> و بعد <span class="ui">جدید</span>.
+        کوتاه‌ترین کار از میان این سه — نیم دقیقه بیشتر طول نمی‌کشد.
+      </p>
+      <dl class="fields">
+        <div><dt>عنوان <span class="req">لازم</span></dt><dd>یک جمله‌ی روشن؛ مثلاً «شماره‌ی نهم منتشر شد».</dd></div>
+        <div><dt>تاریخ <span class="req">لازم</span></dt><dd>از تقویم انتخاب کنید. روی سایت خودبه‌خود به شمسی تبدیل می‌شود.</dd></div>
+        <div><dt>خلاصه</dt><dd>یکی دو جمله. همین در صفحه‌ی نخست دیده می‌شود.</dd></div>
+        <div><dt>تصویر</dt><dd>اختیاری — جلد، عکس رویداد، یا هیچ.</dd></div>
+        <div><dt>سنجاق به بالای فهرست</dt><dd>برای خبری که می‌خواهید مدتی بالاتر از بقیه بماند.</dd></div>
+        <div><dt>متن خبر</dt><dd>شرح کامل، اگر لازم است.</dd></div>
+      </dl>
+      <div class="tip">
+        <b>سه خبر تازه‌تر</b> خودبه‌خود در صفحه‌ی نخست سایت نمایش داده می‌شوند. برای زنده
+        نگه‌داشتن سایت، همین بخش از همه مؤثرتر است.
+      </div>
+    </section>
+
+    <div class="check">
+      <h2>چند نکته‌ی مهم</h2>
+      <ul>
+        <li>بعد از <span class="ui">ذخیره و انتشار</span>، تغییر <b>دو تا سه دقیقه</b> بعد روی سایت دیده می‌شود. اگر بلافاصله صفحه را تازه کنید و تغییری نبینید، چیزی خراب نشده — هنوز آماده نشده است.</li>
+        <li>اگر صفحه‌ای قدیمی به‌نظر می‌رسد، با <b>Ctrl+Shift+R</b> (یا در مک <b>Cmd+Shift+R</b>) تازه‌سازی کامل کنید.</li>
+        <li>هیچ‌چیز واقعاً پاک نمی‌شود. هر تغییر نسخه‌ی تازه‌ای می‌سازد، پس اشتباه‌ها برگشت‌پذیرند — حتی هفته‌ها بعد.</li>
+        <li>با فرم نمی‌شود ظاهر سایت را خراب کرد. فیلدها فقط چیزی را می‌پذیرند که سایت بلد است نمایش دهد.</li>
+        <li>تصویرها را با بالاترین کیفیتی که دارید بارگذاری کنید؛ کوچک‌کردن‌شان کار سایت است.</li>
+        <li>اگر چیزی گیج‌کننده بود، <span class="ui">لغو</span> را بزنید و بپرسید. هیچ کاری تا وقتی منتشر نشده ثبت نمی‌شود.</li>
+      </ul>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">انتشارات پیام چارسو — راهنمای پنل مدیریت محتوا</div>
+</footer>
+
+<script>
+  // the eight issue accents, as a quiet nod to the system she is editing
+  const A = ["#01FF80","#BB252A","#4F5336","#F19F33","#6F758A","#F38F5B","#73973B","#C83A4D"];
+  document.getElementById("strip").innerHTML =
+    A.map(c => `<div style="background:${c}"></div>`).join("");
+</script>

@@ -39,12 +39,23 @@ The CMS bundle is vendored into `public/admin/cms/` by `scripts/copy-cms.mjs`
 on postinstall rather than loaded from a CDN — unpkg and jsDelivr are not
 dependable from Iran, same reason the font is self-hosted.
 
-### Still to wire up
+### Signing in
 
-1. **OAuth helper.** GitHub's sign-in handshake needs a small redirect endpoint.
-   Host it once, anywhere, and point `backend.base_url` at it.
-2. **Build trigger.** `.github/workflows/build.yml` builds on every push to
-   `main`. Where it deploys is still open — see below.
+Sveltia offers two methods. **Use the access token**, not OAuth:
+
+- **Access token (in use).** The publisher clicks "ورود با استفاده از توکن دسترسی",
+  follows the link to GitHub with the right scopes pre-selected, and pastes the
+  token once. Stored in that browser. Talks only to github.com, which we have
+  confirmed is reachable from her office.
+- **OAuth (not used).** Friendlier, and what Sveltia recommends for non-technical
+  users — but it needs an OAuth client hosted on Cloudflare Workers, which adds a
+  second foreign host to the chain. `workers.dev` reachability from Iran is
+  untested, and if it is blocked, sign-in breaks with no fallback. The token
+  method has no such dependency, so it is the more robust choice here despite
+  being slightly less friendly.
+
+A publisher-facing walkthrough in Persian covering sign-in and all three
+collections is published as an artifact; keep it updated when fields change.
 
 ### The dependency to test first
 
