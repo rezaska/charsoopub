@@ -35,7 +35,9 @@ const { Content } = await render(book);
         {d.author && <p class="by">نوشته‌ی {d.author}</p>}
         {d.translator && <p class="by">ترجمه‌ی {d.translator}</p>}
 
-        <p class="price num">{d.inStock ? toman(d.price) : "ناموجود"}</p>
+        <p class:list={["price", "num", { soon: d.status === "به‌زودی" }]}>
+          {d.status === "موجود" ? toman(d.price) : d.status}
+        </p>
 
         {book.body?.trim() && <div class="desc"><Content /></div>}
 
@@ -46,7 +48,12 @@ const { Content } = await render(book);
           <div><dt>ناشر</dt><dd>انتشارات پیام چارسو</dd></div>
         </dl>
 
-        {d.buyLinks.length > 0 ? (
+        {d.status === "به‌زودی" ? (
+          <section class="buy">
+            <h2>انتشار</h2>
+            <p>این کتاب هنوز منتشر نشده است. برای اطلاع از زمان انتشار، کانال و اینستاگرام چارسو را دنبال کنید.</p>
+          </section>
+        ) : d.buyLinks.length > 0 ? (
           <section class="buy">
             <h2>تهیه‌ی کتاب</h2>
             <ul>
@@ -101,6 +108,7 @@ const { Content } = await render(book);
   .info h1 { font-size: var(--s-2); font-weight: 900; }
   .by { color: var(--ink-soft); font-size: var(--s-0); }
   .price { font-size: var(--s-1); font-weight: 700; margin-top: 0.4rem; }
+  .price.soon { color: var(--accent); }
   .desc { color: var(--ink-soft); margin-block: 0.6rem; }
   .spec { display: flex; flex-direction: column; gap: 0.1rem; margin: 1rem 0 0; }
   .spec div {

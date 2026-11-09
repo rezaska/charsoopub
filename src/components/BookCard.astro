@@ -9,9 +9,9 @@ interface Props {
   translator?: string;
   cover?: string;
   price: number | null;
-  inStock?: boolean;
+  status?: "موجود" | "ناموجود" | "به‌زودی";
 }
-const { slug, title, author, translator, cover, price, inStock = true } = Astro.props;
+const { slug, title, author, translator, cover, price, status = "موجود" } = Astro.props;
 const by = [author, translator && `ترجمه‌ی ${translator}`].filter(Boolean).join(" · ");
 ---
 
@@ -23,7 +23,9 @@ const by = [author, translator && `ترجمه‌ی ${translator}`].filter(Boolea
     <h3>{title}</h3>
   </a>
   {by && <p class="by">{by}</p>}
-  <p class="price num">{inStock ? toman(price) : "ناموجود"}</p>
+  <p class:list={["price", "num", { soon: status === "به‌زودی" }]}>
+    {status === "موجود" ? toman(price) : status}
+  </p>
 </article>
 
 <style>
@@ -47,4 +49,5 @@ const by = [author, translator && `ترجمه‌ی ${translator}`].filter(Boolea
   .book h3 { font-size: var(--s-0); line-height: 1.5; }
   .by { font-size: var(--s--1); color: var(--ink-soft); line-height: 1.6; }
   .price { font-size: var(--s--1); color: var(--ink-faint); }
+  .price.soon { color: var(--accent); font-weight: 500; }
 </style>

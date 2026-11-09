@@ -12,6 +12,8 @@ import { glob } from "astro/loaders";
 
 const FORMS = ["نمایشنامه", "مجموعه داستان", "رمان", "نظریه و پژوهش"] as const;
 const ORIGINS = ["تألیف", "ترجمه"] as const;
+/** The channel marks every title either منتشر شد or به‌زودی. */
+const STATUS = ["موجود", "ناموجود", "به‌زودی"] as const;
 const SEASONS = ["بهار", "تابستان", "پاییز", "زمستان"] as const;
 
 const books = defineCollection({
@@ -31,7 +33,7 @@ const books = defineCollection({
     pages: z.number().optional(),
     /** Shamsi year, e.g. ۱۳۹۹ stored as 1399 */
     year: z.number().optional(),
-    inStock: z.boolean().default(true),
+    status: z.enum(STATUS).default("موجود"),
     buyLinks: z
       .array(z.object({ name: z.string(), url: z.string().url() }))
       .default([]),

@@ -43,7 +43,9 @@ collections:
       - { name: price, label: قیمت (تومان), widget: number, required: false,
           value_type: int, min: 0,
           hint: "خالی بگذارید تا روی سایت «تماس بگیرید» نمایش داده شود." }
-      - { name: inStock, label: موجود است, widget: boolean, default: true }
+      - { name: status, label: وضعیت, widget: select,
+          options: [موجود, ناموجود, به‌زودی], default: موجود,
+          hint: "«به‌زودی» برای کتابی که هنوز منتشر نشده است." }
       - { name: isbn, label: شابک, widget: string, required: false }
       - { name: pages, label: تعداد صفحات, widget: number, required: false, value_type: int }
       - { name: year, label: سال انتشار (شمسی), widget: number, required: false,
