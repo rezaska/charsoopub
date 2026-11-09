@@ -1,4 +1,5 @@
 import { defineConfig } from "astro/config";
+import sitemap from "@astrojs/sitemap";
 
 // Served from the apex domain in production. BASE_PATH lets CI publish the
 // same build under a sub-path (rezaska.github.io/charsoopub/) for preview,
@@ -14,4 +15,7 @@ export default defineConfig({
   output: "static",
   build: { format: "directory" },
   image: { responsiveStyles: true },
+  // robots.txt already points at the sitemap; this is what generates it.
+  // The admin panel is excluded — it is noindex and of no use to a crawler.
+  integrations: [sitemap({ filter: (page) => !page.includes("/admin") })],
 });

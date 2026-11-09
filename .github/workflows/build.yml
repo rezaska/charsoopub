@@ -46,6 +46,8 @@ jobs:
           test -f dist/admin/index.html
           test -f dist/admin/config.yml
           test -f dist/admin/cms/sveltia-cms.js
+          test -f dist/sitemap-index.xml
+          ! grep -q '/admin' dist/sitemap-0.xml
           test "$(find dist -name 'index.html' | wc -l)" -ge 30
           echo "pages built: $(find dist -name 'index.html' | wc -l)"
 
