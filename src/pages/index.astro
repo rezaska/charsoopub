@@ -18,15 +18,16 @@ const a = latest.data.accent;
 <Base title="انتشارات پیام چارسو">
   <section class="hero" style={`--a:${a};--on-a:${onAccent(a)}`}>
     <div class="wrap hero-grid">
-    <div class="art">
+    <a class="art card-link" href={url(`/magazine/${latest.data.number}/`)}
+       aria-label={`ویژه‌نامه‌ی ${latest.data.play}`}>
       {latest.data.cover && (
         <img src={url(latest.data.cover)} alt={`جلد ویژه‌نامه‌ی ${latest.data.play}`}
              width="520" height="680" fetchpriority="high" />
       )}
-    </div>
+    </a>
     <div class="copy">
       <p class="kicker"><span class="bar"></span>شماره‌ی {fa(latest.data.number)} · {seasonLabel(latest.data.number)}</p>
-      <h1>ویژه‌نامه‌ی {latest.data.play}</h1>
+      <h1><a class="title-link" href={url(`/magazine/${latest.data.number}/`)}>ویژه‌نامه‌ی {latest.data.play}</a></h1>
       <p class="sub">فصلنامه‌ی تخصصی سینما و تئاتر پیام چارسو</p>
       <p class="dek">{latest.body}</p>
       <p class="cta">
@@ -114,6 +115,8 @@ const a = latest.data.accent;
   }
   .bar { height: 3px; width: 34px; background: var(--a); border-radius: 2px; }
   .copy h1 { font-size: var(--s-3); font-weight: 900; }
+  .title-link { transition: color 0.16s ease; }
+  .title-link:hover { color: var(--a); text-decoration: none; }
   .sub { color: var(--ink-soft); font-size: var(--s-0); }
   .dek { color: var(--ink-soft); max-width: var(--measure); }
   .cta { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.4rem; }
@@ -128,19 +131,19 @@ const a = latest.data.accent;
   .block { padding-block: clamp(2.2rem, 5vw, 3.6rem); }
   .block-head {
     display: flex; align-items: baseline; justify-content: space-between;
-    gap: 1rem; margin-bottom: 1.4rem; flex-wrap: wrap;
+    gap: 1rem; margin-bottom: 1.3rem; flex-wrap: wrap;
+    padding-bottom: 0.5rem; border-bottom: 2px solid var(--ink);
   }
   .block-head h2 { font-size: var(--s-2); }
   .block-head a { font-size: var(--s--1); color: var(--ink-soft); }
   .news-strip ul {
     list-style: none; margin: 0; padding: 0;
-    display: grid; gap: 0;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    display: grid; gap: 0 clamp(1rem, 2.5vw, 2rem);
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   }
-  .news-strip li { border-top: 2px solid var(--rule); }
   .news-strip li a {
     display: flex; flex-direction: column; gap: 0.3rem;
-    padding: 0.8rem 0; padding-inline-end: 1.2rem;
+    padding-block: 0.2rem 0.9rem; padding-inline-end: 1.2rem;
   }
   .news-strip a:hover { text-decoration: none; }
   .news-strip a:hover .t { color: var(--accent); }
@@ -151,6 +154,6 @@ const a = latest.data.accent;
   }
 
   .grid { display: grid; gap: clamp(0.9rem, 2.2vw, 1.6rem); }
-  .books { grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); }
-  .issues { grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); }
+  .books,
+  .issues { grid-template-columns: repeat(auto-fill, minmax(var(--cover-track), 1fr)); }
 </style>

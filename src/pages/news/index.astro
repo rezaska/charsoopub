@@ -54,6 +54,7 @@ const items = (await getCollection("news")).sort((a, b) => {
     padding-block: clamp(1rem, 2.5vw, 1.5rem);
   }
   .item a:hover { text-decoration: none; }
+  .item h2 { transition: color 0.16s ease; }
   .item a:hover h2 { color: var(--accent); }
   @media (max-width: 560px) { .item a { grid-template-columns: 1fr; } }
   /* News images are a mix of event photos and portrait covers, so contain

@@ -32,6 +32,9 @@
   --mono: ui-monospace, "SF Mono", Menlo, monospace;
 
   --measure: 62ch;
+  /* One track size for every grid of covers, so books and issues keep the
+     same rhythm on the homepage and on their own index pages. */
+  --cover-track: 170px;
   --wrap: 1180px;
   --gutter: clamp(1.1rem, 4vw, 2.4rem);
 
@@ -99,6 +102,19 @@ body {
 body > main { flex: 1 0 auto; }
 
 img { display: block; max-width: 100%; height: auto; }
+
+/* Cards are one object: the whole tile is the link, so its text must not
+   pick up the global underline. Hover is carried by colour and a small
+   lift instead, identically everywhere. */
+.card-link { display: flex; flex-direction: column; gap: 0.6rem; }
+.card-link:hover { text-decoration: none; }
+.card-link img { transition: transform 0.16s ease, box-shadow 0.16s ease; }
+.card-link:hover img {
+  transform: translateY(-3px);
+  box-shadow: var(--cover-ring), 0 6px 14px rgb(0 0 0 / 0.14), 0 16px 32px rgb(0 0 0 / 0.14);
+}
+.card-link .card-title { transition: color 0.16s ease; }
+.card-link:hover .card-title { color: var(--accent); }
 h1, h2, h3, h4 { margin: 0; line-height: 1.35; font-weight: 700; text-wrap: balance; }
 p { margin: 0; }
 a { color: inherit; text-decoration: none; }

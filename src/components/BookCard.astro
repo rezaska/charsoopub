@@ -16,11 +16,11 @@ const by = [author, translator && `ترجمه‌ی ${translator}`].filter(Boolea
 ---
 
 <article class="book">
-  <a href={url(`/books/${slug}/`)}>
+  <a class="card-link" href={url(`/books/${slug}/`)}>
     {cover
       ? <img src={url(cover)} alt={`جلد ${title}`} width="420" height="600" loading="lazy" />
       : <div class="placeholder" aria-hidden="true"><span>بدون تصویر جلد</span></div>}
-    <h3>{title}</h3>
+    <h3 class="card-title">{title}</h3>
   </a>
   {by && <p class="by">{by}</p>}
   <p class:list={["price", "num", { soon: status === "به‌زودی" }]}>
@@ -30,7 +30,6 @@ const by = [author, translator && `ترجمه‌ی ${translator}`].filter(Boolea
 
 <style>
   .book { display: flex; flex-direction: column; gap: 0.45rem; }
-  .book a { display: flex; flex-direction: column; gap: 0.6rem; }
   .book img,
   .placeholder {
     width: 100%;
