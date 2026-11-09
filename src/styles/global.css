@@ -137,7 +137,10 @@ a:hover { text-decoration: underline; text-underline-offset: 0.25em; }
 }
 
 /* Latin runs inside Persian sentences must not reorder the line. */
-.ltr { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+/* Isolates a Latin or numeric run so it does not reorder the Persian line.
+   `isolate` does this on its own — forcing inline-block also turned block
+   elements such as <p class="ltr"> into inline boxes that shared a line. */
+.ltr { direction: ltr; unicode-bidi: isolate; }
 
 .wrap {
   max-width: var(--wrap);

@@ -10,8 +10,8 @@ import Base from "../layouts/Base.astro";
         <h2>نشانی</h2>
         <p>تهران، خیابان آپادانا، خیابان مهناز (صابونچی)، پلاک ۴۸، طبقهٔ دوم<br />به‌نام فصلنامه‌ی پیام چارسو</p>
         <h2>تلفن</h2>
-        <p class="num ltr">۰۲۱۲۲۷۸۰۸۱۰</p>
-        <p class="num ltr">۰۹۱۲۲۴۰۶۹۵۹ — رزرو آگهی</p>
+        <p class="num">۰۲۱۲۲۷۸۰۸۱۰</p>
+        <p class="num">۰۹۱۲۲۴۰۶۹۵۹ — رزرو آگهی</p>
         <h2>ایمیل</h2>
         <p><a class="ltr" href="mailto:charsoomagazine@gmail.com">charsoomagazine@gmail.com</a></p>
       </section>
@@ -19,8 +19,8 @@ import Base from "../layouts/Base.astro";
         <h2>تهیه‌ی کتاب‌ها و فصلنامه</h2>
         <p>کتاب‌ها و مجله‌های چارسو را از این راه‌ها می‌توانید تهیه کنید:</p>
         <ul>
-          <li>واتساپ، بله یا پیامک به <span class="num ltr">۰۹۱۰۲۲۴۵۴۰۸</span></li>
-          <li>تماس با <span class="num ltr">۰۹۱۲۲۴۰۶۹۵۹</span></li>
+          <li>واتساپ، بله یا پیامک به <span class="num">۰۹۱۰۲۲۴۵۴۰۸</span></li>
+          <li>تماس با <span class="num">۰۹۱۲۲۴۰۶۹۵۹</span></li>
           <li>دایرکت <a class="ltr" href="https://www.instagram.com/charsoopub/" rel="noopener">اینستاگرام</a></li>
           <li>تلگرام — <a class="ltr" href="https://t.me/payamcharsoo" rel="noopener">@payamcharsoo</a></li>
           <li>ایمیل <a class="ltr" href="mailto:charsoomagazine@gmail.com">charsoomagazine@gmail.com</a></li>
@@ -40,8 +40,11 @@ import Base from "../layouts/Base.astro";
 <style>
   .page { padding-block: clamp(2rem, 5vw, 3.4rem); }
   h1 { font-size: var(--s-3); font-weight: 900; margin-bottom: 1.6rem; }
-  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: clamp(1.6rem, 4vw, 3rem); }
-  h2 { font-size: var(--s--1); font-weight: 700; color: var(--accent); margin: 1.4rem 0 0.4rem; }
+  .cols { display: flex; flex-direction: column; gap: clamp(1.6rem, 4vw, 2.6rem); }
+  h2 {
+    font-size: var(--s--1); font-weight: 700; color: var(--accent);
+    margin: 1.4rem 0 0.5rem;
+  }
   section > h2:first-child { margin-top: 0; }
   p, li { color: var(--ink-soft); }
   ul { margin: 0.3rem 0 0; padding-inline-start: 1.1rem; }
