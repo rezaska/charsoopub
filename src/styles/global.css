@@ -36,6 +36,10 @@
   /* One track size for every grid of covers, so books and issues keep the
      same rhythm on the homepage and on their own index pages. */
   --cover-track: 170px;
+  /* The gap is part of the same measurement: auto-fill divides by
+     (track + gap), so a 1.6px difference between two pages was enough to
+     drop the magazine archive from two columns to one on a phone. */
+  --cover-gap: clamp(0.9rem, 2.2vw, 1.6rem);
   --wrap: 1180px;
   --gutter: clamp(1.1rem, 4vw, 2.4rem);
 
@@ -105,6 +109,19 @@ body {
 body > main { flex: 1 0 auto; }
 
 img { display: block; max-width: 100%; height: auto; }
+
+/* Every grid of covers, defined once. auto-fill divides by (track + gap), so
+   at phone widths the result sat right on the boundary between one and two
+   columns — a few pixels of scrollbar decided it. Below 560px the count is
+   stated outright instead of computed. */
+.cover-grid {
+  display: grid;
+  gap: var(--cover-gap);
+  grid-template-columns: repeat(auto-fill, minmax(var(--cover-track), 1fr));
+}
+@media (max-width: 560px) {
+  .cover-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 
 /* Secondary navigation — section "see all" links, breadcrumbs. Same hover
    language as the cards and the nav: accent colour, never an underline.

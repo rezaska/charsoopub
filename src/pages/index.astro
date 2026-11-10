@@ -62,7 +62,7 @@ const hero = pickHero(issues, books, news);
       <h2>تازه‌های انتشارات</h2>
       <a class="quiet-link" href={url("/books/")}>همه‌ی کتاب‌ها ←</a>
     </header>
-    <div class="grid books">
+    <div class="grid cover-grid">
       {books.slice(0, 8).map((b) => (
         <BookCard slug={b.id} {...b.data} />
       ))}
@@ -74,7 +74,7 @@ const hero = pickHero(issues, books, news);
       <h2>آرشیو فصلنامه</h2>
       <a class="quiet-link" href={url("/magazine/")}>{fa(issues.length)} شماره ←</a>
     </header>
-    <div class="grid issues">
+    <div class="grid cover-grid">
       {issues.map((i) => <IssueCard {...i.data} />)}
     </div>
   </section>
@@ -163,7 +163,4 @@ const hero = pickHero(issues, books, news);
     transition: color 0.15s ease;
   }
 
-  .grid { display: grid; gap: clamp(0.9rem, 2.2vw, 1.6rem); }
-  .books,
-  .issues { grid-template-columns: repeat(auto-fill, minmax(var(--cover-track), 1fr)); }
 </style>

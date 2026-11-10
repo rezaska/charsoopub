@@ -23,7 +23,7 @@ const grouped = FORMS.map((f) => ({ form: f, items: books.filter((b) => b.data.f
     {grouped.map((g) => (
       <section class="group">
         <h2>{g.form} <span class="count num">{fa(g.items.length)}</span></h2>
-        <div class="grid">
+        <div class="grid cover-grid">
           {g.items.map((b) => <BookCard slug={b.id} {...b.data} />)}
         </div>
       </section>
@@ -43,8 +43,5 @@ const grouped = FORMS.map((f) => ({ form: f, items: books.filter((b) => b.data.f
     display: flex; align-items: baseline; gap: 0.6rem;
   }
   .count { font-size: var(--s--1); color: var(--ink-faint); font-weight: 400; }
-  .grid {
-    display: grid; gap: clamp(0.9rem, 2.2vw, 1.6rem);
-    grid-template-columns: repeat(auto-fill, minmax(var(--cover-track), 1fr));
-  }
+
 </style>
