@@ -74,9 +74,10 @@ Sveltia offers two methods. **Use the access token**, not OAuth:
   being slightly less friendly.
 
 A publisher-facing walkthrough in Persian covering sign-in and all three
-collections lives in `concept/cms-guide.html` and is published as an artifact;
-keep it updated when fields change. `concept/README.md` has the link and how to
-send it to her.
+collections lives in `concept/cms-guide.html` and is served from the site at
+`/admin/guide/`, next to the panel it describes — a plain URL she can be given,
+and one anyone else can read. **Keep it updated when fields change here**, or it
+describes a form that no longer exists. `concept/README.md` has the detail.
 
 ### The dependency to test first
 

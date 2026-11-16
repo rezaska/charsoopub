@@ -1,0 +1,58 @@
+---
+/**
+ * The publisher's content guide, served next to the panel it describes.
+ *
+ * Source is concept/cms-guide.html, which is also published as an artifact —
+ * one file, two places it can be read. Editing that file updates both: this
+ * page on the next deploy, the artifact on the next republish.
+ *
+ * Under /admin/, so robots.txt already disallows it and the sitemap filter
+ * already skips it. Not linked from the site; it is reached by its URL.
+ */
+import guideHtml from "../../../concept/cms-guide.html?raw";
+import "@fontsource-variable/vazirmatn";
+import { url } from "../../lib/url";
+
+// The eight issue accents, drawn as a strip under the header. The source file
+// builds this with a script, which would not run here — set:html inserts
+// markup but does not execute it — so it is rendered at build time instead.
+const accents = [
+  "#01FF80", "#BB252A", "#4F5336", "#F19F33",
+  "#6F758A", "#F38F5B", "#73973B", "#C83A4D",
+];
+const strip = accents.map((c) => `<div style="background:${c}"></div>`).join("");
+
+// The file is an artifact body: <title>, Google Fonts links, a <style>, the
+// markup, then that script. The head material is lifted into the real head
+// and the font comes from the site's own copy, since Google Fonts is not
+// dependable from Iran — the same reason global.css self-hosts it.
+const body = guideHtml
+  .replace(/<title>[\s\S]*?<\/title>/, "")
+  .replace(/<link rel="preconnect"[^>]*>/g, "")
+  .replace(/<link rel="stylesheet" href="https:\/\/fonts\.googleapis\.com[^>]*>/g, "")
+  .replace(/<script>[\s\S]*?<\/script>/, "")
+  .replace('<div class="strip" id="strip"></div>', `<div class="strip">${strip}</div>`)
+  .trim();
+---
+
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>راهنمای افزودن محتوا — انتشارات پیام چارسو</title>
+    <link rel="icon" href={url("/wordmark.png")} />
+    <style>
+      /* The guide names the Google Fonts family; the self-hosted copy
+         registers as "Vazirmatn Variable". Specificity, not order — the
+         guide's own <style> comes later in the document. */
+      html:root {
+        --fa: "Vazirmatn Variable", "Vazirmatn", system-ui, Tahoma, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <Fragment set:html={body} />
+  </body>
+</html>
