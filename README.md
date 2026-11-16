@@ -17,8 +17,20 @@ A literary and performing-arts press that also publishes the quarterly
 | `archive/media/` | 49 original files, 112 MB — **irreplaceable**, 29 more were already lost |
 | `archive/covers/` | Renamed, sRGB-converted, front-only covers (8 issues + 17 books) |
 | `archive/web/` | Web-optimised covers used by the concept pages |
-| `concept/` | Visual direction + client brief (published as artifacts) |
+| `concept/` | Client-facing pages: visual direction, brief, CMS guide — see `concept/README.md` |
 | `IA-and-direction.md` | Sitemap, design direction, open questions |
+
+## Client-facing pages
+
+Written for the client, not for us. The file in `concept/` is the source of
+truth; the link is the published copy she gets sent. Edit the file, then
+republish. Details and how to send them: `concept/README.md`.
+
+| | source | live |
+|---|---|---|
+| راهنمای افزودن محتوا به سایت — the publisher's step-by-step CMS guide, in Persian | `concept/cms-guide.html` | [open](https://claude.ai/code/artifact/a284d4c4-5fe3-4273-902b-ac2b037ed736) |
+| Rebuild brief — what is being built, what is settled, what is open | `concept/brief.html` | [open](https://claude.ai/code/artifact/8c9fd985-d6d4-4aa6-b5d4-0045b439af54) |
+| Visual direction — typography, colour, the issue accent system | `concept/index.html` | [open](https://claude.ai/code/artifact/6d493161-40b0-4a6e-82af-ffc0e2a56ca7) |
 
 ## Status
 
