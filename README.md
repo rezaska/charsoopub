@@ -25,7 +25,8 @@ A literary and performing-arts press that also publishes the quarterly
 راهنمای افزودن محتوا به سایت — the Persian walkthrough of the content panel,
 written for the publisher and readable by anyone who needs it.
 
-- **Live:** `/admin/guide/` — once Pages is on (see "Turning Pages on" in `docs/cms.md`)
+- **Live:** <https://rezaska.github.io/charsoopub/admin/guide/> — becomes
+  `charsoo-mag.ir/admin/guide/` once the domain is pointed here
 - **Locally:** `npm run dev`, then <http://localhost:4321/admin/guide/>
 - **To change it:** edit `concept/cms-guide.html`; `src/pages/admin/guide.astro` renders it
 - Also published as an artifact: [راهنمای مدیریت محتوا](https://claude.ai/code/artifact/a284d4c4-5fe3-4273-902b-ac2b037ed736)

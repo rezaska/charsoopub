@@ -100,19 +100,22 @@ If GitHub is not reliably reachable:
 It is a server, so it is not maintenance-free. But it is a very different risk
 profile from WordPress, and the client's editing experience is the same.
 
-## Turning Pages on
+## Pages is on
 
-The workflow already builds and uploads the site on every push. Deployment is
-gated so nothing happens until we decide. To switch it on:
+`DEPLOY_TARGET` was set to `pages` on 2026-11-08, so every push to `main`
+builds and deploys. The site is live at **rezaska.github.io/charsoopub/** and
+the guide at **rezaska.github.io/charsoopub/admin/guide/**.
 
-1. Repo **Settings → Pages → Source: GitHub Actions**
-2. Repo **Settings → Secrets and variables → Actions → Variables**, add
-   `DEPLOY_TARGET` = `pages`
-3. For the custom domain, set `charsoo-mag.ir` in Settings → Pages and add a
-   `public/CNAME` file containing that hostname
+That is the project-Pages sub-path, which is why the build passes `BASE_PATH`
+and `SITE_URL` — see the `build` job. Both come off once the real domain is
+pointed here:
 
-That is the whole switch. Until step 2, the `deploy` job is skipped and the
-`build` job just acts as CI.
+1. Settings → Pages → custom domain `charsoo-mag.ir`, plus a `public/CNAME`
+   file containing that hostname
+2. Drop the two env vars from the workflow, so the build goes back to base `/`
+
+Until then every URL carries the `/charsoopub/` prefix, which is also why
+`src/lib/url.ts` exists — root-absolute paths have to go through it.
 
 Note: Pages publishes from a **private** repo only on GitHub Pro ($4/month).
 On a free account it needs a public repo — which would expose the 112 MB of
