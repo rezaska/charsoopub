@@ -20,15 +20,28 @@ cutover needs two steps instead of one.
 
 ## The records today
 
-Checked 2026-11-25:
+The full zone, read from the Zone Editor on 2026-11-25. This is the rollback
+reference — if anything goes wrong, these are the values to put back.
 
 ```
-charsoo-mag.ir        A      78.157.35.72
-www                   CNAME  charsoo-mag.ir
-mail                  CNAME  charsoo-mag.ir
-MX               0    charsoo-mag.ir
-TXT                   v=spf1 ip4:78.157.35.67 ip4:78.157.35.72 … ~all
+charsoo-mag.ir.                     900  A      78.157.35.72
+mail.charsoo-mag.ir.                900  CNAME  charsoo-mag.ir
+www.charsoo-mag.ir.                 900  CNAME  charsoo-mag.ir
+ftp.charsoo-mag.ir.                 900  A      78.157.35.72
+charsoo-mag.ir.                     900  MX     0  charsoo-mag.ir
+default._domainkey.charsoo-mag.ir.  900  TXT    v=DKIM1; k=rsa; p=MIIBIjAN…
+charsoo-mag.ir.                     900  TXT    v=spf1 ip4:78.157.35.67 … ~all
+_cpanel-dcv-test-record…            900  TXT    (cPanel AutoSSL leftover)
+_acme-challenge…                    900  TXT    (cPanel AutoSSL leftover)
 ```
+
+Only four of these change: `mail`, `MX`, the apex `A` and `www`. **`ftp` keeps
+its own `A` record**, so it stays on the old server untouched, and the DKIM and
+SPF records are mail's, not the website's — leave all of them alone.
+
+The DKIM record is worth noticing. Mail here was not left at defaults; someone
+set up signing for it. That is the argument for doing step 1 rather than
+assuming the mailbox is empty.
 
 **`MX` and `mail` both chain to the apex.** Repoint the apex `A` record and the
 mail follows it to GitHub, which runs no mail server — delivery stops, with no
@@ -82,13 +95,17 @@ the site resolve if a datacentre drops.
 
 ## Step 3 — the repo side
 
-Mine to do, about ten minutes, once DNS is moving:
+Done 2026-11-25, while step 1 propagated:
 
-1. `public/CNAME` containing `charsoo-mag.ir`
-2. Drop `BASE_PATH` and `SITE_URL` from `.github/workflows/build.yml`, so the
-   build goes back to base `/` instead of the `/charsoopub/` sub-path
+1. ✅ `public/CNAME` containing `charsoo-mag.ir`
+2. ✅ `BASE_PATH` and `SITE_URL` dropped from `.github/workflows/build.yml`, so
+   the build serves from base `/` instead of the `/charsoopub/` sub-path
 3. Settings → Pages → Custom domain: `charsoo-mag.ir`
 4. Wait for the certificate, **then** tick Enforce HTTPS
+
+Between 2 and the apex change, neither URL works — the sub-path build is gone
+and the domain does not point here yet. That gap is expected and nobody is
+using the github.io address.
 
 Step 4 is not optional and not instant. GitHub issues a Let's Encrypt
 certificate once it sees the DNS, usually within the hour. Ticking the box

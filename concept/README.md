@@ -21,9 +21,8 @@ instead), and draws the accent strip at build time, since the source builds it
 with a script and inserted scripts do not run. Under `/admin/`, so robots.txt
 disallows it and it stays out of the sitemap. Nothing links to it.
 
-Live now at <https://rezaska.github.io/charsoopub/admin/guide/>, which becomes
-`charsoo-mag.ir/admin/guide/` once the domain is pointed here. Every push to
-`main` redeploys it.
+Live at <https://charsoo-mag.ir/admin/guide/>. Every push to `main` redeploys
+it.
 
 A second copy is published as an artifact:
 [راهنمای مدیریت محتوا](https://claude.ai/code/artifact/a284d4c4-5fe3-4273-902b-ac2b037ed736).

@@ -103,19 +103,13 @@ profile from WordPress, and the client's editing experience is the same.
 ## Pages is on
 
 `DEPLOY_TARGET` was set to `pages` on 2026-11-08, so every push to `main`
-builds and deploys. The site is live at **rezaska.github.io/charsoopub/** and
-the guide at **rezaska.github.io/charsoopub/admin/guide/**.
+builds and deploys. The site is served from **charsoo-mag.ir** and the guide
+from **charsoo-mag.ir/admin/guide/**.
 
-That is the project-Pages sub-path, which is why the build passes `BASE_PATH`
-and `SITE_URL` — see the `build` job. Both come off once the real domain is
-pointed here:
-
-1. Settings → Pages → custom domain `charsoo-mag.ir`, plus a `public/CNAME`
-   file containing that hostname
-2. Drop the two env vars from the workflow, so the build goes back to base `/`
-
-Until then every URL carries the `/charsoopub/` prefix, which is also why
-`src/lib/url.ts` exists — root-absolute paths have to go through it.
+`public/CNAME` is what tells Pages which hostname to answer on. The build ran
+under a `/charsoopub/` sub-path until 2026-11-25, which is why `src/lib/url.ts`
+exists — it is no longer needed for the sub-path, but root-absolute paths still
+go through it and it costs nothing to leave in place.
 
 Note: Pages publishes from a **private** repo only on GitHub Pro ($4/month).
 On a free account it needs a public repo — which would expose the 112 MB of
