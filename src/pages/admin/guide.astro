@@ -26,6 +26,11 @@ const strip = accents.map((c) => `<div style="background:${c}"></div>`).join("")
 // markup, then that script. The head material is lifted into the real head
 // and the font comes from the site's own copy, since Google Fonts is not
 // dependable from Iran — the same reason global.css self-hosts it.
+const description =
+  "راهنمای گام‌به‌گام افزودن کتاب، شماره‌ی فصلنامه و خبر به سایت — بدون نیاز به هیچ برنامه‌ای، فقط مرورگر.";
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(url("/og-default.jpg"), Astro.site);
+
 const body = guideHtml
   .replace(/<title>[\s\S]*?<\/title>/, "")
   .replace(/<link rel="preconnect"[^>]*>/g, "")
@@ -42,6 +47,25 @@ const body = guideHtml
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
     <title>راهنمای افزودن محتوا — انتشارات پیام چارسو</title>
+    <meta name="description" content={description} />
+
+    {/* This page has its own head rather than going through Base, so the
+        card has to be repeated here. It is how the guide reaches the
+        publisher — sent as a link in a chat — so a bare URL with no title
+        or image is the one place a preview genuinely matters.
+        noindex keeps it out of search; it does not stop a chat app from
+        fetching the card, which is what we want. */}
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="انتشارات پیام چارسو" />
+    <meta property="og:locale" content="fa_IR" />
+    <meta property="og:title" content="راهنمای افزودن محتوا به سایت" />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="راهنمای افزودن محتوا به سایت" />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <link rel="icon" href={url("/favicon.ico")} sizes="any" />
     <style>
       /* The guide names the Google Fonts family; the self-hosted copy
