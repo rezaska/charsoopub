@@ -8,6 +8,12 @@ interface Props {
   /** Issue pages pass their accent; everything else uses the house colour. */
   accent?: string;
   onAccent?: string;
+  /**
+   * What a shared link shows. Pages with artwork pass their own cover, so a
+   * title she adds next year previews with its own image and nothing here
+   * needs regenerating. Pages without one fall back to the wordmark card.
+   */
+  image?: string;
 }
 
 const {
@@ -15,6 +21,7 @@ const {
   description = "انتشارات پیام چارسو — ناشر کتاب‌های ادبی و هنری و فصلنامه‌ی تخصصی سینما و تئاتر",
   accent,
   onAccent,
+  image,
 } = Astro.props;
 
 const nav = [
@@ -26,6 +33,9 @@ const nav = [
 ];
 
 const path = Astro.url.pathname;
+const canonical = new URL(path, Astro.site);
+/** Absolute, because every platform rejects a relative og:image. */
+const ogImage = new URL(url(image ?? "/og-default.jpg"), Astro.site);
 const style = accent
   ? `--accent:${accent};--on-accent:${onAccent ?? "#fff"}`
   : undefined;
@@ -51,7 +61,23 @@ const style = accent
         if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
       } catch {}
     </script>
-    <link rel="canonical" href={new URL(path, Astro.site)} />
+    <link rel="canonical" href={canonical} />
+
+    {/* Telegram and Instagram are where this press actually publishes, so a
+        shared link has to carry its own card. Covers are portrait; Telegram
+        and WhatsApp show them whole, the landscape-cropping platforms take
+        the middle. Worth it to keep the image current by itself. */}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="انتشارات پیام چارسو" />
+    <meta property="og:locale" content="fa_IR" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
   </head>
 
   <body style={style}>

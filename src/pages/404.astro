@@ -1,0 +1,84 @@
+---
+/**
+ * GitHub Pages serves this for any unknown path. Without it visitors get
+ * GitHub's own page — English, left-to-right, and with no way back into the
+ * site. Links out to the three things someone is most likely to have been
+ * looking for; a dead end is the one thing a 404 should not be.
+ */
+import Base from "../layouts/Base.astro";
+import { url } from "../lib/url";
+---
+
+<Base
+  title="صفحه پیدا نشد — انتشارات پیام چارسو"
+  description="صفحه‌ای که دنبالش بودید پیدا نشد."
+>
+  <div class="wrap page">
+    <p class="code">۴۰۴</p>
+    <h1>این صفحه پیدا نشد</h1>
+    <p class="lede">
+      ممکن است نشانی را اشتباه وارد کرده باشید، یا صفحه‌ای که دنبالش بودید جابه‌جا
+      شده باشد. از این‌جا می‌توانید ادامه دهید:
+    </p>
+    <ul class="ways">
+      <li><a href={url("/books/")}>کتاب‌ها</a> — فهرست کامل عناوین</li>
+      <li><a href={url("/magazine/")}>فصلنامه</a> — شماره‌های منتشرشده</li>
+      <li><a href={url("/news/")}>اخبار</a> — تازه‌ترین خبرها</li>
+    </ul>
+    <p class="back"><a class="btn" href={url("/")}>بازگشت به صفحه‌ی نخست</a></p>
+  </div>
+</Base>
+
+<style>
+  .page {
+    padding-block: clamp(3rem, 10vw, 6rem);
+    max-width: var(--measure);
+  }
+  .code {
+    margin: 0;
+    font-size: clamp(2.6rem, 9vw, 4.4rem);
+    font-weight: 900;
+    line-height: 1;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  h1 {
+    margin: 0.6rem 0 0;
+    font-size: var(--s-2);
+    font-weight: 700;
+  }
+  .lede {
+    margin: 0.9rem 0 0;
+    color: var(--ink-soft);
+    line-height: 1.9;
+  }
+  .ways {
+    margin: 1.6rem 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    color: var(--ink-soft);
+    font-size: var(--s--1);
+  }
+  .ways a {
+    color: var(--ink);
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: inset 0 -1px 0 var(--rule);
+  }
+  .ways a:hover { box-shadow: inset 0 -1px 0 var(--accent); color: var(--accent); }
+  .back { margin: 2rem 0 0; }
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--on-accent);
+    text-decoration: none;
+    border-radius: 7px;
+    padding: 0.62rem 1.15rem;
+    font-weight: 500;
+    font-size: var(--s--1);
+  }
+  .btn:hover { filter: brightness(1.07); }
+</style>
