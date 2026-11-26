@@ -82,7 +82,12 @@ const { Content } = await render(book);
           </section>
         )}
 
-        {d.needsReview && (
+        {/* Our note, not the reader's: the metadata was read off a
+            low-resolution cover and the publisher has not confirmed it.
+            Shown while developing; never on the live site. The flag itself
+            stays in the frontmatter, and the publisher sees it in the CMS
+            as نیازمند بازبینی. */}
+        {import.meta.env.DEV && d.needsReview && (
           <p class="review">
             این اطلاعات از روی تصویر جلد خوانده شده و نیاز به تأیید ناشر دارد.
           </p>

@@ -42,7 +42,9 @@ const fg = onAccent(d.accent);
   <div class="wrap body">
     <aside>
       {d.cover && <img src={url(d.cover)} alt={`جلد ویژه‌نامه‌ی ${d.play}`} width="520" height="680" />}
-      {d.coverNeedsOriginal && (
+      {/* Same: a note to us about a cover we need the original of, not
+          something a reader should be told. Dev only. */}
+      {import.meta.env.DEV && d.coverNeedsOriginal && (
         <p class="warn">تصویر جلد با کیفیت پایین — فایل اصلی مورد نیاز است.</p>
       )}
       <dl class="spec">

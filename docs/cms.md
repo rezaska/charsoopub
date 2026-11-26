@@ -127,6 +127,18 @@ measured at 533 ms from the client's network in Tehran with no VPN. See
 Pointing the domain is the remaining step, and it is its own document:
 `docs/domain.md`.
 
+## Internal flags are not public
+
+`needsReview` on a book and `coverNeedsOriginal` on an issue are notes to us,
+not to readers. They render only under `npm run dev`; the live build omits them.
+The publisher still sees each one in the CMS as a labelled checkbox
+(نیازمند بازبینی, جلد با کیفیت پایین), which is where they are useful — she is
+the person who can resolve them.
+
+Anything of that kind belongs behind `import.meta.env.DEV`, or in `docs/`. The
+site went live on 2026-11-26 with five book pages whose entire body was such a
+note; they read as unfinished to a visitor and said nothing a reader wanted.
+
 ## Housekeeping
 
 Hook the media uploader to convert **CMYK → sRGB** on upload. Sixteen of the
