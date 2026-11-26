@@ -6,6 +6,10 @@ backend:
   name: github
   repo: rezaska/charsoopub
   branch: main
+  # Narrow the token she creates. The default is `repo`, which asks for every
+  # repository on her account including any private one she makes later. This
+  # repo is public, so public_repo is all the CMS needs.
+  auth_scope: public_repo
   # Sveltia signs in through GitHub. If the client cannot reach github.com,
   # swap this block for the fallback described in docs/cms.md.
 

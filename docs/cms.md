@@ -79,6 +79,31 @@ collections lives in `concept/cms-guide.html` and is served from the site at
 and one anyone else can read. **Keep it updated when fields change here**, or it
 describes a form that no longer exists. `concept/README.md` has the detail.
 
+### Giving the publisher access
+
+She needs a GitHub account of her own and write access to this repo. In order:
+
+1. **She** signs up at `github.com/signup` with her own email — her account,
+   not one made for her. GitHub will likely require two-factor authentication;
+   an authenticator app on her phone is the least fragile option, and she
+   should save the recovery codes somewhere that is not her phone.
+2. **We** invite her: repo → Settings → Collaborators → Add people → her
+   username → role **Write**. Write is enough to commit content. Admin would
+   also let her change settings and delete the repo.
+3. **She** accepts the emailed invitation. Until she does, the panel loads and
+   then fails on save, which looks like a bug rather than a permission.
+4. **She** signs in at `/admin/` and creates the token, as the guide describes.
+
+`auth_scope: public_repo` in `public/admin/config.yml` keeps that token narrow.
+Sveltia's default is `repo`, which asks for every repository on her account
+including private ones she might create later. This repo is public, so the
+narrower scope is all the CMS needs — worth keeping if the repo ever goes
+private, in which case it has to become `repo` and the trade-off returns.
+
+Tokens expire. Classic tokens can be set to no expiry, which is the right
+choice here: a token that dies in ninety days means a confused publisher and a
+support call, for a token that only reaches public repositories anyway.
+
 ### The dependency to test first
 
 The client's browser must reach **github.com**. Generally fine from Iran since
