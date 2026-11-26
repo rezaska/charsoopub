@@ -109,17 +109,44 @@ the site resolve if a datacentre drops.
 
 ## Step 3 — the repo side
 
-Done 2026-11-25, while step 1 propagated:
+All done:
 
 1. ✅ `public/CNAME` containing `charsoo-mag.ir`
-2. ✅ `BASE_PATH` and `SITE_URL` dropped from `.github/workflows/build.yml`, so
-   the build serves from base `/` instead of the `/charsoopub/` sub-path
-3. Settings → Pages → Custom domain: `charsoo-mag.ir`
-4. Wait for the certificate, **then** tick Enforce HTTPS
+2. ✅ `BASE_PATH` and `SITE_URL` dropped from `.github/workflows/build.yml`
+3. ✅ Settings → Pages → Custom domain: `charsoo-mag.ir`
+4. ✅ Certificate issued, Enforce HTTPS on
 
-Between 2 and the apex change, neither URL works — the sub-path build is gone
-and the domain does not point here yet. That gap is expected and nobody is
-using the github.io address.
+## The certificate did not issue on its own
+
+Worth knowing, because the symptom is misleading. Eight hours after the DNS was
+correct there was still no certificate, and Settings → Pages showed "DNS check
+in progress" the whole time. That message was stale, not live work: the API
+showed no `https_certificate` object at all — the request had never been made.
+
+Everything that could have blocked it had already been ruled out — no CAA
+record, all four addresses resolving, HTTP serving from Pages, and
+`/.well-known/acme-challenge/` reachable (it returns 404, which is the correct
+answer for a challenge file that does not exist).
+
+**The fix was to clear the Custom domain field, save, type it back, and save
+again.** That discards the stuck check and starts a fresh one. It went
+`authorization_pending → issued → approved` in about a minute.
+
+Do not wait on "DNS check in progress" for hours. If there is no certificate
+object after twenty minutes, re-save the domain.
+
+## The certificate as issued
+
+```
+subject   CN=charsoo-mag.ir
+SAN       charsoo-mag.ir, www.charsoo-mag.ir
+issuer    Let's Encrypt
+expires   2027-02-24   (GitHub renews automatically)
+```
+
+`www` is on the certificate because `www` CNAMEs to `rezaska.github.io`. Had it
+been left pointing at the apex, the site would still work but `www` over HTTPS
+would warn.
 
 Step 4 is not optional and not instant. GitHub issues a Let's Encrypt
 certificate once it sees the DNS, usually within the hour. Ticking the box

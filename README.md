@@ -40,10 +40,11 @@ pages in `concept/` — the brief and the visual direction — are retired;
 Archive complete. Visual direction drafted. Awaiting client answers on six
 questions (see `IA-and-direction.md`) before build starts.
 
+**Live at <https://charsoo-mag.ir>** since 2026-11-26. See `docs/domain.md`.
+
 ### Known blockers
 
 - Cover originals needed for issues ۳، ۴، ۵، ۸ — server copies are too small to use
-- Old site is served over a **self-signed certificate**; browsers block it until replaced
 
 ## Notes for whoever picks this up
 
