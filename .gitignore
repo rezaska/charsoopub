@@ -18,3 +18,7 @@ Thumbs.db
 
 # vendored by scripts/copy-cms.mjs on postinstall
 public/admin/cms/
+
+# The panel package for Iranian hosting — rebuilt by scripts/make-panel.mjs
+panel-dist/
+panel.zip

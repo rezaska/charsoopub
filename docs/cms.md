@@ -104,6 +104,37 @@ Tokens expire. Classic tokens can be set to no expiry, which is the right
 choice here: a token that dies in ninety days means a confused publisher and a
 support call, for a token that only reaches public repositories anyway.
 
+### The panel is served from Iran, the site from GitHub
+
+The publisher's connection loads the site fine and stalls on the CMS. Measured
+on 2026-11-26:
+
+```
+a page of the site   4.9 KB
+the CMS bundle     822 KB gzipped (2.6 MB raw), in one file
+```
+
+Opening the bundle's URL directly on her machine stays blank — it never
+finishes. `api.github.com` opens normally on the same connection, so nothing
+is filtered; the single large file simply does not get through from GitHub
+Pages.
+
+So the panel lives on her own host in Tehran and the public site stays on
+Pages. The split is the point: the heavy file is local, and the only thing
+that leaves the country is the GitHub API traffic, which is small and which
+her connection already handles.
+
+`node scripts/make-panel.mjs` builds the package after `npm run build`. It
+flattens the paths, since the panel is served from a subdomain root rather
+than `/admin/`. Output is `panel-dist/` and `panel.zip`, both gitignored.
+
+**Rebuild and re-upload whenever Sveltia is updated.** The copy in Tehran does
+not update itself, and a config change here does not reach it either —
+`config.yml` is in the package.
+
+`/admin/` on the main site still works for anyone whose connection can pull
+the bundle, and is the one to use for our own testing.
+
 ### The dependency to test first
 
 The client's browser must reach **github.com**. Generally fine from Iran since
