@@ -18,6 +18,7 @@ A literary and performing-arts press that also publishes the quarterly
 | `archive/covers/` | Renamed, sRGB-converted, front-only covers (8 issues + 17 books) |
 | `archive/web/` | Web-optimised covers used by the concept pages |
 | `concept/` | The publisher's CMS guide, served at `/admin/guide/` — plus two retired pages |
+| `docs/domain.md` | Pointing charsoo-mag.ir at the new site — the two-step DNS change |
 | `IA-and-direction.md` | Sitemap, design direction, open questions |
 
 ## The publisher's guide

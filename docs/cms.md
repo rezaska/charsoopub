@@ -122,18 +122,16 @@ On a free account it needs a public repo — which would expose the 112 MB of
 print-resolution cover artwork in `archive/`. Either pay, or split the archive
 into its own private repo first.
 
-## Deployment — unresolved
+## Deployment — settled
 
-The build output is a plain folder. For an Iranian audience it should sit on
-Iranian hosting (ArvanCloud, Parspack) — fast locally, outside sanctions.
+Resolved in favour of Pages, above. The worry had been that an Iranian audience
+wants Iranian hosting (ArvanCloud, Parspack) and that GitHub Actions cannot push
+into an Iranian host — true, but moot: Pages serves the site itself, and it was
+measured at 533 ms from the client's network in Tehran with no VPN. See
+`docs/decisions.md`.
 
-The open question is whether **GitHub Actions can push into an Iranian host**;
-egress from US-hosted CI to Iranian IPs is unreliable. Two ways round it:
-
-- Build on a small VPS outside Iran that pulls from GitHub and pushes to Arvan
-- Deploy somewhere neutral and point the `.ir` domain at it
-
-Worth settling before much more is built on top.
+Pointing the domain is the remaining step, and it is its own document:
+`docs/domain.md`.
 
 ## Housekeeping
 
