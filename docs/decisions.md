@@ -24,6 +24,9 @@ automatically once the domain is pointed at it.
 **GitHub is reachable**, so the client can sign in to the CMS at `/admin/`.
 No fallback backend needed; PocketBase is off the table unless this changes.
 
+**The old self-signed certificate is gone with the move.** GitHub issues HTTPS
+for the domain automatically; browsers no longer block the site.
+
 **The repository is public.** Raised as a concern because `archive/` holds
 112 MB of print-resolution cover artwork; the publisher was asked directly and
 is fine with it. Free Pages requires it, so it stays public while hosted there.
@@ -40,15 +43,15 @@ Published for the client as brief 02; keep the two in step.
 | Has رادیو چارسو launched? | The only answer that changes the sitemap |
 | What was published 2021–2025 | The four-year gap neither source covers |
 | **Confirmed contributor list** | `/people`, and filling out the About page |
-| cPanel password for the host | DNS is editable there — see `docs/domain.md`. **The last thing blocking launch** |
 | Is the ۰۲۱ landline still live? | It is on every page; tied to the old office |
 | Which Instagram account is current | @payamcharsoo and @charsoopub both resolve |
 | Back-issue PDFs | Real tables of contents instead of a cover and a paragraph |
 | Cover originals ۳، ۴، ۵، ۸ + 4 book covers | Below usable resolution, or cropped from promo graphics |
 
-On DNS: answered as far as it can be from outside. The records live in the
-host's cPanel, the two-step change is written out in `docs/domain.md`, and the
-only missing piece is the login. Asked 2026-11-25.
+**The domain is pointed.** Done 2026-11-26: the apex now answers from GitHub
+Pages and the site is live on `charsoo-mag.ir`. Mail stayed on the old server
+untouched, by moving it off the apex first. `docs/domain.md` has the records and
+the rollback.
 
 On contributors: the names are recoverable from the archived page text, and
 that is where the Peter Brook and Barba interviews were found. But a list

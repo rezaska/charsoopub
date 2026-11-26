@@ -1,7 +1,21 @@
 # Pointing charsoo-mag.ir at the new site
 
-Everything below is ready to run. The one thing missing is the cPanel password —
-see "What is still needed".
+**Done 2026-11-26.** The site is live on the domain. Kept as the record of what
+changed, and as the rollback reference if it ever needs undoing.
+
+The zone as it now stands:
+
+```
+charsoo-mag.ir.       900  A      185.199.108.153  .109.153  .110.153  .111.153
+www.charsoo-mag.ir.   900  CNAME  rezaska.github.io
+mail.charsoo-mag.ir. 14400 A      78.157.35.72          ← unchanged, old server
+charsoo-mag.ir.       900  MX     10 mail.charsoo-mag.ir
+ftp.charsoo-mag.ir.   900  A      78.157.35.72          ← unchanged
+TXT × 4                              SPF, DKIM, two AutoSSL leftovers — unchanged
+```
+
+Mail never moved. It was decoupled from the apex first, so the website change
+could not touch it.
 
 ## Where DNS is managed
 
@@ -139,13 +153,22 @@ tells the publisher to open `charsoo-mag.ir/admin/`. That is wrong until this is
 done and right immediately after — so if the guide goes out before the cutover,
 that line has to say `rezaska.github.io/charsoopub/admin/` instead.
 
-## What is still needed
+## What happened on the night
 
-The **cPanel username and password**, from the publisher. The email she
-forwarded has the server details but no credentials; hosts usually send those
-separately when the account is created.
+Two things worth remembering, because both will recur.
 
-A cPanel login is full access — site files, every mailbox, the lot. If she would
-rather not hand the whole account over, the alternative is that she signs in and
-is walked through the Zone Editor. Six record edits, but she is the reader we
-wrote `concept/cms-guide.html` for, which is the argument for doing it for her.
+**cPanel refuses mismatched TTLs.** Adding the three extra apex `A` records
+failed until their TTL was set to `900` to match the existing one — the Add
+Record form defaults to `14400`. Same name and type must share a TTL.
+
+**A stale local DNS cache will lie to you.** The first check after the change
+returned the *old* WordPress site, because the machine doing the checking still
+had the previous record cached. `dig @8.8.8.8` and `dig @1.1.1.1` bypass it;
+`curl --resolve` forces a specific address. Do not conclude anything from a
+browser alone for the first fifteen minutes.
+
+## Leftovers worth clearing one day
+
+`_cpanel-dcv-test-record` and `_acme-challenge` are from cPanel's AutoSSL trying
+to certify a site that no longer lives there. Harmless — GitHub validates over
+HTTP, not DNS — but they are noise in the zone.
