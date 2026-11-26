@@ -87,7 +87,8 @@ main{padding-block:clamp(2rem,5vw,3.2rem)}
 ol.sub{margin:.9rem 0 0;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:.75rem}
 ol.sub li{counter-increment:s;display:grid;grid-template-columns:auto minmax(0,1fr);gap:.7rem;align-items:baseline}
 ol.sub li::before{
-  content:counter(s) "."; color:var(--accent);font-weight:700;font-size:var(--s--1);
+  /* persian, so the sub-steps count in ۱۲۳ like the step circles above. */
+  content:counter(s, persian) "."; color:var(--accent);font-weight:700;font-size:var(--s--1);
   font-variant-numeric:tabular-nums;
 }
 
@@ -118,6 +119,15 @@ ol.sub li::before{
 }
 .note b,.tip b{font-weight:700}
 
+/* Key combinations are Latin inside Persian. Without isolation the bidi
+   algorithm drags the surrounding brackets and the + into the Latin run,
+   which is what broke the refresh line. */
+.kbd{
+  display:inline-block;background:var(--raise);border:1px solid var(--rule);
+  border-radius:4px;padding:.05em .45em;font-family:var(--mono);font-size:.86em;
+  white-space:nowrap;direction:ltr;unicode-bidi:isolate;
+}
+
 /* button chips, so UI labels are unmistakable in running text */
 .ui{
   display:inline-block;background:var(--raise);border:1px solid var(--rule);
@@ -129,8 +139,13 @@ ol.sub li::before{
 .check{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:clamp(1.2rem,3vw,1.9rem);box-shadow:var(--shadow)}
 .check h2{font-size:var(--s-1);margin-bottom:.8rem}
 .check ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.6rem}
-.check li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.6rem;align-items:baseline;font-size:var(--s--1);color:var(--ink-soft)}
-.check li::before{content:"✓";color:var(--tip);font-weight:700}
+/* The tick is positioned, not a grid column. A grid item is created per
+   inline fragment, so a line containing a chip was broken into one cell per
+   fragment — which is what tore these lines apart. Ordinary inline flow
+   wraps them as text, and nothing here depends on the markup being wrapped
+   in a single element the way ol.sub is. */
+.check li{position:relative;padding-inline-start:1.5em;font-size:var(--s--1);color:var(--ink-soft)}
+.check li::before{content:"✓";position:absolute;inset-inline-start:0;top:0;color:var(--tip);font-weight:700}
 
 footer{padding-block:clamp(1.8rem,4vw,2.6rem);color:var(--ink-faint);font-size:var(--s--1);border-top:1px solid var(--rule);margin-top:clamp(2rem,4vw,3rem)}
 </style>
@@ -200,7 +215,7 @@ footer{padding-block:clamp(1.8rem,4vw,2.6rem);color:var(--ink-faint);font-size:v
     <section class="step">
       <div class="step-head"><span class="step-n">۳</span><h2>افزودن شماره‌ی فصلنامه</h2></div>
       <p>
-        از ستون کنار، <span class="ui">شماره‌های فصلنامه</span> و بعد <span class="ui">جدید</span>.
+        از ستون کنار <span class="ui">شماره‌های فصلنامه</span> و بعد <span class="ui">جدید</span> را بزنید.
       </p>
       <dl class="fields">
         <div><dt>شماره <span class="req">لازم</span></dt><dd>فقط عدد: ۹، ۱۰ و همین‌طور ادامه.</dd></div>
@@ -221,7 +236,7 @@ footer{padding-block:clamp(1.8rem,4vw,2.6rem);color:var(--ink-faint);font-size:v
     <section class="step">
       <div class="step-head"><span class="step-n">۴</span><h2>افزودن خبر</h2></div>
       <p>
-        از ستون کنار، <span class="ui">اخبار و رویدادها</span> و بعد <span class="ui">جدید</span>.
+        از ستون کنار <span class="ui">اخبار و رویدادها</span> و بعد <span class="ui">جدید</span> را بزنید.
         کوتاه‌ترین کار از میان این سه — نیم دقیقه بیشتر طول نمی‌کشد.
       </p>
       <dl class="fields">
@@ -241,8 +256,8 @@ footer{padding-block:clamp(1.8rem,4vw,2.6rem);color:var(--ink-faint);font-size:v
     <div class="check">
       <h2>چند نکته‌ی مهم</h2>
       <ul>
-        <li>بعد از <span class="ui">ذخیره و انتشار</span>، تغییر <b>دو تا سه دقیقه</b> بعد روی سایت دیده می‌شود. اگر بلافاصله صفحه را تازه کنید و تغییری نبینید، چیزی خراب نشده — هنوز آماده نشده است.</li>
-        <li>اگر صفحه‌ای قدیمی به‌نظر می‌رسد، با <b>Ctrl+Shift+R</b> (یا در مک <b>Cmd+Shift+R</b>) تازه‌سازی کامل کنید.</li>
+        <li>بعد از زدن <span class="ui">ذخیره و انتشار</span> تغییر <b>دو تا سه دقیقه</b> بعد روی سایت دیده می‌شود. اگر بلافاصله صفحه را تازه کنید و تغییری نبینید، چیزی خراب نشده — هنوز آماده نشده است.</li>
+        <li>اگر صفحه‌ای قدیمی به‌نظر می‌رسد، با <span class="kbd">Ctrl+Shift+R</span> — در مک <span class="kbd">Cmd+Shift+R</span> — تازه‌سازی کامل کنید.</li>
         <li>هیچ‌چیز واقعاً پاک نمی‌شود. هر تغییر نسخه‌ی تازه‌ای می‌سازد، پس اشتباه‌ها برگشت‌پذیرند — حتی هفته‌ها بعد.</li>
         <li>با فرم نمی‌شود ظاهر سایت را خراب کرد. فیلدها فقط چیزی را می‌پذیرند که سایت بلد است نمایش دهد.</li>
         <li>تصویرها را با بالاترین کیفیتی که دارید بارگذاری کنید؛ کوچک‌کردن‌شان کار سایت است.</li>

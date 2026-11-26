@@ -8,12 +8,6 @@ interface Props {
   /** Issue pages pass their accent; everything else uses the house colour. */
   accent?: string;
   onAccent?: string;
-  /**
-   * What a shared link shows. Pages with artwork pass their own cover, so a
-   * title she adds next year previews with its own image and nothing here
-   * needs regenerating. Pages without one fall back to the wordmark card.
-   */
-  image?: string;
 }
 
 const {
@@ -21,7 +15,6 @@ const {
   description = "انتشارات پیام چارسو — ناشر کتاب‌های ادبی و هنری و فصلنامه‌ی تخصصی سینما و تئاتر",
   accent,
   onAccent,
-  image,
 } = Astro.props;
 
 const nav = [
@@ -34,8 +27,13 @@ const nav = [
 
 const path = Astro.url.pathname;
 const canonical = new URL(path, Astro.site);
-/** Absolute, because every platform rejects a relative og:image. */
-const ogImage = new URL(url(image ?? "/og-default.jpg"), Astro.site);
+/**
+ * One card for the whole site, matching the favicon. A per-page cover was
+ * tried and dropped: every issue looks different, so a reader could not tell
+ * from a shared link whose it was. The mark is the thing that says Charsoo.
+ * Absolute, because every platform rejects a relative og:image.
+ */
+const ogImage = new URL(url("/og-default.jpg"), Astro.site);
 const style = accent
   ? `--accent:${accent};--on-accent:${onAccent ?? "#fff"}`
   : undefined;

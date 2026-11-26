@@ -16,7 +16,7 @@ const news = (await getCollection("news")).sort(
 const hero = pickHero(issues, books, news);
 ---
 
-<Base title="انتشارات پیام چارسو" image={hero.image}>
+<Base title="انتشارات پیام چارسو">
   <section class="hero" style={`--a:${hero.accent};--on-a:${hero.onAccent}`}>
     <div class="wrap hero-grid">
       <a class="art" href={url(hero.href)} aria-label={hero.title}>
