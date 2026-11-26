@@ -139,6 +139,33 @@ Anything of that kind belongs behind `import.meta.env.DEV`, or in `docs/`. The
 site went live on 2026-11-26 with five book pages whose entire body was such a
 note; they read as unfinished to a visitor and said nothing a reader wanted.
 
+## Sharing a link on Telegram
+
+Every page carries a preview card: the wordmark on the house accent, the same
+image as the favicon. One card for the whole site — a per-page cover was tried
+and dropped, because every issue looks different and a reader could not tell
+from a shared link whose it was.
+
+**A URL Telegram has seen before will not pick up a new card on its own.**
+`charsoo-mag.ir` had been crawled years earlier, when it was WordPress behind a
+self-signed certificate that fails to fetch, and Telegram caches that failure
+indefinitely. A page it has never seen previews correctly first time.
+
+Send the URL to **@WebpageBot** to clear it. It keys on the exact string, so
+purge every form that might be cached — the one that worked here was not the
+one first tried:
+
+```
+charsoo-mag.ir
+http://charsoo-mag.ir/
+https://charsoo-mag.ir          ← no trailing slash is a different key
+https://www.charsoo-mag.ir/
+```
+
+Then paste into a chat the link is not already sitting in; Desktop and mobile
+each hold a local cache on top of the server's, so an existing message never
+updates in place.
+
 ## Housekeeping
 
 Hook the media uploader to convert **CMYK → sRGB** on upload. Sixteen of the
