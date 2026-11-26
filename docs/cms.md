@@ -124,6 +124,12 @@ Pages. The split is the point: the heavy file is local, and the only thing
 that leaves the country is the GitHub API traffic, which is small and which
 her connection already handles.
 
+Live at **panel.charsoo-mag.ir**, created 2026-11-26 as a cPanel subdomain with
+document root `/home/payamcha/public_html/panel.charsoo-mag.ir`. AutoSSL issued
+a Let's Encrypt certificate without being asked. The old WordPress is still in
+`/public_html`, which is why the subdomain was created with its own document
+root rather than a shared one.
+
 `node scripts/make-panel.mjs` builds the package after `npm run build`. It
 flattens the paths, since the panel is served from a subdomain root rather
 than `/admin/`. Output is `panel-dist/` and `panel.zip`, both gitignored.
