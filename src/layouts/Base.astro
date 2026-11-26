@@ -37,6 +37,12 @@ const style = accent
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {/* The wordmark is white on transparent, so it needs a ground to be
+        visible on a light tab bar. The .ico carries three sizes: the strokes
+        are thickened at 16 and 32, where the calligraphy would otherwise
+        thin out to nothing, and left alone at 48. */}
+    <link rel="icon" href={url("/favicon.ico")} sizes="any" />
+    <link rel="apple-touch-icon" href={url("/apple-touch-icon.png")} />
     <script is:inline>
       // Applied before first paint so an explicit choice never flashes the
       // other theme. No stored value means follow the operating system.
