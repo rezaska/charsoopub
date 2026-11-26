@@ -83,9 +83,11 @@ const hero = pickHero(issues, books, news);
 <style>
   /* Sits in the same column as every other section, so the cover's edge
      lines up with the headings and card grid below it. */
+  /* No background of its own: the hero is the top of the page, not a slab
+     laid on it. --paper is reserved for the two surfaces that genuinely sit
+     above the page — the header and the footer. Inheriting --ground means
+     both themes follow without a second rule. */
   .hero {
-    background: var(--paper);
-    border-bottom: 1px solid var(--rule);
     padding-block: clamp(1.4rem, 3.5vw, 2.8rem);
   }
   .hero-grid {
